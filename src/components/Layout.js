@@ -192,8 +192,8 @@ const EditPage = ({ path }) => (
               margin-top: 15px;
               display: inline-block;
             `}
-            href={`https://github.com/popperjs/popper-core/edit/master/docs/src/${
-              route.fileAbsolutePath.split('/docs/src/')[1]
+            href={`https://github.com/popperjs/website/edit/master/src/${
+              route.fileAbsolutePath.split('/src/')[1]
             }`}
             rel="noopener noreferrer"
             target="_blank"
