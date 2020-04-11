@@ -1,4 +1,4 @@
-import { createPopper } from '../../../lib/popper.js';
+import { createPopper } from '@popperjs/core';
 import { useRef, useLayoutEffect, useMemo } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';

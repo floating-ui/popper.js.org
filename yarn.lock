@@ -1458,6 +1458,11 @@
     string-width "^2.0.0"
     strip-ansi "^3"
 
+"@popperjs/core@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.2.2.tgz#2e254f5eb31f3abc35470060fb7116937d837739"
+  integrity sha512-LaSssaO8QHSAnRI4ZZB+jTD/hmndqOzwabDwKuySS1ME0pj+La6pV77i5CIQ61kVtz3pE13DhmkaYFGtrrCMeg==
+
 "@reach/router@^1.2.1":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@reach/router/-/router-1.2.1.tgz#34ae3541a5ac44fa7796e5506a5d7274a162be4e"

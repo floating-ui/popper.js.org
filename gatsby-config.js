@@ -1,4 +1,4 @@
-const { UNPKG_CDN_URL, VERSION_RANGE } = require('./variables');
+const { UNPKG_CDN_URL } = require('./variables');
 
 module.exports = {
   siteMetadata: {
@@ -45,7 +45,6 @@ module.exports = {
             resolve: `gatsby-remark-find-replace`,
             options: {
               replacements: {
-                __VERSION_RANGE__: VERSION_RANGE,
                 __UNPKG_CDN_URL__: UNPKG_CDN_URL,
               },
               prefix: false,
