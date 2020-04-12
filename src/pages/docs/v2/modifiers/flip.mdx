@@ -32,6 +32,7 @@ type Options = {
   boundary: Boundary, // "clippingParents"
   rootBoundary: RootBoundary, // "viewport"
   flipVariations: boolean, // true
+  allowedAutoPlacements: Array<Placement>, // all supported placements
 };
 ```
 
@@ -159,6 +160,29 @@ createPopper(reference, popper, {
       name: 'flip',
       options: {
         flipVariations: false, // true by default
+      },
+    },
+  ],
+});
+```
+
+### `allowedAutoPlacements`
+
+The `auto` placement is very versatile, but sometimes you may need to make it
+resolve to just a user defined set of placements.  
+If, for example, you want `auto` to only ever resolve to either `top` or
+`bottom`, you can set `allowedAutoPlacements` to `['top', 'bottom']`.
+
+This feature is available starting from `@popperjs/core@2.3.0`
+
+```js
+createPopper(reference, popper, {
+  placement: 'auto',
+  modifiers: [
+    {
+      name: 'flip',
+      options: {
+        allowedAutoPlacements: ['top', 'bottom'], // by default, all the placements are allowed
       },
     },
   ],
