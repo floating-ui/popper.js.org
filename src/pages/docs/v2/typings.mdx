@@ -45,9 +45,9 @@ import { createPopper } from '@popperjs/core';
 import type { StrictModifiers, Modifier } from '@popperjs/core';
 
 type CustomModifier = Modifier<'custom', { customOption: boolean }>;
-type Modifiers = StrictModifiers | $Shape<CustomModifier>;
+type ExtendedModifiers = StrictModifiers | $Shape<CustomModifier>;
 
-createPopper<StrictModifiers>(referenceElement, popperElement, options);
+createPopper<ExtendedModifiers>(referenceElement, popperElement, options);
 ```
 
 ## Flow
