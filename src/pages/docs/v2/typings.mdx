@@ -16,6 +16,40 @@ constantly required to keep up with them.
 
 <x-ad />
 
+## Common (Flow and TypeScript)
+
+This section covers common knowledge applicable to both Flow and TypeScript, for
+sake of simplicity the examples are written in Flow, but they should work as-is
+after the `// @flow` header has been removed.
+
+### Modifiers Type Checking
+
+`createPopper`, by default, works in a loose-type mode, that means the modifiers
+are not strictly type-checked.
+
+If you'd like to opt-in to the strict-mode, you can do the following:
+
+```js
+// @flow
+import { createPopper } from '@popperjs/core';
+import type { StrictModifiers } from '@popperjs/core';
+
+createPopper<StrictModifiers>(referenceElement, popperElement, options);
+```
+
+If you'd like to define custom modifiers, you will need to add them to the list:
+
+```js
+// @flow
+import { createPopper } from '@popperjs/core';
+import type { StrictModifiers, Modifier } from '@popperjs/core';
+
+type CustomModifier = Modifier<'custom', { customOption: boolean }>;
+type Modifiers = StrictModifiers | $Shape<CustomModifier>;
+
+createPopper<StrictModifiers>(referenceElement, popperElement, options);
+```
+
 ## Flow
 
 Rather than exporting limited type definitions, we link to the Flow-typed source
