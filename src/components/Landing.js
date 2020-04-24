@@ -78,6 +78,11 @@ const USED_BY_LIST = [
     label: 'Used by Drupal',
     url: 'https://www.drupal.org/',
   },
+  {
+    logo: require('../images/logos/uber.svg'),
+    label: 'Used by Uber - Base Web',
+    url: 'https://www.uber.com/',
+  },
 ];
 
 const UsedByContainer = styled.div`
