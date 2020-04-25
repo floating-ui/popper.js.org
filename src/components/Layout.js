@@ -19,6 +19,7 @@ import SEO from './Seo';
 import { createTree } from '../utils/createTree';
 import processRoutes from '../utils/processRoutes';
 
+import '@openfonts/luckiest-guy_latin';
 import './layout.css';
 import './prism-base2tone-pool-dark.css';
 import { ChevronRight, ChevronLeft } from 'react-feather';

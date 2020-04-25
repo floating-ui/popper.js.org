@@ -37,7 +37,7 @@ const Description = styled.div`
 const ProductCard = ({ title, image, description, url }) => (
   <Container>
     <a href={url} target="_blank" rel="sponsored noopener noreferrer">
-      <Image src={image} />
+      <Image src={image} alt={title} />
     </a>
     <Title>
       <a href={url} target="_blank" rel="sponsored noopener noreferrer">

@@ -31,6 +31,7 @@ import { Container, LinkStyled, media, Footer, sizes } from './Framework';
 import { usePopper, Tooltip, Arrow } from './Popper';
 import { ProductCard, Grid } from './ProductCard';
 import 'modern-normalize';
+import '@openfonts/luckiest-guy_latin';
 import './layout.css';
 import './prism-base2tone-pool-dark.css';
 
@@ -446,6 +447,7 @@ createPopper(popcorn, tooltip, {
               onClick={() => setPlacement(p)}
               onMouseDown={() => setPlacement(p)}
               data-placement={p}
+              aria-label={p}
               selected={placement === p}
             >
               <Dot selected={placement === p} />

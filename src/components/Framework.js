@@ -34,7 +34,7 @@ export const Footer = styled.footer`
   text-align: center;
   background-color: #1c1428;
   padding: 25px 0;
-  color: #8e72b4;
+  color: #9479b9;
 `;
 
 const linkCss = css`

@@ -94,7 +94,7 @@ const InstallBar = () => (
       </div>
       <Bar>
         <LogoWrapper>
-          <Logo src={npmLogo} draggable="false" />
+          <Logo src={npmLogo} alt="npm logo" draggable="false" />
         </LogoWrapper>
         <TextWrapper>npm i @popperjs/core</TextWrapper>
       </Bar>
