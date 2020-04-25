@@ -5,7 +5,7 @@
   padding: 15px;
   border-radius: 10px;
   width: 290px;
-  height: 155px;
+  height: 170px;
   margin: 15px auto;
 }
 
@@ -36,6 +36,7 @@
 
 #carbonads a {
   border: none;
+  margin-top: 10px;
 }
 
 .carbon-wrap {
