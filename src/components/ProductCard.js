@@ -11,10 +11,15 @@ const Grid = styled.div`
 const Container = styled.div`
   flex: 0 0 33.3333333333%;
   padding: 20px;
+  transition: transform 0.4s ease-out;
 
   a {
     color: #fff;
     text-decoration: none;
+  }
+
+  &:hover {
+    transform: scale(1.1);
   }
 `;
 

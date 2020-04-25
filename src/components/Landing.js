@@ -29,7 +29,7 @@ import Header from './Header';
 import InstallBar from './InstallBar';
 import { Container, LinkStyled, media, Footer, sizes } from './Framework';
 import { usePopper, Tooltip, Arrow } from './Popper';
-import { ProductCard, Grid } from './ProductCard';
+import { CreativeTim } from './CreativeTim';
 import 'modern-normalize';
 import '@openfonts/luckiest-guy_latin';
 import './layout.css';
@@ -713,28 +713,7 @@ const Layout = ({ children }) => {
             Free & Premium products!
           </p>
 
-          <Grid>
-            <ProductCard
-              title="Argon Dashboard PRO"
-              description="Premium Bootstrap 4 Admin - $79"
-              image={require('../images/creativetim/argon-dashboard-pro.jpg')}
-              url="https://www.creative-tim.com/product/argon-dashboard-pro?ref=popper.js.org"
-            />
-
-            <ProductCard
-              title="Material Dashboard PRO"
-              description="Premium Bootstrap 4 Material Admin - $49"
-              image={require('../images/creativetim/opt_mdp_thumbnail.jpg')}
-              url="https://www.creative-tim.com/product/material-dashboard-pro?ref=popper.js.org"
-            />
-
-            <ProductCard
-              title="Now UI Dashboard PRO"
-              description="Premium Bootstrap 4 Admin - $49"
-              image={require('../images/creativetim/now-ui-dashboard-pro.jpg')}
-              url="https://www.creative-tim.com/product/now-ui-dashboard-pro?ref=popper.js.org"
-            />
-          </Grid>
+          <CreativeTim />
         </Container>
       </Section>
 
