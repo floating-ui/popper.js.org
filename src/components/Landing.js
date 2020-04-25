@@ -717,21 +717,21 @@ const Layout = ({ children }) => {
             <ProductCard
               title="Argon Dashboard PRO"
               description="Premium Bootstrap 4 Admin - $79"
-              image="https://raw.githack.com/creativetimofficial/public-assets/master/argon-dashboard-pro/argon-dashboard-pro.jpg"
+              image={require('../images/creativetim/argon-dashboard-pro.jpg')}
               url="https://www.creative-tim.com/product/argon-dashboard-pro?ref=popper.js.org"
             />
 
             <ProductCard
               title="Material Dashboard PRO"
               description="Premium Bootstrap 4 Material Admin - $49"
-              image="https://raw.githack.com/creativetimofficial/public-assets/master/material-dashboard-pro-html/opt_mdp_thumbnail.jpg"
+              image={require('../images/creativetim/opt_mdp_thumbnail.jpg')}
               url="https://www.creative-tim.com/product/material-dashboard-pro?ref=popper.js.org"
             />
 
             <ProductCard
               title="Now UI Dashboard PRO"
               description="Premium Bootstrap 4 Admin - $49"
-              image="https://raw.githack.com/creativetimofficial/public-assets/master/now-ui-dashboard-pro/now-ui-dashboard-pro.jpg"
+              image={require('../images/creativetim/now-ui-dashboard-pro.jpg')}
               url="https://www.creative-tim.com/product/now-ui-dashboard-pro?ref=popper.js.org"
             />
           </Grid>

@@ -6220,6 +6220,13 @@ gatsby-plugin-page-creator@^2.2.4:
     lodash "^4.17.15"
     micromatch "^3.1.10"
 
+gatsby-plugin-preact@^3.2.4:
+  version "3.2.4"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-preact/-/gatsby-plugin-preact-3.2.4.tgz#625851e45834c64c9d0c371f8a3bde2ede91ffff"
+  integrity sha512-7+CVhqj4vfh56P/jZlovaReEbJ13gz7DeKeB5LyZKAzQNCbicAJqnB1C6jxvCt8r0AlYM0Sl+d085YUtK+UCvA==
+  dependencies:
+    "@babel/runtime" "^7.8.7"
+
 gatsby-plugin-preconnect@^1.1.7:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-preconnect/-/gatsby-plugin-preconnect-1.1.7.tgz#02a790b96f9a09ec5d0f4a2919047074f369ebb8"
@@ -11097,6 +11104,11 @@ potrace@^2.1.5:
   dependencies:
     jimp "^0.10.2"
 
+preact@^10.4.1:
+  version "10.4.1"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.4.1.tgz#9b3ba020547673a231c6cf16f0fbaef0e8863431"
+  integrity sha512-WKrRpCSwL2t3tpOOGhf2WfTpcmbpxaWtDbdJdKdjd0aEiTkvOmS4NBkG6kzlaAHI9AkQ3iVqbFWM3Ei7mZ4o1Q==
+
 prebuild-install@^5.3.3:
   version "5.3.3"
   resolved "https://registry.yarnpkg.com/prebuild-install/-/prebuild-install-5.3.3.tgz#ef4052baac60d465f5ba6bf003c9c1de79b9da8e"
@@ -11495,7 +11507,7 @@ react-dev-utils@^9.1.0:
     strip-ansi "5.2.0"
     text-table "0.2.0"
 
-react-dom@^16.12.0:
+react-dom@^16.13.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.13.1.tgz#c1bd37331a0486c078ee54c4740720993b2e0e7f"
   integrity sha512-81PIMmVLnCNLO/fFOQxdQkvEq/+Hfpv24XNJfpyZhTRfO0QcmQIF/PgCa1zCOj2w1hrn12MFLyaJ/G0+Mxtfag==

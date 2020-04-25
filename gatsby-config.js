@@ -10,6 +10,7 @@ module.exports = {
     siteUrl: 'https://popper.js.org',
   },
   plugins: [
+    'gatsby-plugin-preact',
     'gatsby-plugin-root-import',
     'gatsby-plugin-catch-links',
     'gatsby-plugin-sitemap',
