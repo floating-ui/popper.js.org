@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
+import Img from 'gatsby-image';
+
 const Grid = styled.div`
   display: flex;
   @media (max-width: 600px) {
@@ -23,7 +25,7 @@ const Container = styled.div`
   }
 `;
 
-const Image = styled.img`
+const Image = styled(Img)`
   width: 100%;
   border-radius: 5px;
   box-shadow: 0 2rem 1.5rem -1.5rem rgba(33, 37, 41, 0.15),
@@ -39,10 +41,10 @@ const Description = styled.div`
   font-size: 12px;
 `;
 
-const ProductCard = ({ title, image, description, url }) => (
+const ProductCard = ({ title, fluid, description, url, data }) => (
   <Container>
     <a href={url} target="_blank" rel="sponsored noopener noreferrer">
-      <Image src={image} alt={title} />
+      <Image fluid={fluid} alt={title} />
     </a>
     <Title>
       <a href={url} target="_blank" rel="sponsored noopener noreferrer">
