@@ -207,7 +207,8 @@ const EditPage = ({ path }) => (
   </MdxRoutes>
 );
 
-const Layout = ({ children, path, pageResources, ...props }) => {
+const Layout = ({ children, location, pageResources, ...props }) => {
+  const path = location.pathname;
   function getPrevNextRoutes(routes) {
     const validRoutes = flatten(createTree(processRoutes(routes, path)));
 
