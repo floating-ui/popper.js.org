@@ -183,11 +183,13 @@ const Block = ({ route }) => (
           {route.navigationLabel}
         </Item>
       </li>
-      <Ul root={route.slug.split('/').length === 2}>
-        {route.children.map((route, index) => (
-          <Block key={index} route={route} />
-        ))}
-      </Ul>
+      <li>
+        <Ul root={route.slug.split('/').length === 2}>
+          {route.children.map((route, index) => (
+            <Block key={index} route={route} />
+          ))}
+        </Ul>
+      </li>
     </Ul>
   </>
 );
