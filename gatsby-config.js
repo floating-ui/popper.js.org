@@ -106,7 +106,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-preconnect',
       options: {
-        domains: ['https://srv.carbonads.com'],
+        domains: ['https://cdn.carbonads.com', 'https://srv.carbonads.net'],
       },
     },
     'gatsby-plugin-meta-redirect',
