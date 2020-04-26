@@ -28,22 +28,22 @@ const products = [
       'https://www.creative-tim.com/product/now-ui-dashboard-pro?ref=popper.js.org',
   },
   {
-    title: 'Light Bootstrap Dashboard React PRO - $49',
-    description: 'Premium Bootstrap React Admin Template',
+    title: 'Light Bootstrap Dashboard React PRO',
+    description: 'Premium Bootstrap React Admin Template - $49',
     image: '../images/creativetim/light-bootstrap-dashboard-react.jpg',
     url:
       'https://www.creative-tim.com/product/light-bootstrap-dashboard-pro-react?ref=popper.js.org',
   },
   {
     title: 'NextJS Material Kit PRO',
-    description: 'Premium NextJS Material-UI Kit',
+    description: 'Premium NextJS Material-UI Kit - $119',
     image: '../images/creativetim/nextjs-material-kit-pro.jpg',
     url:
       'https://www.creative-tim.com/product/nextjs-material-kit-pro?ref=popper.js.org',
   },
   {
     title: 'Tailwind Starter Kit',
-    description: 'A beautiful extension for TailwindCSS.',
+    description: 'A beautiful extension for TailwindCSS - FREE',
     image: '../images/creativetim/opt_tsp_tailwindcss_thumbnail.jpg',
     url:
       'https://www.creative-tim.com/learning-lab/tailwind-starter-kit/presentation?ref=popper.js.org',
