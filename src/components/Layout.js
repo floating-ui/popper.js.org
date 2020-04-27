@@ -242,7 +242,7 @@ const Layout = ({ children, location, pageResources, ...props }) => {
 
           h1 {
             font-size: 40px;
-            margin-top: 0;
+            margin-top: 20px;
             padding-top: 20px;
             line-height: 1.1;
           }
