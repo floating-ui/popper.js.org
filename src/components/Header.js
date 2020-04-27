@@ -3,7 +3,8 @@ import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import popperLogo from '../images/popper-logo.svg';
 import popperLogoOutlined from '../images/popper-logo-outlined.svg';
-import stripes from '../images/stripes.svg';
+import stripesLight from '../images/stripes-light.svg';
+import stripesDark from '../images/stripes-dark.svg';
 
 import { media } from './Framework';
 import { GitHub, Terminal } from 'react-feather';
@@ -22,22 +23,23 @@ const HeaderStyled = styled.header`
     bottom: 0;
     left: 0;
     z-index: -1;
-    background-image: url(${stripes}),
+    background-image: url(${stripesLight}),
       radial-gradient(350px, #fff, #fff1e1 20%, #ffa0b1);
     background-size: cover;
     background-position: center 60%;
 
     ${media.sm} {
-      background-image: url(${stripes}),
+      background-image: url(${stripesLight}),
         radial-gradient(500px, #fff, #fff1e1 20%, #ffa0b1);
     }
 
     @media (prefers-color-scheme: dark) {
-      background-image: url(${stripes}),
-        radial-gradient(350px, #521a22, #63242d 20%, #71444b);
+      background-image: url(${stripesDark}),
+        radial-gradient(350px, #a95768, #924459 20%, #462239);
+
       ${media.sm} {
-        background-image: url(${stripes}),
-          radial-gradient(500px, #521a22, #63242d 20%, #71444b);
+        background-image: url(${stripesDark}),
+          radial-gradient(500px, #a95768, #924459 20%, #462239);
       }
     }
   }
@@ -70,7 +72,7 @@ const Slogan = styled.h2`
   }
 
   @media (prefers-color-scheme: dark) {
-    color: #ff566f;
+    color: #fff;
   }
 `;
 
@@ -105,6 +107,10 @@ const buttonCss = css`
     background: #c73a50;
     color: white;
     border-color: #c73a50;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.2);
   }
 `;
 
