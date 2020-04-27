@@ -365,7 +365,10 @@ const Layout = ({ children, location, pageResources, ...props }) => {
       <div>
         {pageResources && (
           <SEO
-            title={pageResources.json.pageContext.frontmatter.navigationLabel}
+            title={
+              pageResources.json.pageContext.frontmatter.title ||
+              pageResources.json.pageContext.frontmatter.navigationLabel
+            }
           />
         )}
         <Navigation root="/" target="location" path={path} />
