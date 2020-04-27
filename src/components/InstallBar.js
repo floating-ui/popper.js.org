@@ -26,6 +26,10 @@ const InstallBarContainer = styled(Container)`
   ${media.lg} {
     flex-direction: row;
   }
+
+  ${media.md} {
+    padding: 0 40px;
+  }
 `;
 
 const Bar = styled.div`

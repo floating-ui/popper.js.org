@@ -26,7 +26,7 @@ export const Container = styled.div`
   }
 
   ${media.md} {
-    padding: 0 40px;
+    padding: 50px 40px 0 40px;
   }
 `;
 
