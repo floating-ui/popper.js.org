@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import popperLogo from '../images/popper-logo.svg';
+import popperLogoOutlined from '../images/popper-logo-outlined.svg';
 import stripes from '../images/stripes.svg';
 
 import { media } from './Framework';
@@ -9,16 +10,36 @@ import { GitHub, Terminal } from 'react-feather';
 import { css } from '@emotion/core';
 
 const HeaderStyled = styled.header`
-  background-image: url(${stripes}),
-    radial-gradient(350px, #fff, #fff1e1 20%, #ffa0b1);
   text-align: center;
   padding: 60px 25px 50px;
-  background-size: cover;
-  background-position: center 60%;
+  position: relative;
 
-  ${media.sm} {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
     background-image: url(${stripes}),
-      radial-gradient(500px, #fff, #fff1e1 20%, #ffa0b1);
+      radial-gradient(350px, #fff, #fff1e1 20%, #ffa0b1);
+    background-size: cover;
+    background-position: center 60%;
+
+    ${media.sm} {
+      background-image: url(${stripes}),
+        radial-gradient(500px, #fff, #fff1e1 20%, #ffa0b1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      background-image: url(${stripes}),
+        radial-gradient(350px, #521a22, #63242d 20%, #71444b);
+      ${media.sm} {
+        background-image: url(${stripes}),
+          radial-gradient(500px, #521a22, #63242d 20%, #71444b);
+      }
+    }
   }
 `;
 
@@ -26,6 +47,10 @@ const Logo = styled.img`
   height: 200px;
   user-select: none;
   margin-bottom: 25px;
+
+  @media (prefers-color-scheme: dark) {
+    transform: scale(1.07);
+  }
 `;
 
 const Slogan = styled.h2`
@@ -43,6 +68,10 @@ const Slogan = styled.h2`
   ${media.sm} {
     font-size: 36px;
   }
+
+  @media (prefers-color-scheme: dark) {
+    color: #ff566f;
+  }
 `;
 
 const SubSlogan = styled.p`
@@ -52,6 +81,10 @@ const SubSlogan = styled.p`
   font-weight: 500;
   margin-bottom: 20px;
   line-height: 1.2;
+
+  @media (prefers-color-scheme: dark) {
+    color: #d8acbe;
+  }
 `;
 
 const buttonCss = css`
@@ -82,7 +115,18 @@ const iconCss = css`
 
 const Header = () => (
   <HeaderStyled>
-    <Logo src={popperLogo} alt="Popper logo" draggable="false" />
+    <picture>
+      <source
+        srcset={popperLogoOutlined}
+        media="(prefers-color-scheme: dark)"
+      />
+      <source
+        srcset={popperLogo}
+        media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
+      />
+      <Logo src={popperLogo} alt="Popper logo" draggable="false" />
+    </picture>
+
     <Slogan>
       Tooltip &amp; Popover <br /> Positioning Engine
     </Slogan>
