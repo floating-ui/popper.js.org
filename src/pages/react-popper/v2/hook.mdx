@@ -1,0 +1,49 @@
+---
+navigationLabel: Hook
+order: 1
+---
+
+# React Hook
+
+The `usePopper` hook provides an API almost identical to the ones of
+[`createPopper`](../../docs/v2/constructors/#createpopper) constructor.
+
+Rather than returning a Popper instance, it will return an object containing the
+following properties:
+
+<x-ad />
+
+### `styles`
+
+The `styles` property is an object, its properties are `popper`, and `arrow`.
+The two properties are a
+[`CSSStyleDeclaration` interface](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration)
+describing the necessary CSS properties needed to properly position the two
+elements.
+
+You can directly assign the value of the two properties to the React `style`
+property of your components.
+
+```jsx
+<div style={styles.popper} />
+```
+
+### `attributes`
+
+Similar to `styles`, the `attributes` object lists the `popper` and `arrow` HTML
+attributes, by default, only `popper` will hold some attributes (e.g.
+`data-popper-placement`), but more generically, any HTML attribute described by
+the Popper documentation will be available inside these properties.
+
+The easiest way to consume their values is by destructuring them directly onto
+your React component.
+
+```jsx
+<div {...attributes.popper} />
+```
+
+### `update`, `forceUpdate`, and `state`
+
+These properties match the ones described in the
+[Popper docs](../../docs/v2/constructors/#types), the only difference is that
+they can be `null` if Popper isn't yet been initialized or has been destroyed.

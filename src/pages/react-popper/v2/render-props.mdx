@@ -1,0 +1,113 @@
+---
+navigationLabel: Render Props
+order: 2
+---
+
+# Render Props
+
+> This is a legacy API for compatibility with v1.x users moving to Popper v2. We
+> recommend using the [`usePopper` Hook](../hook) in new code.
+
+The `Manager` component is a simple wrapper that needs to surround all the other
+`react-popper` components in order to make them communicate with each others.
+
+The `Popper` component accepts the properties `children`, `placement`,
+`modifiers` and `strategy`.
+
+<x-ad />
+
+```jsx
+<Popper
+  innerRef={(node) => this.popperNode = node}
+  placement="right"
+  modifiers={[{ name: 'preventOverflow', enabled: false }]}
+  strategy="fixed"
+>
+    { props => [...] }
+</Popper>
+```
+
+### `children`
+
+```js
+children: ({|
+  ref: (?HTMLElement) => void,
+  style: { [string]: string | number },
+  placement: ?Placement,
+  isReferenceHidden: ?boolean,
+  hasPopperEscaped: ?boolean,
+  update: () => void,
+  forceUpdate: () => void,
+  arrowProps: {
+    ref: (?HTMLElement) => void,
+    style: { [string]: string | number },
+  },
+|}) => Node
+```
+
+A function (render prop) that takes as argument an object containing the
+following properties:
+
+- **`ref`**: used to retrieve the
+  [React refs](https://reactjs.org/docs/refs-and-the-dom.html) of the **popper**
+  element.
+- **`style`**: contains the necessary CSS styles (React CSS properties) which
+  are computed by Popper.js to correctly position the **popper** element.
+- **`placement`**: describes the placement of your popper after Popper.js has
+  applied all the modifiers that may have flipped or altered the originally
+  provided `placement` property. You can use this to alter the style of the
+  popper and or of the arrow according to the definitive placement. For
+  instance, you can use this property to orient the arrow to the right
+  direction.
+- **`isReferenceHidden`**: a boolean signifying the reference element is fully
+  clipped and hidden from view.
+- **`hasPopperEscaped`**: a boolean signifying the popper escapes the reference
+  element's boundary (and so it appears detached).
+- **`update`**: a function you can ask Popper to recompute your tooltip's
+  position . It will directly call the
+  [Popper#update](../../../docs/v2/lifecycle/#manual-update) method.
+- **`arrowProps`**: an object, containing `style` and `ref` properties that are
+  identical to the ones provided as the first and second arguments of
+  `children`, but relative to the **arrow** element. The `style` property
+  contains `left` and `top` offset values, which are used to center the arrow
+  within the popper. These values can be merged with further custom styling and
+  positioning. See
+  [the demo](https://github.com/FezVrasta/react-popper/blob/8994933c430e48ab62e71495be71e4f440b48a5a/demo/styles.js#L100)
+  for an example.
+
+### `innerRef`
+
+```js
+innerRef?: (?HTMLElement) => void
+```
+
+Function that can be used to obtain popper reference
+
+### `placement`
+
+```js
+placement?: PopperJS$Placement;
+```
+
+One of the accepted placement values listed in the
+[Popper.js documentation](../../../docs/v2/constructors/#options).  
+Your popper is going to be placed according to the value of this property.  
+Defaults to `bottom`.
+
+### `strategy`
+
+Describes the positioning strategy to use. By default, it is `absolute`, which
+in the simplest cases does not require repositioning of the popper. If your
+reference element is in a `fixed` container, use the `fixed` strategy.
+[Read More](../../../docs/v2/constructors/#strategy)
+
+### `modifiers`
+
+```js
+modifiers?: PopperJS$Modifiers;
+```
+
+An object containing custom settings for the
+[Popper.js modifiers](../../../docs/v2/modifiers/).  
+You can use this property to override their settings or to inject your custom
+ones.

@@ -1,0 +1,42 @@
+---
+navigationLabel: Virtual Elements
+order: 4
+---
+
+# Usage without a reference `HTMLElement`
+
+Whenever you need to position a popper based on some arbitrary coordinates, you
+can provide Popper with a [virtual element](../../../docs/v2/virtual-elements/).
+
+<x-ad />
+
+```jsx
+import { usePopper } from 'react-popper';
+
+// This is going to create a virtual reference element
+// positioned 10px from top and left of the document
+// 90px wide and 10px high
+const virtualReference = {
+  getBoundingClientRect() {
+    return {
+      top: 10,
+      left: 10,
+      bottom: 20,
+      right: 100,
+      width: 90,
+      height: 10,
+    };
+  },
+};
+
+const Example = () => {
+  const [popperElement, setPopperElement] = React.useState(null);
+  const { styles, attributes } = usePopper(virtualReference, popperElement);
+
+  return (
+    <div ref={setPopperElement} style={styles.popper} {...attributes.popper}>
+      Popper element
+    </div>
+  );
+};
+```

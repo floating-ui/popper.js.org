@@ -1,0 +1,48 @@
+---
+navigationLabel: React Portals
+order: 3
+---
+
+# Usage with `ReactDOM.createPortal`
+
+Popper.js is smart enough to work even if the **popper** and **reference**
+elements aren't in the same DOM context.  
+This means that you can use
+[`ReactDOM.createPortal`](https://reactjs.org/docs/portals.html) (or any pre
+React 16 alternative) to move the popper component somewhere else in the DOM.
+
+<x-ad />
+
+This can be useful if you want to position a tooltip inside an
+`overflow: hidden` container that you want to make overflow.
+
+**Please note that you can also try `strategy: 'fixed'` to obtain a similar
+effect with less hassle.**
+
+```jsx
+import { usePopper } from 'react-popper';
+
+const Example = () => {
+  const [referenceElement, setReferenceElement] = React.useState(null);
+  const [popperElement, setPopperElement] = React.useState(null);
+  const { styles, attributes } = usePopper(referenceElement, popperElement);
+
+  return (
+    <>
+      <button type="button" ref={setReferenceElement}>
+        Reference
+      </button>
+      {ReactDOM.createPortal(
+        <div
+          ref={setPopperElement}
+          style={styles.popper}
+          {...attributes.popper}
+        >
+          Popper
+        </div>,
+        document.querySelector('#destination')
+      )}
+    </>
+  );
+};
+```

@@ -1,0 +1,61 @@
+---
+navigationLabel: v2.×
+order: 0
+---
+
+# React Popper 2.×
+
+The second major version of `react-popper` brings compatibility with Popper 2.x
+and introduces a new React Hook to use the library with modern React patterns.
+
+<x-ad />
+
+## Install
+
+Via package managers:
+
+```bash
+# With npm
+npm i react-popper @popperjs/core
+
+# With Yarn
+yarn add react-popper @popperjs/core
+```
+
+> **Note:** `@popperjs/core` must be installed in your project in order for
+> `react-popper` to work.
+
+Via `script` tag (UMD library exposed as `ReactPopper`):
+
+```html
+<script src="https://unpkg.com/react-popper/dist/index.umd.js"></script>
+```
+
+## Example
+
+```jsx
+import React, { useState } from 'react';
+import { usePopper } from 'react-popper';
+
+const Example = () => {
+  const [referenceElement, setReferenceElement] = useState(null);
+  const [popperElement, setPopperElement] = useState(null);
+  const [arrowElement, setArrowElement] = useState(null);
+  const { styles, attributes } = usePopper(referenceElement, popperElement, {
+    modifiers: [{ name: 'arrow', options: { element: arrowElement } }],
+  });
+
+  return (
+    <>
+      <button type="button" ref={setReferenceElement}>
+        Reference element
+      </button>
+
+      <div ref={setPopperElement} style={styles.popper} {...attributes.popper}>
+        Popper element
+        <div ref={setArrowElement} style={styles.arrow} />
+      </div>
+    </>
+  );
+};
+```
