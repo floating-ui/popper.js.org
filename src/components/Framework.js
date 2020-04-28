@@ -24,6 +24,10 @@ export const Container = styled.div`
   ${media.sm} {
     padding: 0 25px;
   }
+
+  ${media.md} {
+    padding: 0 40px;
+  }
 `;
 
 export const Footer = styled.footer`
