@@ -46,6 +46,9 @@
 .carbon-img {
   padding-right: 10px;
 }
+.carbon-img img {
+  border-radius: 3px;
+}
 
 .carbon-poweredby {
   display: block;

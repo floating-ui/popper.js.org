@@ -610,7 +610,20 @@ const Layout = ({ children }) => {
       <SEO title="Home" />
       <Header siteTitle={data.site.siteMetadata.title} />
       <InstallBar />
-      <CarbonAds />
+      <CarbonAds
+        css={css`
+          ${media.lg} {
+            position: absolute;
+            top: 0;
+            right: 15px;
+            .carbonplaceholder,
+            #carbonads {
+              background-color: #ffffff4f;
+              color: #632f45;
+            }
+          }
+        `}
+      />
 
       <Container maxWidth={1400}>
         <PlacementExample />
@@ -649,6 +662,20 @@ const Layout = ({ children }) => {
               (flipping).
             </Li>
           </Ul>
+        </Container>
+      </Section>
+
+      <Section>
+        <Container>
+          <CloudLightning size={50} stroke="#ffe69d" />
+          <Heading>UI Tools Using Popper</Heading>
+          <p>
+            Looking for some real life examples of UI Kits, Dashboards and
+            Design Systems that are implementing Popper? Try these hand picked
+            Free & Premium products!
+          </p>
+
+          <CreativeTim />
         </Container>
       </Section>
 
@@ -700,20 +727,6 @@ const Layout = ({ children }) => {
               is only 2 kB minzipped.
             </Li>
           </Ul>
-        </Container>
-      </Section>
-
-      <Section>
-        <Container>
-          <CloudLightning size={50} stroke="#ffe69d" />
-          <Heading>UI Tools Using Popper</Heading>
-          <p>
-            Looking for some real life examples of UI Kits, Dashboards and
-            Design Systems that are implementing Popper? Try these hand picked
-            Free & Premium products!
-          </p>
-
-          <CreativeTim />
         </Container>
       </Section>
 
