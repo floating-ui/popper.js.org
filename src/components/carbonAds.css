@@ -18,7 +18,7 @@
 
 .carbonplaceholder * {
   opacity: 0;
-  animation: fade-in 0.2s forwards 0.5s;
+  animation: fade-in 0.2s forwards 1s;
 }
 
 @keyframes fade-in {

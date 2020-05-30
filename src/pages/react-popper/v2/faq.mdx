@@ -1,0 +1,68 @@
+---
+navigationLabel: FAQ
+order: 6
+---
+
+# Frequently Asked Questions (FAQ)
+
+Don't see your question here? Feel free to ask on
+[Spectrum](https://spectrum.chat/popper-js/react-popper?tab=posts)! We'll try to
+answer you within a day or two.
+
+## Why I get render loop whenever I put a function inside the popper configuration?
+
+The following code example will produce a render loop:
+
+```js
+const { styles, attributes } = usePopper(referenceElement, popperElement, {
+  modifiers: [
+    {
+      name: 'offset',
+      options: {
+        offset: ({ placement, reference, popper }) => {
+          return [0, 0];
+        },
+      },
+    },
+  ],
+});
+```
+
+As well as this one:
+
+```jsx
+const { styles, attributes } = usePopper(referenceElement, popperElement, {
+  modifiers: [
+    {
+      name: 'custom',
+      fn: state => state,
+    },
+  ],
+});
+```
+
+This happens because `react-popper` performs a shallow comparison on the
+configuration provided.  
+By defining a function inline, the shallow comparison fails and makes the code
+think the configuration changed every time it's set, provoking the loop.
+
+There are two possible solutions:
+
+1. Define your functions outside the component body;
+2. Define your functions inside a `React.useMemo` or `React.useCallback` Hook;
+
+Here's an example of a working solution:
+
+```jsx
+const customModifier = React.useMemo(
+  () => ({
+    name: 'custom',
+    fn: state => state,
+  }),
+  []
+);
+
+const { styles, attributes } = usePopper(referenceElement, popperElement, {
+  modifiers: [customModifier],
+});
+```
