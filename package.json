@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@docsearch/react": "^1.0.0-alpha.27",
     "@emotion/core": "^10.0.22",
     "@emotion/styled": "^10.0.23",
     "@mdx-js/mdx": "^1.5.2",
@@ -12,7 +13,6 @@
     "@openfonts/luckiest-guy_latin": "^1.44.1",
     "@pauliescanlon/gatsby-mdx-routes": "^0.0.4",
     "@popperjs/core": "^2.2.2",
-    "docsearch.js": "^2.6.3",
     "emotion": "^10.0.27",
     "gatsby": "^2.18.13",
     "gatsby-dynamical-navigation": "^0.4.1",
