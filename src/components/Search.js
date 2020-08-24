@@ -1,18 +1,21 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Global, css } from '@emotion/core';
 import { DocSearch } from '@docsearch/react';
-import '@docsearch/react/style';
 
 const Search = () => {
+  const [facetFilters, setFaceFilters] = useState([]);
+
+  useEffect(() => {
+    setFaceFilters([
+      `tags:${window.location.pathname.includes('v1') ? 'v1' : 'v2'}`,
+    ]);
+  });
+
   return (
     <Fragment>
       <Global
         styles={css`
           :root {
-            a {
-              border-bottom-style: none;
-            }
-
             --docsearch-primary-color: #ff6b81;
             --docsearch-text-color: rgb(245, 246, 247);
             --docsearch-container-background: rgba(9, 10, 17, 0.8);
@@ -45,15 +48,6 @@ const Search = () => {
             --docsearch-muted-color: rgb(127, 132, 151);
 
             .DocSearch-Button {
-              margin: 10px 10px;
-              height: 39px;
-            }
-
-            .DocSearch-Button-Placeholder {
-              width: 100%;
-              text-align: left;
-            }
-            .DocSearch-Button {
               --docsearch-searchbox-background: rgb(235, 237, 240);
               --docsearch-searchbox-focus-background: #fff;
               --docsearch-text-color: rgb(28, 30, 33);
@@ -67,16 +61,32 @@ const Search = () => {
               --docsearch-key-shadow: inset 0 -2px 0 0 rgb(205, 205, 230),
                 inset 0 0 1px 1px #fff, 0 1px 2px 1px rgba(30, 35, 90, 0.4);
             }
+          }
 
-            @media (max-width: 750px) {
-              .DocSearch-Button-KeySeparator,
-              .DocSearch-Button-Key {
-                display: flex;
-              }
+          .DocSearch-Button {
+            margin: 10px 10px;
+            height: 39px;
+          }
 
-              .DocSearch-Button-Placeholder {
-                display: flex;
-              }
+          .DocSearch-Button-Placeholder {
+            width: 100%;
+            text-align: left;
+          }
+
+          .DocSearch-Modal {
+            a {
+              border-bottom-style: none;
+            }
+          }
+
+          @media (max-width: 750px) {
+            .DocSearch-Button-KeySeparator,
+            .DocSearch-Button-Key {
+              display: flex;
+            }
+
+            .DocSearch-Button-Placeholder {
+              display: flex;
             }
           }
         `}
@@ -85,9 +95,7 @@ const Search = () => {
         apiKey="d5fa05c4e33e776fbf2b8021cbc15b37"
         indexName="popper"
         searchParameters={{
-          facetFilters: [
-            `tags:${document.location.pathname.includes('v1') ? 'v1' : 'v2'}`,
-          ],
+          facetFilters,
         }}
       />
     </Fragment>

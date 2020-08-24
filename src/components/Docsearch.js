@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { Global, css } from '@emotion/core';
 import { DocSearch } from '@docsearch/react';
 
