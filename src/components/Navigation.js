@@ -6,7 +6,7 @@ import { MdxRoutes } from '@pauliescanlon/gatsby-mdx-routes';
 import { createTree } from '../utils/createTree';
 import processRoutes from '../utils/processRoutes';
 import { media } from './Framework';
-import Docsearch from './Docsearch';
+import Search from './Search';
 import popperText from '../images/popper-text.svg';
 import { Menu } from 'react-feather';
 
@@ -251,7 +251,7 @@ export default function Navigation({ description, lang, meta, path }) {
             </PopperTextLogoContainer>
             <CloseMenuButton onClick={closeMenu}>Close Menu</CloseMenuButton>
 
-            <Docsearch scrolled={scrolled} name="docs" />
+            <Search />
 
             <MenuContents ref={menuRef} onScroll={handleScroll}>
               {createTree(processRoutes(routes, path)).map((route, index) => (

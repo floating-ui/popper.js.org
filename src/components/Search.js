@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
 import { Global, css } from '@emotion/core';
 import { DocSearch } from '@docsearch/react';
+import '@docsearch/react/style';
 
-const DocSearch = () => {
+const Search = () => {
   return (
     <Fragment>
       <Global
@@ -93,4 +94,4 @@ const DocSearch = () => {
   );
 };
 
-export default DocSearch;
+export default Search;
