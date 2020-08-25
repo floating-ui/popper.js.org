@@ -25,11 +25,11 @@ const Search = () => (
           --docsearch-hit-background: rgb(9, 10, 17);
           --docsearch-key-gradient: linear-gradient(
             -26.5deg,
-            rgb(114 86 111) 0%,
+            var(--docsearch-modal-background) 0%,
             rgb(65 46 80) 100%
           );
           --docsearch-key-shadow: inset 0 -2px 0 0 rgb(81 31 82),
-            inset 0 0 1px 1px rgb(125 81 111), 0 2px 2px 0 rgba(3, 4, 9, 0.3);
+            inset 0 0 1px 1px rgb(125 81 111), 0 2px 2px 0 rgba(3, 4, 9, 0.5);
           --docsearch-footer-background: #2f263c;
           --docsearch-footer-shadow: inset 0 1px 0 0 rgba(73, 76, 106, 0.5),
             0 -4px 8px 0 rgba(0, 0, 0, 0.2);
