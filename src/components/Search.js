@@ -78,6 +78,10 @@ const Search = () => (
           }
         }
 
+        .DocSearch-Modal li {
+          margin-bottom: 0;
+        }
+
         @media (max-width: 750px) {
           .DocSearch-Button-KeySeparator,
           .DocSearch-Button-Key {
