@@ -46,7 +46,7 @@ const Search = () => (
               rgb(213, 219, 228) 0%,
               rgb(248, 248, 248) 100%
             );
-            --docsearch-searchbox-shadow: 0 0 0 4px rgba(0, 0, 0, 0.3);
+            --docsearch-searchbox-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3);
             --docsearch-key-shadow: inset 0 -2px 0 0 rgb(205, 205, 230),
               inset 0 0 1px 1px #fff, 0 1px 2px 1px rgba(30, 35, 90, 0.4);
           }
