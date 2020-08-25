@@ -76,10 +76,9 @@ const Search = () => (
           a {
             border-bottom-style: none;
           }
-        }
-
-        .DocSearch-Modal li {
-          margin-bottom: 0;
+          li {
+            margin-bottom: 0;
+          }
         }
 
         @media (max-width: 750px) {
