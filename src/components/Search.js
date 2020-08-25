@@ -55,21 +55,15 @@ const Search = () => (
         .DocSearch-Button {
           margin: 10px;
           height: 39px;
-
-          &:hover .DocSearch-Search-Icon,
-          &:active .DocSearch-Search-Icon,
-          &:focus .DocSearch-Search-Icon {
-            color: var(--docsearch-text-color);
-          }
-          .DocSearch-Search-Icon {
-            width: 28px;
-            color: var(--docsearch-muted-color);
-          }
         }
 
         .DocSearch-Button-Placeholder {
           width: 100%;
           text-align: left;
+        }
+
+        .DocSearch-Search-Icon {
+          width: 28px;
         }
 
         .DocSearch-Modal {
