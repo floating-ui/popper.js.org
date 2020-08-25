@@ -79,6 +79,9 @@ const Search = () => (
           li {
             margin-bottom: 0;
           }
+          .DocSearch-Commands-Key {
+            padding-bottom: 1px;
+          }
         }
 
         @media (max-width: 750px) {
