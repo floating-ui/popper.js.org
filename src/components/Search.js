@@ -30,9 +30,6 @@ const Search = () => (
             0 -4px 8px 0 rgba(0, 0, 0, 0.2);
           --docsearch-logo-color: #fff;
           --docsearch-muted-color: rgb(127, 132, 151);
-          --docsearch-key-shadow: inset 0 -2px 0 0 rgb(40, 45, 85),
-            inset 0 0 1px 1px rgb(81, 87, 125), 0 2px 2px 0 rgba(3, 4, 9, 0.3);
-            0 -4px 8px 0 rgba(0, 0, 0, 0.2);
 
           .DocSearch-Button {
             --docsearch-searchbox-background: rgb(235, 237, 240);
