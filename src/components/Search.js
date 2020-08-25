@@ -40,7 +40,7 @@ const Search = () => (
             --docsearch-searchbox-background: rgb(235, 237, 240);
             --docsearch-searchbox-focus-background: #fff;
             --docsearch-text-color: rgb(28, 30, 33);
-            --docsearch-muted-color: rgb(150, 159, 175);
+            --docsearch-muted-color: rgb(117 124 138);
             --docsearch-key-gradient: linear-gradient(
               -225deg,
               rgb(213, 219, 228) 0%,
