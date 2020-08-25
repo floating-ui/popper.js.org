@@ -1,6 +1,11 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import { Fragment } from 'react';
 import { Global, css } from '@emotion/core';
 import { DocSearch } from '@docsearch/react';
+import { Link, navigate } from 'gatsby';
+
+const Hit = ({ hit, children }) => {
+  return <Link to={hit.url}>{children}</Link>;
+};
 
 const Search = () => (
   <Fragment>
@@ -85,7 +90,29 @@ const Search = () => (
         }
       `}
     />
-    <DocSearch apiKey="d5fa05c4e33e776fbf2b8021cbc15b37" indexName="popper" />
+    <DocSearch
+      apiKey="d5fa05c4e33e776fbf2b8021cbc15b37"
+      indexName="popper"
+      navigator={{
+        navigate({ suggestionUrl }) {
+          navigate(suggestionUrl);
+        },
+      }}
+      hitComponent={Hit}
+      transformItems={items => {
+        return items.map(item => {
+          // We transform the absolute URL into a relative URL to
+          // leverage Gatsby's preloading.
+          const a = document.createElement('a');
+          a.href = item.url;
+
+          return {
+            ...item,
+            url: `${a.pathname}${a.hash}`,
+          };
+        });
+      }}
+    />
   </Fragment>
 );
 
