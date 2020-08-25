@@ -64,6 +64,10 @@ const Search = () => (
           text-align: left;
         }
 
+        .DocSearch-Search-Icon {
+          width: 28px;
+        }
+
         .DocSearch-Modal {
           a {
             border-bottom-style: none;
