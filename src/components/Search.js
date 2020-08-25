@@ -55,7 +55,7 @@ const Search = () => (
         }
 
         .DocSearch-Button {
-          margin: 10px 10px;
+          margin: 10px;
           height: 39px;
         }
 
