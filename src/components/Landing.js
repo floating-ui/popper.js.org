@@ -29,7 +29,7 @@ import Header from './Header';
 import InstallBar from './InstallBar';
 import { Container, LinkStyled, media, Footer, sizes } from './Framework';
 import { usePopper, Tooltip, Arrow } from './Popper';
-import { CreativeTim } from './CreativeTim';
+import { CreativeTim } from './Affiliates';
 import 'modern-normalize';
 import '@openfonts/luckiest-guy_latin';
 import './layout.css';

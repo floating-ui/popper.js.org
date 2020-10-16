@@ -45,7 +45,9 @@
     "prop-types": "^15.7.2",
     "react-dom": "^16.13.1",
     "react-feather": "^2.0.3",
-    "react-helmet": "^5.2.1"
+    "react-helmet": "^5.2.1",
+    "react-resize-aware": "^3.0.1",
+    "weighted-shuffle": "^0.2.0"
   },
   "devDependencies": {
     "gh-pages": "^2.2.0",

@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import Img from 'gatsby-image';
 
 const Grid = styled.div`
+  position: relative;
   display: flex;
   @media (max-width: 600px) {
     flex-direction: column;
