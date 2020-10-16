@@ -101,7 +101,11 @@ export const CreativeTim = () => {
           }
         `}
         render={data => {
-          if (window.innerWidth > 600 && bigOne) {
+          if (
+            typeof window !== 'undefined' &&
+            window.innerWidth > 600 &&
+            bigOne
+          ) {
             const edge = data.allImageSharp.edges.find(edge =>
               bigOne.xlImage.includes(edge.node.fluid.originalName)
             );
