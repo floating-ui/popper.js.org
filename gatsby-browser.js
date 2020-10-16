@@ -1,0 +1,1 @@
+import('@docsearch/react/style');
