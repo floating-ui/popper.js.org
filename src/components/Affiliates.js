@@ -59,11 +59,11 @@ const products = [
     probability: 1,
   },
   {
-    title: 'Material Design for Bootstrap',
-    description: `The world's most popular framework for building websites and apps`,
+    title: 'MDB 5 UI Kit',
+    description: `500+ components, free templates, simple installation - MIT license`,
     image: '../images/affiliates/BannerMDB-mini.jpg',
     xlImage: '../images/affiliates/BannerMDB.jpg',
-    url: 'https://mdbootstrap.com/?utm_ref_id=26974',
+    url: 'https://mdbootstrap.com/docs/standard/?utm_ref_id=26974',
     probability: 2,
   },
 ];
@@ -101,11 +101,7 @@ export const CreativeTim = () => {
           }
         `}
         render={data => {
-          if (
-            typeof window !== 'undefined' &&
-            window.innerWidth > 600 &&
-            bigOne
-          ) {
+          if (typeof window !== 'undefined' && window.innerWidth > 600 && bigOne) {
             const edge = data.allImageSharp.edges.find(edge =>
               bigOne.xlImage.includes(edge.node.fluid.originalName)
             );
