@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { Global, css } from '@emotion/core';
 import { DocSearch } from '@docsearch/react';
 import { Link, navigate } from 'gatsby';
@@ -13,16 +13,16 @@ const Search = () => (
       styles={css`
         :root {
           --docsearch-primary-color: #ff6b81;
-          --docsearch-text-color: rgb(245, 246, 247);
+          --docsearch-text-color: #000;
           --docsearch-container-background: rgba(9, 10, 17, 0.8);
           --docsearch-modal-background: #281e36;
           --docsearch-modal-shadow: inset 1px 1px 0 0 rgb(44, 46, 64),
             0 3px 8px 0 rgb(0, 3, 9);
           --docsearch-searchbox-background: rgb(9, 10, 17);
-          --docsearch-searchbox-focus-background: #000;
+          --docsearch-searchbox-focus-background: #fff;
           --docsearch-hit-color: rgb(190, 195, 201);
           --docsearch-hit-shadow: none;
-          --docsearch-hit-background: rgb(9, 10, 17);
+          --docsearch-hit-background: #30263d;
           --docsearch-key-gradient: linear-gradient(
             -26.5deg,
             var(--docsearch-modal-background) 0%,
@@ -31,10 +31,13 @@ const Search = () => (
           --docsearch-key-shadow: inset 0 -2px 0 0 rgb(81 31 82),
             inset 0 0 1px 1px rgb(125 81 111), 0 2px 2px 0 rgba(3, 4, 9, 0.5);
           --docsearch-footer-background: #2f263c;
-          --docsearch-footer-shadow: inset 0 1px 0 0 rgba(73, 76, 106, 0.5),
-            0 -4px 8px 0 rgba(0, 0, 0, 0.2);
+          --docsearch-footer-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.2);
           --docsearch-logo-color: #fff;
           --docsearch-muted-color: rgb(127, 132, 151);
+
+          .DocSearch-Form {
+            --docsearch-searchbox-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3);
+          }
 
           .DocSearch-Button {
             --docsearch-searchbox-background: rgb(235, 237, 240);
