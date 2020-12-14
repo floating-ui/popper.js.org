@@ -21,6 +21,7 @@ what properties to use (e.g. `gpuAcceleration`).
 type Options = {
   gpuAcceleration: boolean,
   adaptive: boolean,
+  roundOffsets: boolean,
 };
 ```
 
@@ -68,6 +69,26 @@ createPopper(reference, popper, {
       name: 'computeStyles',
       options: {
         adaptive: false, // true by default
+      },
+    },
+  ],
+});
+```
+
+### `roundOffsets`
+
+This determines whether try to round offsets to the nearest suitable subpixel
+based on the device pixel ratio.
+
+This behavior can be disabled by setting the option to `false`:
+
+```js
+createPopper(reference, popper, {
+  modifiers: [
+    {
+      name: 'computeStyles',
+      options: {
+        roundOffsets: false, // true by default
       },
     },
   ],
