@@ -8,8 +8,8 @@ The webiste is using [Gatsby](https://www.gatsbyjs.com/).
 
 ```sh
 # install modules
-npm install
+yarn
 
 # run the server
-npm run develop
+yarn develop
 ```
