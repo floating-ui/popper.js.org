@@ -2,7 +2,8 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { UNPKG_CDN_URL } from '../../variables';
 import { media, Container } from './Framework';
-import { Gift } from 'react-feather';
+import { usePopper, Tooltip, Arrow } from './Popper';
+import { Gift, CheckCircle } from 'react-feather';
 
 import npmLogo from '../images/npm-logo.svg';
 import { css } from '@emotion/core';
@@ -72,7 +73,51 @@ const Logo = styled.img`
 const TextWrapper = styled.div`
   padding: 10px 15px;
   white-space: nowrap;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
+
+const TooltipName = styled.div`
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 12px;
+    margin-right: 5px;
+  }
+`;
+
+const setClipboard = (text) => { navigator.clipboard.writeText(text) }
+
+const CopyTextToClipboardWrapper = ({ text }) => {
+  const { reference, popper } = usePopper({
+    placement: 'bottom'
+  });
+
+  const [showValidationTooltip, setShowValidationTooltip] = React.useState(false)
+
+  const copyToClipboard = () => {
+    setClipboard(text); 
+    setShowValidationTooltip(true);
+    setTimeout(() => {
+      setShowValidationTooltip(false)
+    }, 1000)
+  }
+
+  return (
+    <>
+      <TextWrapper ref={reference} onClick={copyToClipboard}>{text}</TextWrapper>
+      <Tooltip style={{opacity: showValidationTooltip ? 1 : 0}} ref={popper}>
+        <TooltipName><CheckCircle />Copied to clipboard!</TooltipName>
+        <Arrow data-popper-arrow />
+      </Tooltip>
+    </>
+  )
+}
 
 const InstallBar = () => (
   <InstallBarStyled>
@@ -100,11 +145,11 @@ const InstallBar = () => (
         <LogoWrapper>
           <Logo src={npmLogo} alt="npm logo" draggable="false" />
         </LogoWrapper>
-        <TextWrapper>npm i @popperjs/core</TextWrapper>
+        <CopyTextToClipboardWrapper text='npm i @popperjs/core' />
       </Bar>
       <Bar>
         <LogoWrapper>CDN</LogoWrapper>
-        <TextWrapper>{UNPKG_CDN_URL}</TextWrapper>
+        <CopyTextToClipboardWrapper text={UNPKG_CDN_URL} />
       </Bar>
     </InstallBarContainer>
   </InstallBarStyled>
