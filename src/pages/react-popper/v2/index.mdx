@@ -35,26 +35,26 @@ Via `script` tag (UMD library exposed as `ReactPopper`):
 ## Example
 
 ```jsx
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import { usePopper } from 'react-popper';
 
 const Example = () => {
-  const [referenceElement, setReferenceElement] = useState(null);
-  const [popperElement, setPopperElement] = useState(null);
-  const [arrowElement, setArrowElement] = useState(null);
-  const { styles, attributes } = usePopper(referenceElement, popperElement, {
-    modifiers: [{ name: 'arrow', options: { element: arrowElement } }],
+  const referenceElement = useRef(null);
+  const popperElement = useRef(null);
+  const arrowElement = useRef(null);
+  const { styles, attributes } = usePopper(referenceElement.current, popperElement.current, {
+    modifiers: [{ name: 'arrow', options: { element: arrowElement.current } }],
   });
 
   return (
     <>
-      <button type="button" ref={setReferenceElement}>
+      <button type="button" ref={referenceElement}>
         Reference element
       </button>
 
-      <div ref={setPopperElement} style={styles.popper} {...attributes.popper}>
+      <div ref={popperElement} style={styles.popper} {...attributes.popper}>
         Popper element
-        <div ref={setArrowElement} style={styles.arrow} />
+        <div ref={arrowElement} style={styles.arrow} />
       </div>
     </>
   );
