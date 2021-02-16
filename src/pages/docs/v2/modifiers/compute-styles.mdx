@@ -21,8 +21,15 @@ what properties to use (e.g. `gpuAcceleration`).
 type Options = {
   gpuAcceleration: boolean,
   adaptive: boolean,
-  roundOffsets: boolean,
+  roundOffsets: boolean | RoundOffsets, // true by default
 };
+
+type RoundOffsets = (
+  offsets: $Shape<{ x: number, y: number, centerOffset: number }>
+) => {|
+  y: number,
+  x: number,
+|};
 ```
 
 ### `gpuAcceleration`
@@ -80,7 +87,14 @@ createPopper(reference, popper, {
 This determines whether try to round offsets to the nearest suitable subpixel
 based on the device pixel ratio.
 
-This behavior can be disabled by setting the option to `false`:
+Rounded offsets are useful to prevent blurriness on some browsers, but may lead
+to slight positioning issues (1px off).
+
+When the option is set to `false`, the offsets will not be rounded, so you may
+receive decimal values that don't fit in the device subpixel grid.
+
+You can optionally set this to a function to provide your own offset logic,
+example:
 
 ```js
 createPopper(reference, popper, {
@@ -88,7 +102,10 @@ createPopper(reference, popper, {
     {
       name: 'computeStyles',
       options: {
-        roundOffsets: false, // true by default
+        roundOffsets: ({ x, y }) => ({
+          x: Math.round(x + 2),
+          y: Math.round(y + 2),
+        }),
       },
     },
   ],
