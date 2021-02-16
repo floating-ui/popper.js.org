@@ -62,13 +62,17 @@ const Arrow = styled.div`
     position: absolute;
     width: 8px;
     height: 8px;
-    z-index: -1;
+    background: inherit;
+  }
+
+  & {
+    visibility: hidden;
   }
 
   &::before {
     content: '';
+    visibility: visible;
     transform: rotate(45deg);
-    background: #333;
   }
 `;
 

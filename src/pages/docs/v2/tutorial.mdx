@@ -99,13 +99,17 @@ Now for styling:
   position: absolute;
   width: 8px;
   height: 8px;
-  z-index: -1;
+  background: inherit;
+}
+
+#arrow {
+  visibility: hidden;
 }
 
 #arrow::before {
+  visibility: visible;
   content: '';
   transform: rotate(45deg);
-  background: #333;
 }
 ```
 
@@ -270,13 +274,17 @@ function hide() {
         position: absolute;
         width: 8px;
         height: 8px;
-        z-index: -1;
+        background: inherit;
+      }
+
+      #arrow {
+        visibility: hidden;
       }
 
       #arrow::before {
+        visibility: visible;
         content: '';
         transform: rotate(45deg);
-        background: #333;
       }
 
       #tooltip[data-popper-placement^='top'] > #arrow {
