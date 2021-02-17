@@ -60,6 +60,11 @@
   font-size: 14px;
 }
 
+.carbon-text a {
+  color: #c83b50;
+  border-bottom: 2px solid rgba(200, 59, 80, 0.25);
+}
+
 .carbon-text,
 .carbon-poweredby {
   text-decoration: none;
