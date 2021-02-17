@@ -27,7 +27,14 @@ import SEO from './Seo';
 
 import Header from './Header';
 import InstallBar from './InstallBar';
-import { Container, LinkStyled, media, Footer, sizes } from './Framework';
+import {
+  Container,
+  LinkStyled,
+  ExternalLinkStyled,
+  media,
+  Footer,
+  sizes,
+} from './Framework';
 import { usePopper, Tooltip, Arrow } from './Popper';
 import { CreativeTim } from './Affiliates';
 import 'modern-normalize';
@@ -482,6 +489,11 @@ createPopper(popcorn, tooltip, {
           different placements to choose from.
         </p>
         <Highlight code={code} />
+        <span>
+          <ExternalLinkStyled to="https://codesandbox.io/s/github/popperjs/website/tree/master/examples/placement">
+            Edit on CodeSandbox
+          </ExternalLinkStyled>
+        </span>
       </ExampleText>
     </ExampleBox>
   );
@@ -548,6 +560,11 @@ createPopper(popcorn, tooltip, {
           prevent detachment.
         </p>
         <Highlight code={code} />
+        <span>
+          <ExternalLinkStyled to="https://codesandbox.io/s/github/popperjs/website/tree/master/examples/overflow-prevention">
+            Edit on CodeSandbox
+          </ExternalLinkStyled>
+        </span>
       </ExampleText>
     </ExampleBox>
   );
@@ -593,7 +610,12 @@ createPopper(popcorn, tooltip);
           visible area. Once enough space is detected on its preferred side, it
           will flip back.
         </p>
-        <Highlight code={code} />
+        <Highlight code={code} />{' '}
+        <span>
+          <ExternalLinkStyled to="https://codesandbox.io/s/github/popperjs/website/tree/master/examples/flipping">
+            Edit on CodeSandbox
+          </ExternalLinkStyled>
+        </span>
       </ExampleText>
     </ExampleBox>
   );

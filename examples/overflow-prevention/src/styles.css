@@ -1,0 +1,78 @@
+body {
+  background-color: #30263d;
+  font-family: -apple-system, Helvetica Neue, Segoe UI, Roboto, Oxygen, Ubuntu,
+    Cantarell, Open Sans, sans-serif;
+  text-transform: uppercase;
+}
+
+#container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+  border: 2px dashed #ff6b81;
+  background-color: #281e36;
+}
+
+#popcorn {
+  display: inline-block;
+  width: 134px;
+  height: 120px;
+  background-image: url('https://popper.js.org/images/popcorn-box.svg');
+  margin-left: 40px;
+}
+
+#container::before,
+#container::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 600px;
+}
+
+#tooltip {
+  display: inline-block;
+  background: #ffffff;
+  color: #643045;
+  font-weight: bold;
+  padding: 5px 10px;
+  font-size: 13px;
+  border-radius: 4px;
+}
+
+#arrow,
+#arrow::before {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: inherit;
+}
+
+#arrow {
+  visibility: hidden;
+}
+
+#arrow::before {
+  visibility: visible;
+  content: '';
+  transform: rotate(45deg);
+}
+
+#tooltip[data-popper-placement^='top'] > #arrow {
+  bottom: -4px;
+}
+
+#tooltip[data-popper-placement^='bottom'] > #arrow {
+  top: -4px;
+}
+
+#tooltip[data-popper-placement^='left'] > #arrow {
+  right: -4px;
+}
+
+#tooltip[data-popper-placement^='right'] > #arrow {
+  left: -4px;
+}
