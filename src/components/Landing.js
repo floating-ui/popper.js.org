@@ -84,6 +84,11 @@ const USED_BY_LIST = [
     label: 'Used by Uber - Base Web',
     url: 'https://www.uber.com/',
   },
+  {
+    logo: require('../images/logos/twitch.svg'),
+    label: 'Used by Twitch',
+    url: 'https://www.twitch.tv/',
+  },
 ];
 
 const UsedByContainer = styled.div`
