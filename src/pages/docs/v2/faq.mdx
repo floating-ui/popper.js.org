@@ -25,6 +25,11 @@ To fix it, use the Standards Mode doctype:
 </html>
 ```
 
+Additionally, make sure your popper element (tooltip, popover, etc...) CSS
+doesn't include some positioning styles (such as `top`, `left`, `right`,
+`bottom`, and `transform`) because they could interfere with the Popper
+positioning logic.
+
 ## Why is my popper jittering while scrolling?
 
 If your reference element is `position: fixed`, use the `"fixed"` strategy:
