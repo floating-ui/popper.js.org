@@ -96,6 +96,16 @@ const USED_BY_LIST = [
     label: 'Used by Twitch',
     url: 'https://www.twitch.tv/',
   },
+  {
+    logo: require('../images/logos/discourse.svg'),
+    label: 'Used by Discourse',
+    url: 'https://www.discourse.org/',
+  },
+  {
+    logo: require('../images/logos/reddit.svg'),
+    label: 'Used by Reddit',
+    url: 'https://www.reddit.com/',
+  },
 ];
 
 const UsedByContainer = styled.div`
