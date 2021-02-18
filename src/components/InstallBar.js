@@ -6,7 +6,7 @@ import { usePopper, Tooltip, Arrow } from './Popper';
 import { Gift, CheckCircle } from 'react-feather';
 
 import npmLogo from '../images/npm-logo.svg';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 
 const InstallBarStyled = styled.div`
   background: #c83b50;

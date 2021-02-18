@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Global, css } from '@emotion/core';
+import { Global, css } from '@emotion/react';
 import { DocSearch } from '@docsearch/react';
 import { Link, navigate } from 'gatsby';
 

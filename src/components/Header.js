@@ -7,7 +7,7 @@ import stripes from '../images/stripes.svg';
 
 import { media } from './Framework';
 import { GitHub, Terminal } from 'react-feather';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 
 const HeaderStyled = styled.header`
   text-align: center;

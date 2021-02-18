@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
 import styled from '@emotion/styled';
-import { Global, css } from '@emotion/core';
+import { Global, css } from '@emotion/react';
 import CarbonAds from './CarbonAds';
 import { Container, media, Footer, sizes } from './Framework';
 import { MdxRoutes } from '@pauliescanlon/gatsby-mdx-routes';

@@ -1,7 +1,7 @@
 import { createPopper } from '@popperjs/core';
 import { useRef, useLayoutEffect, useMemo } from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { media } from './Framework';
 
 export const usePopper = (options = {}) => {

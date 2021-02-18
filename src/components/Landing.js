@@ -43,7 +43,7 @@ import './layout.css';
 import './prism-base2tone-pool-dark.css';
 
 import popcornBox from '../images/popcorn-box.svg';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 
 const USED_BY_LIST = [
   {

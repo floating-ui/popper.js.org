@@ -1,7 +1,7 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
 import { Link } from 'gatsby';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { MdxRoutes } from '@pauliescanlon/gatsby-mdx-routes';
 import { createTree } from '../utils/createTree';
 import processRoutes from '../utils/processRoutes';

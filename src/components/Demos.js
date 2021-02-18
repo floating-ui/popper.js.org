@@ -1,6 +1,6 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { usePopper, Tooltip, Arrow } from './Popper';
 import { ExampleArea } from './Landing';
 

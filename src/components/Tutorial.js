@@ -1,7 +1,7 @@
 import React, { useState, forwardRef } from 'react';
 import styled from '@emotion/styled';
 import { usePopper } from './Popper';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 
 let id = 0;
 function getId() {
