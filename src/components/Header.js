@@ -124,7 +124,7 @@ const Header = () => (
         srcset={popperLogo}
         media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
       />
-      <Logo src={popperLogo} alt="Popper logo" draggable="false" />
+      <Logo src={popperLogo} alt="Popper logo" draggable="false" width="200" height="200" />
     </picture>
 
     <Slogan>

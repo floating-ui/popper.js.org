@@ -120,7 +120,7 @@ const UsedByLogo = styled(props => (
     title={props.alt}
     rel="noopener noreferrer"
   >
-    <img src={props.src} alt={props.alt} />
+    <img src={props.src} alt={props.alt} width="40" height="40" />
   </a>
 ))`
   opacity: 0.2;
@@ -171,6 +171,8 @@ const PopcornBox = forwardRef((props, ref) => (
     ref={ref}
     alt="Popcorn box"
     {...props}
+    width="134"
+    height="120"
     css={css`
       position: relative;
       left: 50%;
