@@ -29,8 +29,23 @@ away once it can no longer point to the center.
 ```flow
 type Options = {
   element: HTMLElement | string, // "[data-popper-arrow]"
-  padding: Padding, // 0
+  padding: Padding | PaddingFunction, // 0
 };
+
+type PaddingFunction = ({
+  popper: Rect,
+  reference: Rect,
+  placement: Placement,
+}) => Padding;
+
+type Padding =
+  | number
+  | {|
+      top?: number,
+      left?: number,
+      right?: number,
+      bottom?: number,
+    |};
 ```
 
 ### `element`
@@ -82,6 +97,24 @@ createPopper(reference, popper, {
       name: 'arrow',
       options: {
         padding: 5, // 5px from the edges of the popper
+      },
+    },
+  ],
+});
+```
+
+The `padding` option also accepts a function as value, the function provides the
+`popper` and `reference` rects, and `placement` as arguments and should return a
+valid `Padding` type.
+
+```js
+createPopper(reference, popper, {
+  modifiers: [
+    {
+      name: 'arrow',
+      options: {
+        padding: ({ popper, reference, placement }) =>
+          popper.width / reference.width,
       },
     },
   ],
