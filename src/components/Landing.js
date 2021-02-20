@@ -112,7 +112,7 @@ const UsedByContainer = styled.div`
   margin-top: 40px;
 `;
 
-const UsedByLogo = styled(props => (
+const UsedByLogo = styled((props) => (
   <a
     href={props.href}
     target="_blank"
@@ -270,7 +270,7 @@ const Dot = styled.div`
   width: 18px;
   height: 18px;
   border: 2px solid #ff6b81;
-  background: ${props => (props.selected ? '#ff6b81' : 'transparent')};
+  background: ${(props) => (props.selected ? '#ff6b81' : 'transparent')};
   border-radius: 50%;
 `;
 
@@ -465,7 +465,7 @@ createPopper(popcorn, tooltip, {
             ],
             []
           )
-          .map(p => (
+          .map((p) => (
             <DotHitArea
               key={p}
               onClick={() => setPlacement(p)}
@@ -787,7 +787,7 @@ const Layout = ({ children }) => {
           </Button>
           <UsedByContainer>
             {USED_BY_LIST.map(({ logo, label, url }) => (
-              <UsedByLogo href={url} src={logo} alt={label} />
+              <UsedByLogo href={url} src={logo} alt={label} key={url} />
             ))}
           </UsedByContainer>
         </Container>
