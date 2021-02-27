@@ -396,7 +396,7 @@ const Layout = ({ children, location, pageResources, ...props }) => {
                     <NavDivider />
                     <NavButtonCell>
                       {next && (
-                        <NavButton to={`${next.slug}/`} data-last>
+                        <NavButton to={`${next.slug}`} data-last>
                           {next.navigationLabel}
                           <NavButtonDirection data-next>
                             <ChevronRight size={28} css={arrowCss} />
