@@ -60,3 +60,9 @@ const Example = () => {
   );
 };
 ```
+
+> Note: the `usePopper` hook intentionally takes the DOM node, not refs,
+> in order to be able to update when the nodes change.
+> A [`callback ref`](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs)
+> is used here to permit this behaviour, and `useState` is an appropriate way to
+> implement this.
