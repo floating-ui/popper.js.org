@@ -58,18 +58,46 @@ const products = [
       'https://www.creative-tim.com/learning-lab/tailwind-starter-kit/presentation?ref=popper.js.org',
     probability: 1,
   },
+  // {
+  //   title: 'MDB 5 UI Kit',
+  //   description: `500+ components, free templates, simple installation - MIT license`,
+  //   image: '../images/affiliates/BannerMDB-mini.jpg',
+  //   xlImage: '../images/affiliates/BannerMDB.jpg',
+  //   url: 'https://mdbootstrap.com/docs/standard/?utm_ref_id=26974',
+  //   probability: 2,
+  // },
   {
-    title: 'MDB 5 UI Kit',
-    description: `500+ components, free templates, simple installation - MIT license`,
-    image: '../images/affiliates/BannerMDB-mini.jpg',
-    xlImage: '../images/affiliates/BannerMDB.jpg',
+    title: 'Free Bootstrap 5 KIT',
+    description: '500+ components, free templates, Material Design 2.0',
+    image: '../images/affiliates/mdb-standard.jpg',
     url: 'https://mdbootstrap.com/docs/standard/?utm_ref_id=26974',
-    probability: 2,
+    probability: 3,
+  },
+  {
+    title: 'Free Angular Bootstrap 5 Kit',
+    description: '500+ components, free templates, Material Design 2.0',
+    image: '../images/affiliates/mdb-angular.jpg',
+    url: 'https://mdbootstrap.com/docs/b5/angular/?utm_ref_id=26974',
+    probability: 1,
+  },
+  {
+    title: 'Free React Bootstrap 5 Kit',
+    description: '500+ components, free templates, Material Design 2.0',
+    image: '../images/affiliates/mdb-react.jpg',
+    url: 'https://mdbootstrap.com/docs/b5/react/?utm_ref_id=26974',
+    probability: 1,
+  },
+  {
+    title: 'Free Vue Bootstrap 5 Kit',
+    description: '500+ components, free templates, Material Design 2.0',
+    image: '../images/affiliates/mdb-vue.jpg',
+    url: 'https://mdbootstrap.com/docs/b5/vue/?utm_ref_id=26974',
+    probability: 1,
   },
 ];
 
 const random = pickRandom(products, 3);
-const bigOne = random.find((x) => x.xlImage != null);
+const bigOne = random.find(x => x.xlImage != null);
 
 export const CreativeTim = () => {
   if (typeof window === 'undefined') {
@@ -101,13 +129,13 @@ export const CreativeTim = () => {
             }
           }
         `}
-        render={(data) => {
+        render={data => {
           if (
             typeof window !== 'undefined' &&
             window.innerWidth > 600 &&
             bigOne
           ) {
-            const edge = data.allImageSharp.edges.find((edge) =>
+            const edge = data.allImageSharp.edges.find(edge =>
               bigOne.xlImage.includes(edge.node.fluid.originalName)
             );
             return (
@@ -122,7 +150,7 @@ export const CreativeTim = () => {
             return (
               <Grid>
                 {random.map(({ title, description, image, url }) => {
-                  const edge = data.allImageSharp.edges.find((edge) =>
+                  const edge = data.allImageSharp.edges.find(edge =>
                     image.includes(edge.node.fluid.originalName)
                   );
                   return (
