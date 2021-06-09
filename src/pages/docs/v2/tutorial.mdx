@@ -219,14 +219,15 @@ visible. We can disable the event listeners when the tooltip is hidden to
 optimize it:
 
 ```js
+
+const popperInstance = Popper.createPopper(button, tooltip, options);
+
 function show() {
   // Make the tooltip visible
   tooltip.setAttribute('data-show', '');
 
-  // Enable the event listeners
-  popperInstance.setOptions({
-    modifiers: [{ name: 'eventListeners', enabled: true }],
-  });
+  // Enable the event listeners by setting orignial options
+  popperInstance.setOptions(options);
 
   // Update its position
   popperInstance.update();
@@ -236,7 +237,7 @@ function hide() {
   // Hide the tooltip
   tooltip.removeAttribute('data-show');
 
-  // Disable the event listeners
+  // Disable the event listeners (overrides orignial options)
   popperInstance.setOptions({
     modifiers: [{ name: 'eventListeners', enabled: false }],
   });
@@ -312,7 +313,7 @@ function hide() {
       const button = document.querySelector('#button');
       const tooltip = document.querySelector('#tooltip');
 
-      const popperInstance = Popper.createPopper(button, tooltip, {
+      const options = {
         modifiers: [
           {
             name: 'offset',
@@ -321,21 +322,21 @@ function hide() {
             },
           },
         ],
-      });
+      };
+
+      const popperInstance = Popper.createPopper(button, tooltip, options);
 
       function show() {
         // Make the tooltip visible
         tooltip.setAttribute('data-show', '');
 
-        // Enable the event listeners
-        popperInstance.setOptions({
-          modifiers: [{ name: 'eventListeners', enabled: true }],
-        });
+        // Enable the event listeners by setting orignial options
+        popperInstance.setOptions(options);
 
         // Update its position
         popperInstance.update();
       }
-
+      
       function hide() {
         // Hide the tooltip
         tooltip.removeAttribute('data-show');
