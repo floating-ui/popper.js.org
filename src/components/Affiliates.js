@@ -97,7 +97,7 @@ const products = [
 ];
 
 const random = pickRandom(products, 3);
-const bigOne = random.find(x => x.xlImage != null);
+const bigOne = random.find((x) => x.xlImage != null);
 
 export const CreativeTim = () => {
   if (typeof window === 'undefined') {
@@ -129,13 +129,13 @@ export const CreativeTim = () => {
             }
           }
         `}
-        render={data => {
+        render={(data) => {
           if (
             typeof window !== 'undefined' &&
             window.innerWidth > 600 &&
             bigOne
           ) {
-            const edge = data.allImageSharp.edges.find(edge =>
+            const edge = data.allImageSharp.edges.find((edge) =>
               bigOne.xlImage.includes(edge.node.fluid.originalName)
             );
             return (
@@ -150,9 +150,10 @@ export const CreativeTim = () => {
             return (
               <Grid>
                 {random.map(({ title, description, image, url }) => {
-                  const edge = data.allImageSharp.edges.find(edge =>
+                  const edge = data.allImageSharp.edges.find((edge) =>
                     image.includes(edge.node.fluid.originalName)
                   );
+                  if (edge == null) return null;
                   return (
                     <ProductCard
                       title={title}
