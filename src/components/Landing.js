@@ -16,7 +16,7 @@ import {
   Heart,
   Check,
   ChevronRight,
-  CloudLightning,
+  // CloudLightning,
   Move,
   ArrowUp,
   ArrowDown,
@@ -36,7 +36,7 @@ import {
   sizes,
 } from './Framework';
 import { usePopper, Tooltip, Arrow } from './Popper';
-import { CreativeTim } from './Affiliates';
+// import { CreativeTim } from './Affiliates';
 import 'modern-normalize';
 import '@openfonts/luckiest-guy_latin';
 import './layout.css';
@@ -704,7 +704,8 @@ const Layout = ({ children }) => {
         </Container>
       </Section>
 
-      <Section>
+      {/* Disabled for now, I need to find a more remunerative system (more than $0/month) */}
+      {/* <Section>
         <Container>
           <CloudLightning size={50} stroke="#ffe69d" />
           <Heading>UI Tools Using Popper</Heading>
@@ -716,7 +717,7 @@ const Layout = ({ children }) => {
 
           <CreativeTim />
         </Container>
-      </Section>
+      </Section> */}
 
       <Section>
         <Container>
