@@ -210,7 +210,7 @@ instance.setOptions(options => ({
 instance.setOptions((options) =>
   R.assocPath(
     ['modifiers'],
-    { name: 'eventListeners', enabled: false },
+    { name: 'eventListeners', enabled: true },
     options
   )
 );
