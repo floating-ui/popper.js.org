@@ -198,11 +198,11 @@ function hide() {
 const showEvents = ['mouseenter', 'focus'];
 const hideEvents = ['mouseleave', 'blur'];
 
-showEvents.forEach(event => {
+showEvents.forEach((event) => {
   button.addEventListener(event, show);
 });
 
-hideEvents.forEach(event => {
+hideEvents.forEach((event) => {
   button.addEventListener(event, hide);
 });
 ```
@@ -224,9 +224,13 @@ function show() {
   tooltip.setAttribute('data-show', '');
 
   // Enable the event listeners
-  popperInstance.setOptions({
-    modifiers: [{ name: 'eventListeners', enabled: true }],
-  });
+  popperInstance.setOptions((options) => ({
+    ...options,
+    modifiers: [
+      ...options.modifiers,
+      { name: 'eventListeners', enabled: true },
+    ],
+  }));
 
   // Update its position
   popperInstance.update();
@@ -237,9 +241,13 @@ function hide() {
   tooltip.removeAttribute('data-show');
 
   // Disable the event listeners
-  popperInstance.setOptions({
-    modifiers: [{ name: 'eventListeners', enabled: false }],
-  });
+  popperInstance.setOptions((options) => ({
+    ...options,
+    modifiers: [
+      ...options.modifiers,
+      { name: 'eventListeners', enabled: false },
+    ],
+  }));
 }
 ```
 
@@ -328,9 +336,13 @@ function hide() {
         tooltip.setAttribute('data-show', '');
 
         // Enable the event listeners
-        popperInstance.setOptions({
-          modifiers: [{ name: 'eventListeners', enabled: true }],
-        });
+        popperInstance.setOptions((options) => ({
+          ...options,
+          modifiers: [
+            ...options.modifiers,
+            { name: 'eventListeners', enabled: true },
+          ],
+        }));
 
         // Update its position
         popperInstance.update();
@@ -341,19 +353,23 @@ function hide() {
         tooltip.removeAttribute('data-show');
 
         // Disable the event listeners
-        popperInstance.setOptions({
-          modifiers: [{ name: 'eventListeners', enabled: false }],
-        });
+        popperInstance.setOptions((options) => ({
+          ...options,
+          modifiers: [
+            ...options.modifiers,
+            { name: 'eventListeners', enabled: false },
+          ],
+        }));
       }
 
       const showEvents = ['mouseenter', 'focus'];
       const hideEvents = ['mouseleave', 'blur'];
 
-      showEvents.forEach(event => {
+      showEvents.forEach((event) => {
         button.addEventListener(event, show);
       });
 
-      hideEvents.forEach(event => {
+      hideEvents.forEach((event) => {
         button.addEventListener(event, hide);
       });
     </script>

@@ -168,8 +168,52 @@ type Instance = {|
   destroy: () => void,
   forceUpdate: () => void,
   update: () => Promise<$Shape<State>>,
-  setOptions: (options: $Shape<Options>) => Promise<$Shape<State>>,
+  setOptions: (
+    options: $Shape<Options> | (($Shape<Options>) => $Shape<Options>)
+  ) => Promise<$Shape<State>>,
 |};
+```
+
+### `setOptions`
+
+You can update the options of a popper instance with the `setOptions` method.
+
+The method accepts either an options object or a function that takes the current
+options object as argument and returns the new one.
+
+Below we set a new configuration object that replaces the current one. Note that
+the below example will unset all the modifiers configuration and any other
+custom options:
+
+```js
+instace.setOptions({
+  placement: 'bottom',
+});
+```
+
+If, instead, we want to update the existing configuration, we can use a function
+to read the current options and return updated ones:
+
+```js
+// Disable event listeners options without losing the rest of the set options
+instance.setOptions(options => ({
+  ...options,
+  modifiers: [
+     ...options.modifiers,
+     { name: 'eventListeners', enabled: false }
+  ]
+});
+```
+
+```js
+// Enable it back, you can also use something like Ramda#assocPath to make this terser
+instance.setOptions((options) =>
+  R.assocPath(
+    ['modifiers'],
+    { name: 'eventListeners', enabled: false },
+    options
+  )
+);
 ```
 
 ## popperGenerator
