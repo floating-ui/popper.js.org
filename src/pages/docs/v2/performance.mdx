@@ -1,9 +1,11 @@
 ---
-navigationLabel: Tree-shaking
+navigationLabel: Performance
 order: 7
 ---
 
-# Tree-shaking
+# Performance
+
+## Tree-shaking
 
 While Popper v2 saw a sizeable decrease in bundle size from v1 (-2 kB from ~7 kB
 minzipped to ~5 kB minzipped), this is still not optimal.
@@ -15,7 +17,7 @@ bundlers such as webpack, Rollup and Parcel.
 
 If you're using the CDN, tree-shaking will not be available.
 
-## Popper Lite
+### Popper Lite
 
 The most straightforward way to enable tree-shaking is to use Popper Lite and
 configure it with your needs.
@@ -59,11 +61,11 @@ import flip from '@popperjs/core/lib/modifiers/flip';
 import preventOverflow from '@popperjs/core/lib/modifiers/preventOverflow';
 
 createPopper(reference, popper, {
-  modifiers: [flip, preventOverflow]
-})
+  modifiers: [flip, preventOverflow],
+});
 ```
 
-### Popper Generator
+#### Popper Generator
 
 To pass these extra modifiers as default, you can use the `popperGenerator`
 function:
@@ -82,3 +84,20 @@ const createPopper = popperGenerator({
 
 // Now you can use `createPopper`
 ```
+
+## Attaching elements to the DOM
+
+The recommended way to use Popper is to attach popper elements next to their
+reference elements.  
+This ensures that accessibility best practices are followed, such as keyboard
+navigation and screen reader support.
+
+There are cases where you may want to attach popper elements to the top of the
+DOM, such as `<body />`, this is of course supported as well, but some measures
+should be taken to ensure that everything works in the best possible way.
+
+To ensure the best possible performance, it's
+[recommended](https://web.archive.org/web/20210827084020/https://atfzl.com/don-t-attach-tooltips-to-document-body)
+to not attach elements directly to the `<body />` element, but instead create a
+`<div />` element right within the `<body />` and use it as container of your
+poppers.
