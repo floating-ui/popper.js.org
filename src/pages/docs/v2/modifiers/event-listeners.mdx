@@ -9,13 +9,44 @@ The `eventListeners` modifier adds `scroll` and `resize` listeners that update
 the position of the popper when necessary. These are not exhaustive and don't
 cover the following cases:
 
-- When the reference element moves or changes size.
-- When the popper element changes size (i.e. content).
+## When the reference element moves or changes size
 
-Manually updating the instance via `instance.update()`, a `ResizeObserver` or
-`requestAnimationFrame` loop (if animating) can solve these if necessary.
+Most of the times, you can avoid the need to reposition your popper when its
+reference element moves on the page by attaching the popper DOM node right next
+to the reference DOM node.
+
+This has the advantage of dramatically reducing the amount of updates required
+to keep the popper and reference elements next to each other, but has some quirks
+to keep in mind.
+
+First of all, you must make sure the parent elements are not clipping containers.
+A clipping container is an element with the ability to clip (or hide) content that
+overflows its boundaries.  
+A common misconception is that any parent with `overflow: hidden` will clip any
+overflowing child element, but that's not actually the case.  
+An element, in order to gain such characteristics, needs to have an `overflow`
+property set to `auto`, `scroll`, `overlay`, or `hidden`, and needs to act as
+[offset parent](https://drafts.csswg.org/cssom-view/#dom-htmlelement-offsetparent)
+or be parent of an offset parent. Only in these conditions, a popper will get cut
+off when it overflows its parent.
+
+Note that Popper already handles this case, and will only attempt to make the
+popper not overflow its parent if the parent is a clipping container.
 
 <x-ad />
+
+## When the popper element changes size (i.e. content)
+
+This case is not handled by the `eventListeners` modifier because it's already
+handled by the `computeStyles` one, when its [`adaptive`](https://popper.js.org/docs/v2/modifiers/compute-styles/#adaptive)
+property is enabled (on by default).
+
+## Other cases
+
+For any other cases not included in the options above, you may want to either
+update the instance via `instance.update()`, a `ResizeObserver` or
+`requestAnimationFrame` loop (if animating) to solve these if necessary.
+
 
 ## Phase
 
