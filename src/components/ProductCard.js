@@ -29,8 +29,9 @@ const Container = styled.div`
 const Image = styled(Img)`
   width: 100%;
   border-radius: 5px;
-  box-shadow: 0 2rem 1.5rem -1.5rem rgba(33, 37, 41, 0.15),
-    0 0 1.5rem 0.5rem rgba(33, 37, 41, 0.05);
+  box-shadow: 1.7px 1.7px 14.1px rgba(0, 0, 0, 0.065),
+    5.6px 5.6px 23.3px rgba(0, 0, 0, 0.095), 25px 25px 40px rgba(0, 0, 0, 0.16);
+
   transition: 0.1s ease;
 `;
 
