@@ -709,8 +709,9 @@ const Layout = ({ children }) => {
           <CloudLightning size={50} stroke="#ffe69d" />
           <Heading>Our Sponsors</Heading>
           <p>
-            Popper is proudly sponsored by the following organizations, join
-            them on{' '}
+            Popper is proudly sponsored by the following organizations,
+            <br />
+            join them on{' '}
             <ExternalLinkStyled to="https://opencollective.com/popperjs">
               Open Collective
             </ExternalLinkStyled>{' '}
