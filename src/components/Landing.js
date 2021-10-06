@@ -106,6 +106,11 @@ const USED_BY_LIST = [
     label: 'Used by Reddit',
     url: 'https://www.reddit.com/',
   },
+  {
+    logo: require('../images/logos/linear.svg'),
+    label: 'Used by Linear',
+    url: 'https://www.linear.app/',
+  },
 ];
 
 const UsedByContainer = styled.div`
