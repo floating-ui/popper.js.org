@@ -6,6 +6,7 @@ import Img from 'gatsby-image';
 const Grid = styled.div`
   position: relative;
   display: flex;
+  justify-content: center;
   @media (max-width: 600px) {
     flex-direction: column;
   }

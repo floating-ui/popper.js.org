@@ -2,6 +2,7 @@ import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import { ProductCard, Grid } from './ProductCard';
 import { shuffle } from 'weighted-shuffle';
+import styled from '@emotion/styled';
 
 const pickRandom = (array, n) =>
   shuffle(array.map(({ probability, ...p }) => [p, probability]))
@@ -94,8 +95,38 @@ const products = [
   // },
 ];
 
-const random = pickRandom(products, 3);
+const MINI_SPONSORS = [
+  {
+    logo: require('../images/logos/sponsors/mobilemall.svg'),
+    label: 'Mobile Mall - Mobile Phone Prices in Pakistan',
+    url: 'https://mobilemall.pk/',
+  },
+];
+
+const random = products.slice(0, 3);
 const bigOne = random.find((x) => x.xlImage != null);
+
+const MiniSponsor = styled((props) => (
+  <a
+    href={props.href}
+    target="_blank"
+    className={props.className}
+    title={props.alt}
+    rel="noopener noreferrer"
+  >
+    <img src={props.src} alt={props.alt} width="40" height="40" />
+  </a>
+))`
+  opacity: 0.2;
+  transition: opacity 0.2s ease-in-out;
+  &:hover {
+    opacity: 1;
+  }
+  img {
+    height: 40px;
+    margin: 10px;
+  }
+`;
 
 export const Sponsors = () => {
   if (typeof window === 'undefined') {
@@ -166,6 +197,16 @@ export const Sponsors = () => {
           }
         }}
       />
+
+      <div style={{ height: '2em' }} />
+
+      {MINI_SPONSORS.map((sponsor) => (
+        <MiniSponsor
+          src={sponsor.logo}
+          alt={sponsor.label}
+          href={sponsor.url}
+        />
+      ))}
     </>
   );
 };
