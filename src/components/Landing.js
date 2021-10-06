@@ -67,11 +67,6 @@ const USED_BY_LIST = [
     url: 'https://www.gitlab.com/',
   },
   {
-    logo: require('../images/logos/medium.svg'),
-    label: 'Used by Medium - text selection tooltip',
-    url: 'https://www.medium.com/',
-  },
-  {
     logo: require('../images/logos/adobe.svg'),
     label: 'Used by Adobe - @webspectrum components',
     url: 'https://www.adobe.com/',
