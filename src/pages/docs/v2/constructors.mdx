@@ -192,7 +192,8 @@ instace.setOptions({
 ```
 
 If, instead, we want to update the existing configuration, we can use a function
-to read the current options and return updated ones:
+to read the current options and return updated ones (available since version
+2.10.0):
 
 ```js
 // Disable event listeners options without losing the rest of the set options
@@ -208,11 +209,7 @@ instance.setOptions(options => ({
 ```js
 // Enable it back, you can also use something like Ramda#assocPath to make this terser
 instance.setOptions((options) =>
-  R.assocPath(
-    ['modifiers'],
-    { name: 'eventListeners', enabled: true },
-    options
-  )
+  R.assocPath(['modifiers'], { name: 'eventListeners', enabled: true }, options)
 );
 ```
 
