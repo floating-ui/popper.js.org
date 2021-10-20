@@ -3,6 +3,9 @@ import { StaticQuery, graphql } from 'gatsby';
 import { ProductCard, Grid } from './ProductCard';
 import { shuffle } from 'weighted-shuffle';
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css'; // optional
 
 const pickRandom = (array, n) =>
   shuffle(array.map(({ probability, ...p }) => [p, probability]))
@@ -101,21 +104,30 @@ const MINI_SPONSORS = [
     label: 'Mobile Mall - Mobile Phone Prices in Pakistan',
     url: 'https://mobilemall.pk/',
   },
+  {
+    logo: require('../images/logos/sponsors/modern-treasury.svg'),
+    label: 'Modern Treasury - The one place to keep a business’s money flowing',
+    url: 'https://www.moderntreasury.com/',
+  },
 ];
 
 const random = products.slice(0, 3);
 const bigOne = random.find((x) => x.xlImage != null);
 
 const MiniSponsor = styled((props) => (
-  <a
-    href={props.href}
-    target="_blank"
-    className={props.className}
-    title={props.alt}
-    rel="noopener noreferrer"
-  >
-    <img src={props.src} alt={props.alt} width="40" height="40" />
-  </a>
+  <Tippy content={props.alt}>
+    <a
+      css={css`
+        display: block;
+      `}
+      href={props.href}
+      target="_blank"
+      className={props.className}
+      rel="noopener noreferrer"
+    >
+      <img src={props.src} alt={props.alt} width="40" height="40" />
+    </a>
+  </Tippy>
 ))`
   opacity: 0.2;
   transition: opacity 0.2s ease-in-out;
@@ -200,13 +212,21 @@ export const Sponsors = () => {
 
       <div style={{ height: '2em' }} />
 
-      {MINI_SPONSORS.map((sponsor) => (
-        <MiniSponsor
-          src={sponsor.logo}
-          alt={sponsor.label}
-          href={sponsor.url}
-        />
-      ))}
+      <div
+        css={css`
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+        `}
+      >
+        {MINI_SPONSORS.map((sponsor) => (
+          <MiniSponsor
+            src={sponsor.logo}
+            alt={sponsor.label}
+            href={sponsor.url}
+          />
+        ))}
+      </div>
     </>
   );
 };

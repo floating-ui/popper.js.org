@@ -16,3 +16,7 @@ h2,
 h3 {
   font-weight: normal;
 }
+
+.tippy-content {
+  text-align: center;
+}

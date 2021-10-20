@@ -14,6 +14,7 @@
     "@openfonts/luckiest-guy_latin": "^1.44.2",
     "@pauliescanlon/gatsby-mdx-routes": "^0.0.4",
     "@popperjs/core": "^2.7.0",
+    "@tippyjs/react": "^4.2.5",
     "gatsby": "^2.32.3",
     "gatsby-dynamical-navigation": "^0.4.1",
     "gatsby-image": "^2.11.0",
