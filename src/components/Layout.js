@@ -385,7 +385,7 @@ const Layout = ({ children, location, pageResources, ...props }) => {
                   <NavButtonContainer>
                     <NavButtonCell>
                       {prev && (
-                        <NavButton to={`${prev.slug}/`} data-first>
+                        <NavButton to={`${prev.slug}`} data-first>
                           <NavButtonDirection data-prev>
                             <ChevronLeft size={28} css={arrowCss} />
                           </NavButtonDirection>
