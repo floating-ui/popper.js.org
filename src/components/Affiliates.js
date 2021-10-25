@@ -109,6 +109,11 @@ const MINI_SPONSORS = [
     label: 'Modern Treasury - The one place to keep a business’s money flowing',
     url: 'https://www.moderntreasury.com/',
   },
+  {
+    logo: require('../images/logos/sponsors/coupontoaster.svg'),
+    label: 'Coupontoaster - Discount and Coupon Codes',
+    url: 'https://coupontoaster.com/',
+  },
 ];
 
 const random = products.slice(0, 3);
