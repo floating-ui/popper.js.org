@@ -248,7 +248,7 @@ export const VirtualElementDemo = () => {
   });
 
   return (
-    <ClippingParent scrollable>
+    <ClippingParent>
       <Tooltip ref={popper}>Tooltip</Tooltip>
     </ClippingParent>
   );
