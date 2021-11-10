@@ -512,10 +512,19 @@ createPopper(popcorn, tooltip, {
 };
 
 const PreventOverflowExample = () => {
+  const [boundary, setBoundary] = useState();
   const scrollContainerRef = useRef();
 
   const { reference, popper } = usePopper({
     placement: 'right',
+    modifiers: [
+      {
+        name: 'preventOverflow',
+        options: {
+          boundary,
+        },
+      },
+    ],
   });
 
   useLayoutEffect(() => {
@@ -536,15 +545,23 @@ createPopper(popcorn, tooltip, {
 
   return (
     <ExampleBox>
-      <ScrollContainer ref={scrollContainerRef}>
-        <PopcornBox
-          ref={reference}
-          src={popcornBox}
-          css={css`
-            position: absolute;
-            left: 100px;
-          `}
-        />
+      <div
+        css={css`
+          position: relative;
+          overflow: hidden;
+        `}
+        ref={setBoundary}
+      >
+        <ScrollContainer ref={scrollContainerRef}>
+          <PopcornBox
+            ref={reference}
+            src={popcornBox}
+            css={css`
+              position: absolute;
+              left: 100px;
+            `}
+          />
+        </ScrollContainer>
         <Tooltip ref={popper}>
           <TooltipName>Popcorn</TooltipName>
           <TooltipName>sizes</TooltipName>
@@ -560,7 +577,7 @@ createPopper(popcorn, tooltip, {
 
           <Arrow data-popper-arrow />
         </Tooltip>
-      </ScrollContainer>
+      </div>
       <ExampleText>
         <Heading>
           <Crop /> Overflow prevention
