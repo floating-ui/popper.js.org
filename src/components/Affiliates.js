@@ -114,6 +114,11 @@ const MINI_SPONSORS = [
     label: 'Coupontoaster - Discount and Coupon Codes',
     url: 'https://coupontoaster.com/',
   },
+  {
+    logo: require('../images/logos/sponsors/celltrackingapps.svg'),
+    label: 'Cell Tracking Apps - Parental Control Software Review Website',
+    url: 'http://celltrackingapps.com/',
+  },
 ];
 
 const random = products.slice(0, 3);
