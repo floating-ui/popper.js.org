@@ -41,7 +41,7 @@ position(reference, popper, {
 type Options = {
   offset: LimitShiftOffset, // default: 0
   mainAxis: boolean, // default: true
-  altAxis: boolean, // default: true
+  crossAxis: boolean, // default: true
 };
 
 type LimitShiftOffset =
@@ -63,13 +63,13 @@ limitShift({
 });
 ```
 
-### `altAxis`
+### `crossAxis`
 
 Describes whether to limit `shift` along its alt axis.
 
 ```js
 limitShift({
-  altAxis: false, // true by default
+  crossAxis: false, // true by default
 });
 ```
 
@@ -82,7 +82,7 @@ number, taking in useful data.
 A `positive` offset means it starts limiting earlier, while `negative` later.
 
 You may also return an object in the shape
-`{ mainAxis: number, altAxis: number }` to configure the offset of both axes.
+`{ mainAxis: number, crossAxis: number }` to configure the offset of both axes.
 
 ```js
 limitShift({
@@ -95,7 +95,7 @@ limitShift({
   // configure the axes differently
   offset: {
     mainAxis: 5,
-    altAxis: 10,
+    crossAxis: 10,
   },
 });
 ```

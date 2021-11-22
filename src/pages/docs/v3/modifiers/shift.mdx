@@ -31,7 +31,7 @@ position(reference, popper, {
 ```flow
 type Options = {
   mainAxis: boolean, // default: true
-  altAxis: boolean, // default: false
+  crossAxis: boolean, // default: false
   ...DetectOverflowOptions,
 };
 ```
@@ -57,7 +57,7 @@ generally replaced by the `flip` modifier.
 
 ```js
 shift({
-  altAxis: true, // false by default
+  crossAxis: true, // false by default
 });
 ```
 

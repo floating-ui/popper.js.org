@@ -19,11 +19,11 @@ const shiftBy1Px = {
   // The name of the modifier.
   name: 'shiftBy1Px',
   // The main logic which returns new coordinates.
-  fn({ coords }) {
+  fn({ x, y }) {
     return {
-      // Required: always return `x` and `y` coordinates.
-      x: coords.x + 1,
-      y: coords.y + 1,
+      // Required: always return new `x` and `y` coordinates.
+      x: x + 1,
+      y: y + 1,
 
       // Optional:
       data: {
@@ -40,9 +40,9 @@ Popper's core modifiers are factory functions, which allows you to pass options
 to configure their behavior:
 
 ```js
-const modifier = (options = {}) => ({
-  name: 'modifier',
-  fn: ({ coords }) => coords,
+const shiftByAmount = (amount = 0) => ({
+  name: 'shiftByAmount',
+  fn: ({ x, y }) => ({ x: x + amount, y: y + amount }),
 });
 ```
 

@@ -31,7 +31,7 @@ position(reference, popper, {
 ```flow
 type Options = {
   mainAxis: boolean, // true
-  altAxis: boolean, // true
+  crossAxis: boolean, // true
   fallbackPlacements: Array<Placement>, // [oppositePlacement]
   flipVariations: boolean, // true
   ...DetectOverflowOptions,
@@ -58,7 +58,7 @@ axis.
 
 ```js
 flip({
-  altAxis: false, // true by default
+  crossAxis: false, // true by default
 });
 ```
 

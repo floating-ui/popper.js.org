@@ -1,0 +1,80 @@
+---
+navigationLabel: auto
+order: 7
+---
+
+import { Auto } from '../../../../components/Modifiers';
+
+# auto
+
+The `auto` modifier automatically chooses the best placement for the popper (the
+one with most space).
+
+## Usage
+
+```js
+import { position, auto } from '@popperjs/dom';
+
+position(reference, popper, {
+  modifiers: [auto()],
+});
+```
+
+## Options
+
+`auto()` takes an object of options:
+
+```flow
+type Options = {
+  variation: null | 'start' | 'end',
+  crossAxis: boolean,
+  allowedPlacements: Array<Placement>,
+  autoVariation: false,
+  ...DetectOverflowOptions,
+};
+```
+
+### `variation`
+
+Describes whether to use a `variation` placement as the preferred placement.
+
+```js
+auto({
+  variation: 'end', // 'top-end', 'bottom-end', 'right-end', 'left-end'
+});
+```
+
+### `crossAxis`
+
+Describes whether to check for overflow on the cross axis in addition to the
+main axis when choosing the ideal placement.
+
+```js
+auto({
+  crossAxis: true, // false by default
+});
+```
+
+### `allowedPlacements`
+
+Describes which placements are allowed to be chosen.
+
+```js
+auto({
+  // Won't choose 'left' or 'right'
+  allowedPlacements: ['top', 'bottom'],
+});
+```
+
+### `autoVariation`
+
+Describes whether to automatically choose the best variation if a `variation` is
+specified:
+
+```js
+auto({
+  variation: 'start',
+  // Will also choose `end` placements if those fit better
+  autoVariation: true,
+});
+```
