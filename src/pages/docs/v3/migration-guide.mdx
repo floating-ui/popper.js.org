@@ -1,0 +1,236 @@
+---
+navigationLabel: Migration Guide
+order: 8
+---
+
+# Migrating from Popper 2 to Popper 3
+
+This page will help you migrate from Popper 2 to Popper 3.
+
+## Motivation
+
+The new API of Popper 3 was rebuilt from the ground up to be:
+
+- Platform-agnostic (can run on the web and native)
+- Lower-level and more powerful
+- Less magical, features are added as you need them
+- Much smaller in size, and tree-shakeable by default
+
+## 1. Change your dependencies
+
+Popper 3 makes the library platform-agnostic, which means it can run on native
+applications that translate JavaScript, like React Native. You now install
+`@popperjs/dom` to use it on the web, which has `@popperjs/core` as a
+dependency:
+
+```shell
+# With npm
+npm uninstall @popperjs/core
+npm i @popperjs/dom
+
+# With Yarn
+yarn remove @popperjs/core
+yarn add @popperjs/dom
+```
+
+## 2. Change imports
+
+Popper 2:
+
+```js
+import { createPopper } from '@popperjs/core';
+```
+
+Popper 3:
+
+```js
+import { position } from '@popperjs/dom';
+```
+
+## 3. Styling is up to you
+
+Popper 3 utilizes an inversion-of-control API, which means it is now pure and
+leaves the application of styles up to you. The "magic" of Popper 2 made it
+harder to debug, and setting opinionated defaults can be annoying to adjust.
+
+Popper 2:
+
+```js
+createPopper(reference, popper);
+```
+
+Popper 3:
+
+```js
+function applyStyles({ x = 0, y = 0, strategy = 'absolute' }) {
+  Object.assign(popper.style, {
+    position: strategy,
+    // You can also use `transform` instead.
+    left: `${x}px`,
+    top: `${y}px`,
+  });
+}
+
+// Set initial styles to ensure `position()` reads the correct dimensions.
+applyStyles();
+
+// `position` is async, returning a Promise.
+position(reference, popper).then(applyStyles);
+```
+
+Popper 2 has a simpler call, but wanting to adjust the styles that get applied
+is more difficult than the new API. With Popper 3 you have **full control**.
+
+See [styling the arrow](../tutorial/#arrow-modifier) for further details.
+
+## 4. Modifiers are up to you
+
+`position()` now only positions the popper based on the `placement` option that
+was passed in. It does not do anything else, meaning there are no modifiers by
+default. This makes it much more **predictable** to use.
+
+Likely, you'll want to add the `flip` and `shift` modifiers in:
+
+```js
+import { position, flip, shift } from '@popperjs/dom';
+
+position(reference, popper, {
+  modifiers: [flip(), shift()],
+});
+```
+
+`shift` is `preventOverflow` from v2. It was renamed because `flip` also
+"prevents overflow", it just works a different way. `shift` describes more
+closely what it's actually doing to the popper.
+
+### `tether`
+
+This was an option in Popper 2's `preventOverflow` modifier. This is a separate
+modifier, now called `limitShift`, which you can call after the `shift()`
+modifier in the array.
+
+## 5. Event listeners are up to you
+
+`position()` is a single pure function call, it does not do any "magic" like
+`createPopper()` did which added listeners to update the popper.
+
+Since you have full control, you can handle this whichever way you want. e.g.
+wrapping the call inside an `update()` function to add event listeners:
+
+```js
+function applyStyles({ x = 0, y = 0, strategy = 'absolute' }) {
+  Object.assign(popper.style, {
+    position: strategy,
+    left: `${x}px`,
+    top: `${y}px`,
+  });
+}
+
+function update() {
+  position(reference, popper).then(applyStyles);
+}
+
+// Initial calls:
+applyStyles();
+update();
+
+// Add listeners on `scroll` and `resize`:
+addEventListener('scroll', update);
+addEventListener('resize', update);
+```
+
+### scrollParents
+
+Popper 2 also considered all scrolling parents, including `VisualViewport`. To
+match this, you can import the `listScrollParents` util:
+
+```js
+import { listScrollParents } from '@popperjs/dom';
+
+// ...
+
+const scrollParents = [
+  ...listScrollParents(reference),
+  ...listScrollParents(popper),
+];
+
+scrollParents.forEach((scrollParent) => {
+  scrollParent.addEventListener('scroll', update);
+  scrollParent.addEventListener('resize', update);
+});
+```
+
+## 6. Ordering is up to you
+
+Aligning with the principles to make Popper less magical, you now fully control
+the ordering of the modifiers. There is no concept of `phase` or `requires` like
+in Popper 2. This allows more control over the behavior.
+
+Understanding that modifiers return new coordinates, which later modifiers start
+from, can help in knowing the order to place modifiers in. If we apply `shift`
+before `offset`, the former will do its work and _then_ `offset` will do its
+work, but that's likely not what you want.
+
+As a general rule of thumb, `offset` (if imported) should always come first,
+while `arrow` (if imported) should go last.
+
+```js
+modifiers: [
+  offset(10),
+  // ... other modifiers ...
+  arrow({ element: arrowElement }),
+];
+```
+
+Modifiers are also now much smaller and easier to write as a result.
+
+## 7. Options are passed in the modifier call
+
+As seen above, you must call the modifier, because it's a factory function that
+returns a new object. This allows you to pass options in to configure its
+behavior:
+
+```js
+import { position, flip, shift } from '@popperjs/dom';
+
+position(reference, popper, {
+  modifiers: [
+    flip({ boundary: document.querySelector('#customBoundary') }),
+    shift({ padding: 5 }),
+  ],
+});
+```
+
+This is also much more terse than Popper 2.
+
+## 8. `offset` options
+
+The `offset` modifier has been made easier to use for the simplest case.
+
+Popper 2:
+
+```js
+modifiers: [
+  {
+    name: 'offset',
+    options: {
+      offset: [0, 10],
+    },
+  },
+];
+```
+
+Popper 3:
+
+```js
+modifiers: [offset(10)];
+```
+
+A `number` represents `distance`, or the main axis in which it works.
+Configuring both axes is done like so:
+
+```js
+modifiers: [offset({ mainAxis: 10, altAxis: 5 })];
+```
+
+Which is more consistent with other modifier APIs.

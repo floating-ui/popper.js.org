@@ -1,0 +1,153 @@
+---
+navigationLabel: Position
+order: 2
+---
+
+# Position
+
+The `position` function is the heart of Popper. It computes the necessary
+coordinates, and provides useful data, to position the popper element next to a
+given reference element.
+
+```js
+// umd
+const { position } = PopperDOM;
+
+// esm
+import { position } from '@popperjs/dom';
+```
+
+It accepts three arguments:
+
+```js
+position(reference, popper, {
+  // options
+});
+```
+
+`position` is async, so it returns a `Promise`.
+
+### Resolve value
+
+`position` resolves with the following data:
+
+```flow
+type PositionReturn = {|
+  ...Coords,
+  placement: Placement, // default: "bottom"
+  strategy: PositioningStrategy, // default: "absolute"
+  // Data provided by modifiers, if any.
+  modifiersData: {
+    [key: string]: any,
+  },
+|};
+
+// The positioning coordinates to apply to the popper element.
+type Coords = {|
+  x: number,
+  y: number,
+|};
+
+// The initial (or preferred) placement of the popper element.
+type Placement =
+  | 'top'
+  | 'top-start'
+  | 'top-end'
+  | 'right'
+  | 'right-start'
+  | 'right-end'
+  | 'bottom'
+  | 'bottom-start'
+  | 'bottom-end'
+  | 'left'
+  | 'left-start'
+  | 'left-end';
+
+// CSS `position` property.
+type PositioningStrategy = 'absolute' | 'fixed';
+```
+
+## Usage
+
+```js
+position(reference, popper, {
+  placement: 'right',
+}).then((data) => {
+  const { x, y, placement, strategy, modifiersData } = data;
+  // Do things with the data here...
+});
+```
+
+`position` by itself does not do anything (i.e. mutate/position an element).
+It's pure, so it only returns the data to be consumed.
+
+## Options
+
+Options are passed as a third argument to `position()`.
+
+```flow
+type Options = {
+  // The initial (or preferred) placement.
+  placement: Placement,
+  // CSS position property to use.
+  strategy: PositioningStrategy,
+  // Middleware which modify the resolved data.
+  modifiers: Array<Modifier>,
+  // An object containing methods to calculate element sizes and offsets.
+  // The DOM platform is used on the web.
+  platform: Platform,
+};
+```
+
+## Updating
+
+The `position` function positions the element _once_, since it's a single call.
+If you need to update the position again later, or in an event listener, you'll
+probably want to wrap it in a function:
+
+```js
+async function update() {
+  const { x, y } = await position(reference, popper, {
+    placement: 'right',
+  });
+
+  Object.assign(popper.style, {
+    left: `${x}px`,
+    top: `${x}px`,
+  });
+}
+
+// Initial update.
+update();
+
+// Update on scroll or resize of the window.
+addEventListener('scroll', update);
+addEventListener('resize', update);
+```
+
+### scrollParent
+
+If your reference element is contained within a scrolling container, but your
+popper element not, then you'll also need a `scroll` listener the container,
+too, in addition to the `window`.
+
+You can use the `listScrollParents` util which will return all the scrolling
+parents:
+
+```js
+import { listScrollParents } from '@popperjs/dom';
+
+async function update() {
+  // ...
+}
+
+[...listScrollParents(reference), ...listScrollParents(popper)].forEach(
+  (scrollParent) => {
+    scrollParent.addEventListener('scroll', update);
+    scrollParent.addEventListener('resize', update);
+  }
+);
+```
+
+Other cases in which the element's position should be updated include the
+reference or popper elements changing size or location (e.g. layout changes).

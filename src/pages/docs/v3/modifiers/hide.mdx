@@ -1,0 +1,60 @@
+---
+navigationLabel: hide
+order: 5
+---
+
+import { Hide } from '../../../../components/Modifiers';
+
+# hide
+
+The `hide` modifier provides data to hide the popper element during certain
+scenarios where applicable, such as when the popper is not within the same
+clipping context as the reference.
+
+<Hide />
+
+Scroll the container.
+
+The popper turns partially transparent when it escapes the reference's clipping
+boundary. It then turns invisible when the reference is hidden.
+
+## Usage
+
+```js
+import { position, hide } from '@popperjs/dom';
+
+position(reference, popper, {
+  modifiers: [hide()],
+});
+```
+
+## Data
+
+The `hide` modifier passes data inside `modifiersData.hide` for the consumer:
+
+```flow
+type Data = {
+  isReferenceHidden: boolean,
+  hasPopperEscaped: boolean,
+  referenceClippingOffsets: SideObject,
+  popperEscapeOffsets: SideObject,
+};
+```
+
+### `isReferenceHidden`
+
+Determines whether the reference element is currently not visible on screen for
+the user.
+
+### `hasPopperEscaped`
+
+Determines whether the popper element has "escaped" the reference's clipping
+context and appears fully detached from it.
+
+### `referenceClippingOffsets`
+
+A side object containing overflow offsets.
+
+### `popperEscapeOffsets`
+
+A side object containing overflow offsets.

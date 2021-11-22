@@ -1,0 +1,492 @@
+---
+navigationLabel: Tutorial
+order: 1
+---
+
+import * as T from '../../../components/Tutorial';
+
+# Tutorial
+
+This page teaches you the fundamentals of Popper (**why it even exists instead
+of just using CSS**) by building a tooltip from the ground up.
+
+It's important to note that Popper is **not** a complete tooltip/popover
+library, it just positions these types of elements (hence the term "positioning
+engine"). If you're looking for a library to quickly craft tooltips, popovers,
+dropdowns etc., take a look at [Tippy.js](https://tippyjs.com), built on Popper!
+
+<x-ad />
+
+## Setting up
+
+Create a new HTML document with two elements, a `<button>` and a tooltip
+`<div>`:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Popper Tutorial</title>
+  </head>
+  <body>
+    <button id="reference" aria-describedby="tooltip">My button</div>
+    <div id="tooltip" role="tooltip">My tooltip</div>
+
+    <script src="https://unpkg.com/@popperjs/core@3"></script>
+    <script src="https://unpkg.com/@popperjs/dom@3"></script>
+    <script>
+      // Your code will go here.
+    </script>
+  </body>
+</html>
+```
+
+Right now you should see the following:
+
+<T.Result1 />
+
+## Styling
+
+Let's give our elements some styling, which will help demonstrate Popper's
+positioning better:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Popper Tutorial</title>
+    <style>
+      #tooltip {
+        background: #333;
+        color: white;
+        font-weight: bold;
+        padding: 5px;
+      }
+
+      #button {
+        all: unset;
+        font-size: 125%;
+        padding: 10px;
+        background-color: #1a65db;
+        color: white;
+        cursor: pointer;
+        user-select: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ... -->
+  </body>
+</html>
+```
+
+Here's the result so far:
+
+<T.Result2 />
+
+## Making the tooltip "float"
+
+Your tooltip `<div />` is a regular block on the document, like any other
+element, which is why it spans the whole width of the page.
+
+We want it to **float** on top of the UI though, so it doesn't disrupt the flow
+of the document, and should only take up as much size as its contents.
+
+We can do this in CSS by setting `position: absolute` on the tooltip element.
+Since we're going to be using JavaScript for positioning later, we'll use
+JavaScript to apply this property:
+
+```html
+<script>
+  const tooltip = document.querySelector('#tooltip');
+
+  Object.assign(tooltip.style, {
+    position: 'absolute',
+  });
+</script>
+```
+
+<T.Result3 />
+
+Your tooltip is now a "floating" element — it only takes up as much size as it
+needs to and is overlaid on top of the UI.
+
+## Popper positioning
+
+So far, nothing we've demonstrated has actually required JavaScript or Popper.
+Let's start by choosing our placement, the default of Popper is to place it on
+the `bottom`.
+
+```js {8-15}
+const button = document.querySelector('#button');
+const tooltip = document.querySelector('#tooltip');
+
+Object.assign(tooltip.style, {
+  position: 'absolute',
+});
+
+const { position } = PopperDOM;
+
+position(button, tooltip).then(({ x, y }) => {
+  Object.assign(tooltip.style, {
+    left: `${x}px`,
+    top: `${y}px`,
+  });
+});
+```
+
+Above, we call `PopperDOM.position()` with the button and tooltip elements as
+arguments. It returns a `Promise`, so we use the `.then()` method which passes
+in the calculated `x` and `y` coordinates for us, which we use to assign `left`
+and `top` styles to the tooltip.
+
+Our tooltip is now centered underneath the button:
+
+<T.Result4 />
+
+## Placements
+
+The default placement is `bottom`, but you probably want to place the tooltip
+anywhere relative to the button. For this, Popper has the `placement` option,
+passed into the options object as a third argument:
+
+```js {11}
+const button = document.querySelector('#button');
+const tooltip = document.querySelector('#tooltip');
+
+Object.assign(tooltip.style, {
+  position: 'absolute',
+});
+
+const { position } = PopperDOM;
+
+position(button, tooltip, {
+  placement: 'right',
+}).then(({ x, y }) => {
+  Object.assign(tooltip.style, {
+    left: `${x}px`,
+    top: `${y}px`,
+  });
+});
+```
+
+<T.Result5 />
+
+The available placements are `top`, `right`, `bottom`, `left`. Further, each of
+these has a "variation" `-start` and `-end`. e.g. `right-start`, or
+`bottom-end`. These allow you to align the tooltip to the button, rather than
+centering it.
+
+## Our first problem
+
+These placements are a useful feature themselves, but they don't offer anything
+over raw CSS. Which brings us to our first problem: what happens if we use a
+`top` placement?
+
+<T.Result6 />
+
+We can't read the tooltip text because the button happens to be close to the
+document boundary. In this case, you could use the `bottom` placement, instead
+of `top`. Again, you _could_ just use CSS for this.
+
+Sure, but needing to **manually** handle this for every single tooltip you add
+in an application can be cumbersome. Especially when you want to apply a tooltip
+or popover to an element anywhere on the page at a whim, and have its position
+"just work" for any screen size or location.
+
+Which is why you can let Popper handle it for you automatically with the
+adoption of "modifiers".
+
+## Modifiers
+
+Modifiers are how every single feature beyond the basic placement positioning is
+implemented.
+
+A "modifier" is a piece of code (middleware or plugin) which modifies the `x`
+and `y` coordinates in some way.
+
+`flip()` modifies the coordinates for us such that it uses the `bottom`
+placement automatically without us needing to explicitly specify it.
+
+```js {1,5}
+const { position, flip } = PopperDOM;
+
+position(button, tooltip, {
+  placement: 'top',
+  modifiers: [flip()],
+}).then(({ x, y }) => {
+  Object.assign(tooltip.style, {
+    left: `${x}px`,
+    top: `${y}px`,
+  });
+});
+```
+
+Now, Popper flips the tooltip to the bottom automatically for us if it can't fit
+on the top. No need to adjust anything manually!
+
+<T.Result7 />
+
+### Shift modifier
+
+Now, what if we wanted to have more content inside the tooltip?
+
+<T.Result8 />
+
+Oh no, we now have the same problem as above, but on the opposite axis (`x`
+instead of `y`). For this, we have the `shift` modifier:
+
+```js {1,5}
+const { position, flip, shift } = PopperDOM;
+
+position(button, tooltip, {
+  placement: 'top',
+  modifiers: [flip(), shift()],
+}).then(({ x, y }) => {
+  Object.assign(tooltip.style, {
+    left: `${x}px`,
+    top: `${y}px`,
+  });
+});
+```
+
+<T.Result9 />
+
+Now, we can read all the text because the `shift` modifier "shifted" the tooltip
+from its bottom centered placement until it was fully in view.
+
+As you can see, the tooltip lies fully flush with the edge of the document
+boundary. To add some whitespace, or padding, the `shift` modifier accepts an
+options object:
+
+```js {5}
+const { position, flip, shift } = PopperDOM;
+
+position(button, tooltip, {
+  placement: 'top',
+  modifiers: [flip(), shift({ padding: 5 })],
+}).then(({ x, y }) => {
+  Object.assign(tooltip.style, {
+    left: `${x}px`,
+    top: `${y}px`,
+  });
+});
+```
+
+<T.Result10 />
+
+Now there's some 5px of breathing room between the tooltip and the edge of the
+boundary.
+
+### Offset modifier
+
+We probably also don't want the tooltip to lie flush with the button element.
+For this, we have the `offset` modifier:
+
+```js {1,5}
+const { position, flip, shift, offset } = PopperDOM;
+
+position(button, tooltip, {
+  placement: 'top',
+  modifiers: [offset(5), flip(), shift({ padding: 5 })],
+}).then(({ x, y }) => {
+  Object.assign(tooltip.style, {
+    left: `${x}px`,
+    top: `${y}px`,
+  });
+});
+```
+
+This will displace the tooltip 5px from the reference element:
+
+<T.Result11 />
+
+Notice that we put `offset` at the start of the array, rather than at the end?
+Modifiers' behavior is dependent on **order**. Each modifier returns new
+coordinates which modifiers later in the array will use. The `offset` modifier
+is one that should be before most other ones, because those modifiers should
+modify their coordinates based on the offsetted ones.
+
+### Arrow modifier
+
+Most tooltips have an arrow (or triangle / caret) which points toward the
+button. For this, we have the `arrow` modifier, but we first need to add a new
+element inside of our tooltip:
+
+```html
+<div id="tooltip" role="tooltip">
+  My tooltip
+  <div id="arrow"></div>
+</div>
+```
+
+Then style it:
+
+```css
+#arrow {
+  background: #333;
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+}
+```
+
+Then pass the arrow element into the `arrow` modifier:
+
+```js {1-5,7,15}
+const arrowElement = document.querySelector('#arrow');
+
+Object.assign(arrowElement.style, {
+  position: 'absolute',
+});
+
+const { position, flip, shift, offset, arrow } = PopperDOM;
+
+position(button, tooltip, {
+  placement: 'top',
+  modifiers: [
+    offset(5),
+    flip(),
+    shift({ padding: 5 }),
+    arrow({ element: arrowElement }),
+  ],
+}).then(({ x, y }) => {
+  Object.assign(tooltip.style, {
+    left: `${x}px`,
+    top: `${y}px`,
+  });
+});
+```
+
+Now we need to add dynamic styles to the arrow element. Unlike other modifiers,
+the `arrow` modifier doesn't modify the main `x` and `y` coordinates. Instead,
+it provides **data** for us to use. We can access this piece of information
+provided via `modifiersData`.
+
+This contains an `arrow` object, referring to the name of the `Popper.arrow()`
+modifier we used:
+
+```js {9,14-24}
+position(button, tooltip, {
+  placement: 'top',
+  modifiers: [
+    offset(5),
+    flip(),
+    shift({ padding: 5 }),
+    arrow({ element: arrowElement }),
+  ],
+}).then(({ x, y, placement, modifiersData }) => {
+  Object.assign(tooltip.style, {
+    left: `${x}px`,
+    top: `${y}px`,
+  });
+
+  Object.assign(arrow.style, {
+    left: modifiersData.arrow.x ? `${modifiersData.arrow.x}px` : '',
+    top: modifiersData.arrow.y ? `${modifiersData.arrow.y}px` : '',
+    [{
+      top: 'bottom',
+      right: 'left',
+      bottom: 'top',
+      left: 'right',
+    }[placement.split('-')[0]]]: `${modifiersData.arrow.length / 2}px`,
+  });
+});
+```
+
+The styles above will handle the arrow's position for all placements.
+
+- `x` is the x-axis offset, only existing if the placement is vertical (`top` or
+  `bottom`).
+- `y` is the y-axis offset, only existing if the placement is horizontal
+  (`right` or `left`).
+- `length` is `width` of the arrow for horizontal placements, or `height` for
+  vertical placements. You generally use this to offset the arrow statically.
+
+<T.Result12 />
+
+## Functionality
+
+So, now we have the styling and correct positioning for our tooltip for any
+scenario. But, what about the functionality?
+
+```css {2}
+#tooltip {
+  display: none;
+  background: #333;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+}
+```
+
+```js
+const button = document.querySelector('#button');
+const tooltip = document.querySelector('#tooltip');
+const arrowElement = document.querySelector('#arrow');
+
+// Show the tooltip then update its position
+function showTooltip() {
+  Object.assign(tooltip.style, {
+    position: 'absolute',
+    display: 'block',
+  });
+
+  Object.assign(arrowElement.style, {
+    position: 'absolute',
+  });
+
+  const { position, flip, shift, offset, arrow } = PopperDOM;
+
+  position(button, tooltip, {
+    placement: 'top',
+    modifiers: [
+      offset(5),
+      flip(),
+      shift({ padding: 5 }),
+      arrow({ element: arrow }),
+    ],
+  }).then(({ x, y, placement, modifiersData }) => {
+    Object.assign(tooltip.style, {
+      left: `${x}px`,
+      top: `${y}px`,
+    });
+
+    Object.assign(arrowElement.style, {
+      left: modifiersData.arrow.x ? `${modifiersData.arrow.x}px` : '',
+      top: modifiersData.arrow.y ? `${modifiersData.arrow.y}px` : '',
+      [{
+        top: 'bottom',
+        right: 'left',
+        bottom: 'top',
+        left: 'right',
+      }[placement.split('-')[0]]]: `${modifiersData.arrow.length / 2}px`,
+    });
+  });
+}
+
+function hideTooltip() {
+  Object.assign(tooltip.style, {
+    display: 'none',
+  });
+}
+
+// Add events that show and hide the tooltip
+const showEvents = ['mouseenter', 'focus'];
+const hideEvents = ['mouseleave', 'blur'];
+
+showEvents.forEach((event) => {
+  button.addEventListener(event, showTooltip);
+});
+hideEvents.forEach((event) => {
+  button.addEventListener(event, hideTooltip);
+});
+```
+
+Hover or focus the button below:
+
+<T.Result14 />
+
+## Complete
+
+We now have a fully functioning tooltip, positioned via Popper.

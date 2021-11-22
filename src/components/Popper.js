@@ -35,6 +35,10 @@ export const usePopper = (options = {}) => {
   );
 
   useLayoutEffect(() => {
+    if (!popperRef.current || !referenceRef.current) {
+      return;
+    }
+
     popperRef.current.style.visibility = 'visible';
 
     const instance = createPopper(
@@ -48,12 +52,13 @@ export const usePopper = (options = {}) => {
     return () => {
       instance.destroy();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [mergedOptions, referenceRef, popperRef]);
 
   useLayoutEffect(() => {
-    instanceRef.current.setOptions(mergedOptions);
-    instanceRef.current.update();
+    if (instanceRef.current) {
+      instanceRef.current.setOptions(mergedOptions);
+      instanceRef.current.update();
+    }
   }, [mergedOptions]);
 
   return {
@@ -67,8 +72,8 @@ export const Tooltip = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background: ${props => (props.dark ? '#333' : '#fff')};
-  color: ${props => (props.dark ? '#fff' : '#642f45')};
+  background: ${(props) => (props.dark ? '#333' : '#fff')};
+  color: ${(props) => (props.dark ? '#fff' : '#642f45')};
   padding: 5px 10px;
   border-radius: 4px;
   font-weight: bold;
@@ -78,7 +83,7 @@ export const Tooltip = styled.div`
   visibility: hidden;
   z-index: 1;
 
-  ${props =>
+  ${(props) =>
     props.hide &&
     css`
       &[data-popper-escaped] {
@@ -136,7 +141,7 @@ export const Arrow = styled.div`
   &::before {
     content: '';
     transform: rotate(45deg);
-    background: ${props => (props.dark ? '#333' : '#fff')};
+    background: ${(props) => (props.dark ? '#333' : '#fff')};
     top: 0;
     left: 0;
   }

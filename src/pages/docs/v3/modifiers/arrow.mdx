@@ -1,0 +1,89 @@
+---
+navigationLabel: arrow
+order: 4
+---
+
+import { Arrow } from '../../../../components/Modifiers';
+
+# arrow
+
+The `arrow` modifier provides data to position an inner element of the popper
+element, usually the triangle or caret that points toward the reference element,
+so that it is pointing toward its center at all times.
+
+<Arrow />
+
+## Usage
+
+```js
+import { position, arrow } from '@popperjs/dom';
+
+position(reference, popper, {
+  modifiers: [arrow({ element: arrow })],
+});
+```
+
+## Options
+
+`arrow()` takes an object of options:
+
+```flow
+type Options = {
+  element: HTMLElement,
+  padding: number | SideObject,
+};
+```
+
+### `element`
+
+The arrow element that is to be positioned.
+
+```js
+arrow({
+  element: document.querySelector('#arrow'),
+});
+```
+
+### `padding`
+
+Padding between the edges of the popper element; useful if the popper has curved
+corners using `border-radius`.
+
+```js
+arrow({
+  padding: 5, // 5px from the edges of the popper
+});
+```
+
+## Data
+
+The `arrow` modifier passes data inside `modifiersData.arrow` for the consumer:
+
+```flow
+type Data = {
+  x?: number,
+  y?: number,
+  centerOffset: number,
+};
+```
+
+### `x`
+
+This property exists in the data object if the `x` axis has offset.
+
+### `y`
+
+This property exists in the data object if the `y` axis has offset.
+
+### `centerOffset`
+
+This property describes the offset of the arrow (where it actually is) relative
+to where it _could_ be if it were allowed to overflow the popper element in
+order to be centered to the reference element.
+
+This enables two useful things:
+
+- It allows you to hide the arrow if it can no longer be centered to the
+  reference element, i.e. `centerOffset` is non-zero.
+- It allows you to alter the shape of the arrow to point toward the reference
+  element as best as it can by skewing the triangle shape.

@@ -77,7 +77,6 @@ const Slogan = styled.h2`
 const SubSlogan = styled.p`
   color: #642f45;
   font-size: 22px;
-  font-style: italic;
   font-weight: 500;
   margin-bottom: 20px;
   line-height: 1.2;
@@ -124,14 +123,20 @@ const Header = () => (
         srcset={popperLogo}
         media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
       />
-      <Logo src={popperLogo} alt="Popper logo" draggable="false" width="200" height="200" />
+      <Logo
+        src={popperLogo}
+        alt="Popper logo"
+        draggable="false"
+        width="200"
+        height="200"
+      />
     </picture>
 
     <Slogan>
       Tooltip &amp; Popover <br /> Positioning Engine
     </Slogan>
     <SubSlogan>
-      Weighs just <strong>3 kB!</strong>
+      Tiny <strong>600B</strong> core
     </SubSlogan>
     <div
       css={css`
@@ -145,7 +150,7 @@ const Header = () => (
       >
         <GitHub css={iconCss} /> Star on GitHub
       </a>
-      <Link to="/docs/v2/" css={buttonCss}>
+      <Link to="/docs/v3/" css={buttonCss}>
         <Terminal css={iconCss} />
         Documentation
       </Link>

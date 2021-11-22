@@ -23,7 +23,7 @@ const Container = styled.div`
   z-index: 2;
   box-shadow: 10px 0 20px -2px rgba(80, 0, 20, 0.2);
 
-  ${props =>
+  ${(props) =>
     props.open &&
     css`
       display: flex;
@@ -42,11 +42,11 @@ const Container = styled.div`
 const Ul = styled.ul`
   list-style: none;
   padding: 0;
-  margin-left: ${props => (props.root ? 0 : 15)}px;
+  margin-left: ${(props) => (props.root ? 0 : 15)}px;
   margin-top: 0;
   line-height: 1.5;
 
-  ${props =>
+  ${(props) =>
     !props.root &&
     css`
       margin-left: 15px;
@@ -233,7 +233,7 @@ export default function Navigation({ description, lang, meta, path }) {
 
   return (
     <MdxRoutes>
-      {routes => (
+      {(routes) => (
         <>
           <MobileHeader>
             <MenuButton

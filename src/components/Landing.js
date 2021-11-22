@@ -166,6 +166,9 @@ const Heading = styled.h3`
   color: #f4e0f1;
 `;
 
+const X_STRING = '`${x}px`';
+const Y_STRING = '`${y}px`';
+
 const PopcornBox = forwardRef((props, ref) => (
   <img
     ref={ref}
@@ -313,7 +316,7 @@ const DotContainer = styled(ExampleArea)`
   margin: 0 auto;
 
   ${media.lg} {
-    height: 450px;
+    height: 500px;
   }
 `;
 
@@ -326,21 +329,21 @@ export const ScrollContainer = styled(ExampleArea)`
   background-color: #281e36;
 
   ${media.lg} {
-    height: 450px;
+    height: 600px;
   }
 
   &::before {
     content: '';
     display: block;
     width: 1px;
-    height: 600px;
+    height: 1000px;
   }
 
   &::after {
     content: '';
     display: block;
     width: 1px;
-    height: 600px;
+    height: 1000px;
   }
 `;
 
@@ -434,13 +437,18 @@ const PlacementExample = () => {
   });
 
   const code = `
-import { createPopper } from '@popperjs/core';
+import { position } from '@popperjs/dom';
 
 const popcorn = document.querySelector('#popcorn');
 const tooltip = document.querySelector('#tooltip');
 
-createPopper(popcorn, tooltip, {
+position(popcorn, tooltip, {
   placement: '${placement}',
+}).then(({ x, y }) => {
+  Object.assign(tooltip.style, {
+    left: ${X_STRING},
+    top: ${Y_STRING},
+  });
 });`;
 
   return (
@@ -529,17 +537,23 @@ const PreventOverflowExample = () => {
 
   useLayoutEffect(() => {
     scrollContainerRef.current.scrollTop =
-      window.innerWidth <= sizes.lg ? 490 : 450;
+      window.innerWidth <= sizes.lg ? 890 : 750;
   }, []);
 
   const code = `
-import { createPopper } from '@popperjs/core';
+import { position, shift } from '@popperjs/dom';
 
 const popcorn = document.querySelector('#popcorn');
 const tooltip = document.querySelector('#tooltip');
 
-createPopper(popcorn, tooltip, {
+position(popcorn, tooltip, {
   placement: 'right',
+  modifiers: [shift()],
+}).then(({ x, y }) => {
+  Object.assign(tooltip.style, {
+    left: ${X_STRING},
+    top: ${Y_STRING},
+  });
 });
 `;
 
@@ -574,8 +588,6 @@ createPopper(popcorn, tooltip, {
           <TooltipPrice>L: $5.99</TooltipPrice>
           <TooltipPrice>XL: $6.99</TooltipPrice>
           <TooltipPrice>XXL: $7.99</TooltipPrice>
-
-          <Arrow data-popper-arrow />
         </Tooltip>
       </div>
       <ExampleText>
@@ -605,16 +617,23 @@ const FlipExample = () => {
 
   useLayoutEffect(() => {
     scrollContainerRef.current.scrollTop =
-      window.innerWidth <= sizes.lg ? 490 : 450;
+      window.innerWidth <= sizes.lg ? 890 : 750;
   }, []);
 
   const code = `
-import { createPopper } from '@popperjs/core';
+import { position, flip } from '@popperjs/core';
 
 const popcorn = document.querySelector('#popcorn');
 const tooltip = document.querySelector('#tooltip');
 
-createPopper(popcorn, tooltip);
+position(popcorn, tooltip, {
+  modifiers: [flip()],
+}).then(({ x, y }) => {
+  Object.assign(tooltip.style, {
+    left: ${X_STRING},
+    top: ${Y_STRING},
+  });
+});
 `;
 
   return (

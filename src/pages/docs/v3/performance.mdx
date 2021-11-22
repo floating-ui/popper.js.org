@@ -1,0 +1,49 @@
+---
+navigationLabel: Performance
+order: 7
+---
+
+# Performance
+
+## Subpixel positioning
+
+Instead of using `top` and `left` properties, we can use `transform` to position
+the popper on the subpixel grid (e.g. high PPI displays), which also improves
+update performance by placing the popper on its own GPU-accelerated layer.
+
+```js
+position(reference, popper).then(({ x, y }) => {
+  Object.assign(popper.style, {
+    top: 0,
+    left: 0,
+    // 3D transforms are only recommended for high PPI displays, as they can
+    // disable subpixel antialiasing, resulting in blurring.
+    transform: `translate3d(${x}px,${y}px,0)`,
+  });
+});
+```
+
+If you're transitioning the location of the popper on the screen, this also
+results in smoother animations.
+
+## Reducing repositioning needed
+
+By placing the popper element inside the same scrolling context as the reference
+element, when using the `absolute` strategy, you'll reduce how often the
+popper's position will need to be updated.
+
+```html
+<div class="scroll">
+  <div>Reference</div>
+  <div>Popper</div>
+</div>
+```
+
+If your popper is not within a fixed container, but the reference element is,
+you should use the `fixed` strategy:
+
+```js
+position(reference, popper, { strategy: 'fixed' });
+```
+
+This will reduce stutters or jitters in browsers due to their async behavior.

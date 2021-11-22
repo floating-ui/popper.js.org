@@ -1,0 +1,143 @@
+---
+navigationLabel: detectOverflow
+order: 0
+---
+
+# detectOverflow
+
+The `detectOverflow` utility is one of the most useful when crafting your own
+modifiers. It returns an object of offsets which determine how much the popper
+or reference element is overflowing its clipping boundaries on each side based
+on the current `x` and `y` coords.
+
+It's async, so it returns a `Promise`. This means your `fn` logic should be
+`async` so you can `await` it.
+
+## Usage
+
+```js
+const modifier = {
+  name: 'modifier',
+  async fn(modifierArguments) {
+    const overflow = await detectOverflow(modifierArguments, {
+      // options
+    });
+  },
+};
+```
+
+The first argument is the `modifierArguments` passed into the modifier's `fn`.
+The second argument is an object of options to configure the behavior of the
+return value.
+
+## Return value
+
+It returns a `SideObject` of overflow offsets in pixels. The numbers are
+interpreted as below:
+
+- `0` means it is flush with, or touching, the boundary.
+- A negative number means it has that amount of pixels left before it will
+  overflow.
+- A positive number means it's overflowing by that amount of pixels.
+
+```flow
+type Overflow = {
+  top: number,
+  right: number,
+  bottom: number,
+  left: number,
+};
+```
+
+## Options
+
+```flow
+type Options = {
+  elementContext: Context, // "popper"
+  boundary: Boundary, // "clippingParents"
+  rootBoundary: RootBoundary, // "viewport"
+  altBoundary: boolean, // false
+  padding: Padding, // 0
+};
+
+// Below are the relative types
+type Context = 'reference' | 'popper';
+type Boundary = 'clippingParents' | HTMLElement | Array<HTMLElement>;
+type RootBoundary = 'document' | 'viewport';
+type Padding =
+  | number
+  | {|
+      top?: number,
+      right?: number,
+      bottom?: number,
+      left?: number,
+    |};
+```
+
+### `elementContext`
+
+This describes the element that is being checked for overflow relative to the
+boundary.
+
+```js
+detectOverflow(modifierArguments, {
+  elementContext: 'reference', // 'popper' by default
+});
+```
+
+### `boundary`
+
+This describes the area that the element will be checked for overflow relative
+to.
+
+By default, it is `"clippingParents"`, which are the scrolling containers that
+may cause the element to be partially or fully cut off.
+
+```js
+const customBoundary = document.querySelector('#boundary');
+
+detectOverflow(modifierArguments, {
+  boundary: customBoundary, // 'clippingParents' by default
+});
+```
+
+### `rootBoundary`
+
+This describes the root boundary that will be checked for overflow. There are
+only two "roots" – the viewport and the document. `"viewport"` is default, which
+is the area of the document the user can actually see on the screen.
+`"document"` is the entire page which can be potentially scrolled.
+
+```js
+detectOverflow(modifierArguments, {
+  rootBoundary: 'document', // 'viewport' by default
+});
+```
+
+### `altBoundary`
+
+This describes whether to use the alt element's boundary. For example, if the
+`elementContext` is `"popper"`, then it will check the reference's boundary
+context, and vice-versa.
+
+```js
+detectOverflow(modifierArguments, {
+  altBoundary: true, // false by default
+});
+```
+
+### `padding`
+
+Applies virtual padding to the boundary.
+
+You can pass a `number`, which will be equal padding on all four sides, or an
+`object` containing side properties each with their own padding value.
+
+```js
+detectOverflow(modifierArguments, {
+  // Same padding on all four sides
+  padding: 8,
+  // Different padding on certain sides – unspecified sides are 0
+  padding: { top: 8, right: 16 },
+});
+```

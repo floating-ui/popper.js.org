@@ -20,3 +20,7 @@ h3 {
 .tippy-content {
   text-align: center;
 }
+
+strong {
+  color: #fff;
+}

@@ -1,0 +1,47 @@
+---
+navigationLabel: offset
+order: 0
+---
+
+import { Offset } from '../../../../components/Modifiers';
+
+# offset
+
+The `offset` modifier displaces the popper element from the reference element.
+
+<Offset />
+
+## Usage
+
+```js
+import { position, offset } from '@popperjs/dom';
+
+position(reference, popper, {
+  modifiers: [offset()],
+});
+```
+
+## Options
+
+`offset()` can take either:
+
+- a number, representing the `mainAxis` (distance) in pixels of displacement
+- an object, containing `mainAxis` and `altAxis` properties to configure both
+  axes
+- a function, taking the `reference` and `popper` rects and the current
+  placement, and return either of the above
+
+```js
+// number
+offset(10);
+
+// object
+offset({ mainAxis: 25, altAxis: 5 });
+
+// function
+offset(({ popper, reference }) => -popper.height);
+```
+
+## Order
+
+In most cases, this should be the first modifier in your `modifiers` array.

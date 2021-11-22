@@ -1,0 +1,62 @@
+---
+navigationLabel: v3.×
+title: Popper (v3.×)
+order: 0
+redirect_from:
+  - /docs/
+---
+
+import { css } from '@emotion/css';
+import { media } from 'src/components/Framework';
+import Logo from 'src/images/popper-logo-outlined.svg';
+
+<img
+  src={Logo}
+  alt="Popper"
+  height={190}
+  className={css`
+    float: right;
+    position: relative;
+    top: -15px;
+    margin-left: 10px;
+    width: 190px;
+    height: 190px;
+    filter: contrast(105%) brightness(95%);
+    display: none;
+    ${media.lg} {
+      display: block;
+    }
+  `}
+/>
+
+# Documentation
+
+Popper is a low-level, pure, and functional positioning engine for "poppers" —
+floating elements which are positioned relative to another element (such as
+tooltips, popovers, dropdowns, and more).
+
+Its sole goal is to correctly position your floating element next to a given
+reference (or target) element. It has no opinions on how those elements function
+regarding their behavior. Positioning these elements correctly in any scenario
+is the difficult part, which is the focus of this library!
+
+- **Platform-agnostic:** runs anywhere JavaScript does: the web, React Native,
+  etc.
+- **Unopinionated:** Popper employs an inversion-of-control API, leaving the
+  application of styles up to you. It only calculates the necessary coordinates
+  and provides useful data for you to use.
+- **Highly extensible:** modify the positioning coordinates or add any data via
+  modifiers.
+- **Tree-shakeable:** tiny 600B core with a highly modular architecture, keeping
+  your JavaScript bundles small.
+- **Gradual adoption:** Add features as you need them, no unexpected or
+  hard-to-configure positioning logic.
+
+## Why not use pure CSS?
+
+So, why do we need a fancy "positioning engine" to position floating elements
+like tooltips and popovers?
+
+We recommend you visit the [tutorial](./tutorial) which teaches a practical
+example of why JavaScript positioning offers several advantages over CSS and is
+necessary in reusable component libraries.

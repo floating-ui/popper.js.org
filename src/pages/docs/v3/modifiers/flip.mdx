@@ -1,0 +1,90 @@
+---
+navigationLabel: flip
+order: 3
+---
+
+import { Flip } from '../../../../components/Modifiers';
+
+# flip
+
+The `flip` modifier changes the placement of the popper element to the opposite
+one if it doesn't fit.
+
+<Flip />
+
+Scroll the container.
+
+## Usage
+
+```js
+import { position, flip } from '@popperjs/dom';
+
+position(reference, popper, {
+  modifiers: [flip()],
+});
+```
+
+## Options
+
+`flip()` takes an object of options:
+
+```flow
+type Options = {
+  mainAxis: boolean, // true
+  altAxis: boolean, // true
+  fallbackPlacements: Array<Placement>, // [oppositePlacement]
+  flipVariations: boolean, // true
+  ...DetectOverflowOptions,
+};
+```
+
+### `mainAxis`
+
+Describes whether to flip the placement if it overflows on the main axis. For
+vertical placements, this is the `y` axis. For horizontal ones, it's the `x`
+axis.
+
+```js
+flip({
+  mainAxis: false, // true by default
+});
+```
+
+### `altAxis`
+
+Describes whether to flip the placement if it overflows on the alt axis. For
+vertical placements, this is the `x` axis. For horizontal ones, it's the `y`
+axis.
+
+```js
+flip({
+  altAxis: false, // true by default
+});
+```
+
+### `fallbackPlacements`
+
+Describes the placements to try if the initial (or preferred) placement does not
+fit.
+
+```js
+flip({
+  fallbackPlacements: ['top-start', 'right'], // [oppositePlacement] by default
+});
+```
+
+### `flipVariations`
+
+When specifying a variation placement, e.g. `top-start`, this determines whether
+to flip to the opposite variation `end` in addition to the opposite placement.
+
+```js
+flip({
+  flipVariations: false, // true by default
+});
+```
+
+### `...detectOverflowOptions`
+
+All of [`detectOverflow`](../../utils/detectOverflow/#options)'s options can be
+passed.

@@ -1,0 +1,101 @@
+---
+navigationLabel: limitShift
+order: 2
+---
+
+import { LimitShift } from '../../../../components/Modifiers';
+
+# limitShift
+
+The `limitShift` modifier limits `shift` once the shifting has reached a certain
+point, based on the sizes of the elements. This prevents the popper element from
+appearing to be attached to nothing to better help the user understand its
+origin point.
+
+This is implemented as a separate modifier, and not an option of `shift` for
+tree-shaking reasons.
+
+<LimitShift />
+
+Scroll the container.
+
+The default is to limit `shift` once the opposite edges of the reference and
+popper are aligned.
+
+## Usage
+
+```js
+import { position, shift, limitShift } from '@popperjs/dom';
+
+position(reference, popper, {
+  // Always place it after `shift`:
+  modifiers: [shift(), limitShift()],
+});
+```
+
+## Options
+
+`limitShift()` takes an object of options:
+
+```flow
+type Options = {
+  offset: LimitShiftOffset, // default: 0
+  mainAxis: boolean, // default: true
+  altAxis: boolean, // default: true
+};
+
+type LimitShiftOffset =
+  | (({|
+      placement: Placement,
+      popper: Rect,
+      reference: Rect,
+    |}) => number)
+  | number;
+```
+
+### `mainAxis`
+
+Describes whether to limit `shift` along its main axis.
+
+```js
+limitShift({
+  mainAxis: false, // true by default
+});
+```
+
+### `altAxis`
+
+Describes whether to limit `shift` along its alt axis.
+
+```js
+limitShift({
+  altAxis: false, // true by default
+});
+```
+
+### `offset`
+
+Describes the offset at which the limiting begins, which can be either a
+`number`, describing the `mainAxis` offset, or a function which returns a
+number, taking in useful data.
+
+A `positive` offset means it starts limiting earlier, while `negative` later.
+
+You may also return an object in the shape
+`{ mainAxis: number, altAxis: number }` to configure the offset of both axes.
+
+```js
+limitShift({
+  // start limiting 5px earlier
+  offset: 5,
+
+  // start limiting half the reference's width earlier
+  offset: ({ reference }) => reference.width / 2,
+
+  // configure the axes differently
+  offset: {
+    mainAxis: 5,
+    altAxis: 10,
+  },
+});
+```

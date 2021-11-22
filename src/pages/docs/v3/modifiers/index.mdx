@@ -1,0 +1,83 @@
+---
+navigationLabel: Modifiers
+order: 4
+---
+
+# Modifiers
+
+A `modifier` is an object (middleware or plugin) that modifies the `x` and `y`
+coordinates in some way, or provides useful data to the consumer. Popper
+provides the most useful modifiers in its core already for you to import.
+Anything you don't use will be tree-shaken away.
+
+## Example
+
+A very basic modifier that shifts the coordinates by 1 pixel:
+
+```js
+const shiftBy1Px = {
+  // The name of the modifier.
+  name: 'shiftBy1Px',
+  // The main logic which returns new coordinates.
+  fn({ coords }) {
+    return {
+      // Required: always return `x` and `y` coordinates.
+      x: coords.x + 1,
+      y: coords.y + 1,
+
+      // Optional:
+      data: {
+        // Add custom data to be read by other modifiers or the consumer.
+      },
+    };
+  },
+};
+```
+
+### Function
+
+Popper's core modifiers are factory functions, which allows you to pass options
+to configure their behavior:
+
+```js
+const modifier = (options = {}) => ({
+  name: 'modifier',
+  fn: ({ coords }) => coords,
+});
+```
+
+## Type
+
+```flow
+type Modifier = {
+  name: string,
+  fn: (
+    modifierArguments: ModifierArguments
+  ) =>
+    | $Shape<{| ...Coords, data: Obj |}>
+    | Promise<$Shape<{ ...Coords, data: Obj }>>,
+};
+
+type ModifierArguments = {|
+  // Stateful placement, which can be changed by other modifiers, e.g. `flip`.
+  placement: Placement,
+  // Stateless placement, passed in as an option to `position()`.
+  initialPlacement: Placement,
+  // The reference and popper `Rect`s, an object of shape {width, height, x, y}.
+  rects: ElementRects,
+  // The reference and popper elements themselves.
+  elements: Elements,
+  // {x, y} positioning coordinates.
+  coords: Coords,
+  // Data from other modifiers.
+  modifiersData: Obj,
+  // Platform object containing methods.
+  platform: Platform,
+  // Type of CSS position property used.
+  strategy: PositioningStrategy,
+  // Reset the modifiers lifecycle with a new placement.
+  scheduleReset: ({|
+    placement: Placement,
+  |}) => void,
+|};
+```
