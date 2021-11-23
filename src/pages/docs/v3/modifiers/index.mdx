@@ -59,16 +59,17 @@ type Modifier = {
 };
 
 type ModifierArguments = {|
+  // Positioning coordinates.
+  x: number,
+  y: number,
   // Stateful placement, which can be changed by other modifiers, e.g. `flip`.
   placement: Placement,
-  // Stateless placement, passed in as an option to `position()`.
+  // Stateless placement, passed in as an option to `computePosition()`.
   initialPlacement: Placement,
   // The reference and popper `Rect`s, an object of shape {width, height, x, y}.
   rects: ElementRects,
   // The reference and popper elements themselves.
   elements: Elements,
-  // {x, y} positioning coordinates.
-  coords: Coords,
   // Data from other modifiers.
   modifiersData: Obj,
   // Platform object containing methods.

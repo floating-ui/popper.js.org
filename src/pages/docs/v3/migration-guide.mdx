@@ -44,7 +44,7 @@ import { createPopper } from '@popperjs/core';
 Popper 3:
 
 ```js
-import { position } from '@popperjs/dom';
+import { computePosition } from '@popperjs/dom';
 ```
 
 ## 3. Styling is up to you
@@ -71,11 +71,11 @@ function applyStyles({ x = 0, y = 0, strategy = 'absolute' }) {
   });
 }
 
-// Set initial styles to ensure `position()` reads the correct dimensions.
+// Set initial styles to ensure `computePosition()` reads the correct dimensions.
 applyStyles();
 
 // `position` is async, returning a Promise.
-position(reference, popper).then(applyStyles);
+computePosition(reference, popper).then(applyStyles);
 ```
 
 Popper 2 has a simpler call, but wanting to adjust the styles that get applied
@@ -85,16 +85,16 @@ See [styling the arrow](../tutorial/#arrow-modifier) for further details.
 
 ## 4. Modifiers are up to you
 
-`position()` now only positions the popper based on the `placement` option that
-was passed in. It does not do anything else, meaning there are no modifiers by
-default. This makes it much more **predictable** to use.
+`computePosition()` now only positions the popper based on the `placement`
+option that was passed in. It does not do anything else, meaning there are no
+modifiers by default. This makes it much more **predictable** to use.
 
 Likely, you'll want to add the `flip` and `shift` modifiers in:
 
 ```js
-import { position, flip, shift } from '@popperjs/dom';
+import { computePosition, flip, shift } from '@popperjs/dom';
 
-position(reference, popper, {
+computePosition(reference, popper, {
   modifiers: [flip(), shift()],
 });
 ```
@@ -111,8 +111,8 @@ modifier in the array.
 
 ## 5. Event listeners are up to you
 
-`position()` is a single pure function call, it does not do any "magic" like
-`createPopper()` did which added listeners to update the popper.
+`computePosition()` is a single pure function call, it does not do any "magic"
+like `createPopper()` did which added listeners to update the popper.
 
 Since you have full control, you can handle this whichever way you want. e.g.
 wrapping the call inside an `update()` function to add event listeners:
@@ -127,7 +127,7 @@ function applyStyles({ x = 0, y = 0, strategy = 'absolute' }) {
 }
 
 function update() {
-  position(reference, popper).then(applyStyles);
+  computePosition(reference, popper).then(applyStyles);
 }
 
 // Initial calls:
@@ -191,9 +191,9 @@ returns a new object. This allows you to pass options in to configure its
 behavior:
 
 ```js
-import { position, flip, shift } from '@popperjs/dom';
+import { computePosition, flip, shift } from '@popperjs/dom';
 
-position(reference, popper, {
+computePosition(reference, popper, {
   modifiers: [
     flip({ boundary: document.querySelector('#customBoundary') }),
     shift({ padding: 5 }),

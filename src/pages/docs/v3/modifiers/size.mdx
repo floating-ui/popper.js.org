@@ -1,6 +1,6 @@
 ---
 navigationLabel: size
-order: 6
+order: 5
 ---
 
 import { Size } from '../../../../components/Modifiers';
@@ -23,9 +23,9 @@ will become too small.
 ## Usage
 
 ```js
-import { position, size } from '@popperjs/dom';
+import { computePosition, size } from '@popperjs/dom';
 
-position(reference, popper, {
+computePosition(reference, popper, {
   modifiers: [size()],
 });
 ```

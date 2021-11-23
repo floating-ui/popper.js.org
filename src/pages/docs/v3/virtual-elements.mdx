@@ -53,7 +53,7 @@ const virtualElement = {
 };
 
 async function update() {
-  const { x, y } = await position(virtualElement, popper);
+  const { x, y } = await computePosition(virtualElement, popper);
   Object.assign(popper.style, {
     left: `${x}px`,
     top: `${y}px`,

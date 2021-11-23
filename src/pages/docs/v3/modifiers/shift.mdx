@@ -17,9 +17,9 @@ Scroll the container.
 ## Usage
 
 ```js
-import { position, shift } from '@popperjs/dom';
+import { computePosition, shift } from '@popperjs/dom';
 
-position(reference, popper, {
+computePosition(reference, popper, {
   modifiers: [shift()],
 });
 ```
@@ -32,6 +32,7 @@ position(reference, popper, {
 type Options = {
   mainAxis: boolean, // default: true
   crossAxis: boolean, // default: false
+  limiter: (modifierArguments) => Coords,
   ...DetectOverflowOptions,
 };
 ```
@@ -47,9 +48,9 @@ shift({
 });
 ```
 
-### `altAxis`
+### `crossAxis`
 
-Describes whether to shift the popper along the alt axis. For vertical
+Describes whether to shift the popper along the cross axis. For vertical
 placements, this is the `y` axis. For horizontal ones, it's the `x` axis.
 
 Enabling this can lead to the popper overlapping the reference element, and is
@@ -61,7 +62,93 @@ shift({
 });
 ```
 
-### `...detectOverflowOptions`
+### `limiter`
+
+This allows you to limit `shift` at a certain point. The default `limiter` is
+`limitShift`, available in the package:
+
+#### Usage
+
+```js
+import { computePosition, shift, limitShift } from '@popperjs/dom';
+
+computePosition(reference, popper, {
+  modifiers: [
+    shift({
+      limiter: limitShift(),
+    }),
+  ],
+});
+```
+
+#### Options
+
+`limitShift()` takes an object of options:
+
+```flow
+type Options = {
+  offset: LimitShiftOffset, // default: 0
+  mainAxis: boolean, // default: true
+  crossAxis: boolean, // default: true
+};
+
+type LimitShiftOffset =
+  | (({|
+      placement: Placement,
+      popper: Rect,
+      reference: Rect,
+    |}) => number)
+  | number;
+```
+
+##### `mainAxis`
+
+Describes whether to limit `shift` along its main axis.
+
+```js
+limitShift({
+  mainAxis: false, // true by default
+});
+```
+
+##### `crossAxis`
+
+Describes whether to limit `shift` along its alt axis.
+
+```js
+limitShift({
+  crossAxis: false, // true by default
+});
+```
+
+##### `offset`
+
+Describes the offset at which the limiting begins, which can be either a
+`number`, describing the `mainAxis` offset, or a function which returns a
+number, taking in useful data.
+
+A `positive` offset means it starts limiting earlier, while `negative` later.
+
+You may also return an object in the shape
+`{ mainAxis: number, crossAxis: number }` to configure the offset of both axes.
+
+```js
+limitShift({
+  // start limiting 5px earlier
+  offset: 5,
+
+  // start limiting half the reference's width earlier
+  offset: ({ reference }) => reference.width / 2,
+
+  // configure the axes differently
+  offset: {
+    mainAxis: 5,
+    crossAxis: 10,
+  },
+});
+```
+
+#### `...detectOverflowOptions`
 
 All of [`detectOverflow`](../../utils/detectOverflow/#options)'s options can be
 passed.

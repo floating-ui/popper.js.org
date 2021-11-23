@@ -14,13 +14,13 @@ given reference element.
 const { position } = PopperDOM;
 
 // esm
-import { position } from '@popperjs/dom';
+import { computePosition } from '@popperjs/dom';
 ```
 
 It accepts three arguments:
 
 ```js
-position(reference, popper, {
+computePosition(reference, popper, {
   // options
 });
 ```
@@ -70,7 +70,7 @@ type PositioningStrategy = 'absolute' | 'fixed';
 ## Usage
 
 ```js
-position(reference, popper, {
+computePosition(reference, popper, {
   placement: 'right',
 }).then((data) => {
   const { x, y, placement, strategy, modifiersData } = data;
@@ -83,7 +83,7 @@ It's pure, so it only returns the data to be consumed.
 
 ## Options
 
-Options are passed as a third argument to `position()`.
+Options are passed as a third argument to `computePosition()`.
 
 ```flow
 type Options = {
@@ -107,7 +107,7 @@ probably want to wrap it in a function:
 
 ```js
 async function update() {
-  const { x, y } = await position(reference, popper, {
+  const { x, y } = await computePosition(reference, popper, {
     placement: 'right',
   });
 

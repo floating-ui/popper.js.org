@@ -127,7 +127,7 @@ Object.assign(tooltip.style, {
 
 const { position } = PopperDOM;
 
-position(button, tooltip).then(({ x, y }) => {
+computePosition(button, tooltip).then(({ x, y }) => {
   Object.assign(tooltip.style, {
     left: `${x}px`,
     top: `${y}px`,
@@ -135,10 +135,10 @@ position(button, tooltip).then(({ x, y }) => {
 });
 ```
 
-Above, we call `PopperDOM.position()` with the button and tooltip elements as
-arguments. It returns a `Promise`, so we use the `.then()` method which passes
-in the calculated `x` and `y` coordinates for us, which we use to assign `left`
-and `top` styles to the tooltip.
+Above, we call `PopperDOM.computePosition()` with the button and tooltip
+elements as arguments. It returns a `Promise`, so we use the `.then()` method
+which passes in the calculated `x` and `y` coordinates for us, which we use to
+assign `left` and `top` styles to the tooltip.
 
 Our tooltip is now centered underneath the button:
 
@@ -160,7 +160,7 @@ Object.assign(tooltip.style, {
 
 const { position } = PopperDOM;
 
-position(button, tooltip, {
+computePosition(button, tooltip, {
   placement: 'right',
 }).then(({ x, y }) => {
   Object.assign(tooltip.style, {
@@ -211,7 +211,7 @@ placement automatically without us needing to explicitly specify it.
 ```js {1,5}
 const { position, flip } = PopperDOM;
 
-position(button, tooltip, {
+computePosition(button, tooltip, {
   placement: 'top',
   modifiers: [flip()],
 }).then(({ x, y }) => {
@@ -239,7 +239,7 @@ instead of `y`). For this, we have the `shift` modifier:
 ```js {1,5}
 const { position, flip, shift } = PopperDOM;
 
-position(button, tooltip, {
+computePosition(button, tooltip, {
   placement: 'top',
   modifiers: [flip(), shift()],
 }).then(({ x, y }) => {
@@ -262,7 +262,7 @@ options object:
 ```js {5}
 const { position, flip, shift } = PopperDOM;
 
-position(button, tooltip, {
+computePosition(button, tooltip, {
   placement: 'top',
   modifiers: [flip(), shift({ padding: 5 })],
 }).then(({ x, y }) => {
@@ -286,7 +286,7 @@ For this, we have the `offset` modifier:
 ```js {1,5}
 const { position, flip, shift, offset } = PopperDOM;
 
-position(button, tooltip, {
+computePosition(button, tooltip, {
   placement: 'top',
   modifiers: [offset(5), flip(), shift({ padding: 5 })],
 }).then(({ x, y }) => {
@@ -342,7 +342,7 @@ Object.assign(arrowElement.style, {
 
 const { position, flip, shift, offset, arrow } = PopperDOM;
 
-position(button, tooltip, {
+computePosition(button, tooltip, {
   placement: 'top',
   modifiers: [
     offset(5),
@@ -367,7 +367,7 @@ This contains an `arrow` object, referring to the name of the `Popper.arrow()`
 modifier we used:
 
 ```js {9,14-24}
-position(button, tooltip, {
+computePosition(button, tooltip, {
   placement: 'top',
   modifiers: [
     offset(5),
@@ -438,7 +438,7 @@ function showTooltip() {
 
   const { position, flip, shift, offset, arrow } = PopperDOM;
 
-  position(button, tooltip, {
+  computePosition(button, tooltip, {
     placement: 'top',
     modifiers: [
       offset(5),

@@ -1,6 +1,6 @@
 ---
 navigationLabel: auto
-order: 7
+order: 6
 ---
 
 import { Auto } from '../../../../components/Modifiers';
@@ -13,9 +13,9 @@ one with most space).
 ## Usage
 
 ```js
-import { position, auto } from '@popperjs/dom';
+import { computePosition, auto } from '@popperjs/dom';
 
-position(reference, popper, {
+computePosition(reference, popper, {
   modifiers: [auto()],
 });
 ```

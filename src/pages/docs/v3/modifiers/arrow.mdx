@@ -1,6 +1,6 @@
 ---
 navigationLabel: arrow
-order: 4
+order: 3
 ---
 
 import { Arrow } from '../../../../components/Modifiers';
@@ -16,9 +16,9 @@ so that it is pointing toward its center at all times.
 ## Usage
 
 ```js
-import { position, arrow } from '@popperjs/dom';
+import { computePosition, arrow } from '@popperjs/dom';
 
-position(reference, popper, {
+computePosition(reference, popper, {
   modifiers: [arrow({ element: arrow })],
 });
 ```

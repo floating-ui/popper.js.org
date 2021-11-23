@@ -437,12 +437,12 @@ const PlacementExample = () => {
   });
 
   const code = `
-import { position } from '@popperjs/dom';
+import { computePosition } from '@popperjs/dom';
 
 const popcorn = document.querySelector('#popcorn');
 const tooltip = document.querySelector('#tooltip');
 
-position(popcorn, tooltip, {
+computePosition(popcorn, tooltip, {
   placement: '${placement}',
 }).then(({ x, y }) => {
   Object.assign(tooltip.style, {
@@ -541,12 +541,12 @@ const PreventOverflowExample = () => {
   }, []);
 
   const code = `
-import { position, shift } from '@popperjs/dom';
+import { computePosition, shift } from '@popperjs/dom';
 
 const popcorn = document.querySelector('#popcorn');
 const tooltip = document.querySelector('#tooltip');
 
-position(popcorn, tooltip, {
+computePosition(popcorn, tooltip, {
   placement: 'right',
   modifiers: [shift()],
 }).then(({ x, y }) => {
@@ -621,12 +621,12 @@ const FlipExample = () => {
   }, []);
 
   const code = `
-import { position, flip } from '@popperjs/core';
+import { computePosition, flip } from '@popperjs/core';
 
 const popcorn = document.querySelector('#popcorn');
 const tooltip = document.querySelector('#tooltip');
 
-position(popcorn, tooltip, {
+computePosition(popcorn, tooltip, {
   modifiers: [flip()],
 }).then(({ x, y }) => {
   Object.assign(tooltip.style, {

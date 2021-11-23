@@ -1,6 +1,6 @@
 ---
 navigationLabel: flip
-order: 3
+order: 2
 ---
 
 import { Flip } from '../../../../components/Modifiers';
@@ -17,9 +17,9 @@ Scroll the container.
 ## Usage
 
 ```js
-import { position, flip } from '@popperjs/dom';
+import { computePosition, flip } from '@popperjs/dom';
 
-position(reference, popper, {
+computePosition(reference, popper, {
   modifiers: [flip()],
 });
 ```
@@ -50,9 +50,9 @@ flip({
 });
 ```
 
-### `altAxis`
+### `crossAxis`
 
-Describes whether to flip the placement if it overflows on the alt axis. For
+Describes whether to flip the placement if it overflows on the cross axis. For
 vertical placements, this is the `x` axis. For horizontal ones, it's the `y`
 axis.
 

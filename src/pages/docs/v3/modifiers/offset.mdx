@@ -14,9 +14,9 @@ The `offset` modifier displaces the popper element from the reference element.
 ## Usage
 
 ```js
-import { position, offset } from '@popperjs/dom';
+import { computePosition, offset } from '@popperjs/dom';
 
-position(reference, popper, {
+computePosition(reference, popper, {
   modifiers: [offset()],
 });
 ```

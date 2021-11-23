@@ -1,6 +1,6 @@
 ---
 navigationLabel: hide
-order: 5
+order: 4
 ---
 
 import { Hide } from '../../../../components/Modifiers';
@@ -21,9 +21,9 @@ boundary. It then turns invisible when the reference is hidden.
 ## Usage
 
 ```js
-import { position, hide } from '@popperjs/dom';
+import { computePosition, hide } from '@popperjs/dom';
 
-position(reference, popper, {
+computePosition(reference, popper, {
   modifiers: [hide()],
 });
 ```
