@@ -1,1 +1,1 @@
-module.exports.UNPKG_CDN_URL = `https://unpkg.com/@popperjs/core@3`;
+module.exports.UNPKG_CDN_URL = `https://unpkg.com/@popperjs/dom@3`;

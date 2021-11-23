@@ -91,33 +91,42 @@ const TooltipName = styled.div`
   }
 `;
 
-const setClipboard = (text) => { navigator.clipboard.writeText(text) }
+const setClipboard = (text) => {
+  navigator.clipboard.writeText(text);
+};
 
 const CopyTextToClipboardWrapper = ({ text }) => {
   const { reference, popper } = usePopper({
-    placement: 'bottom'
+    placement: 'bottom',
   });
 
-  const [showValidationTooltip, setShowValidationTooltip] = React.useState(false)
+  const [showValidationTooltip, setShowValidationTooltip] = React.useState(
+    false
+  );
 
   const copyToClipboard = () => {
-    setClipboard(text); 
+    setClipboard(text);
     setShowValidationTooltip(true);
     setTimeout(() => {
-      setShowValidationTooltip(false)
-    }, 1000)
-  }
+      setShowValidationTooltip(false);
+    }, 1000);
+  };
 
   return (
     <>
-      <TextWrapper ref={reference} onClick={copyToClipboard}>{text}</TextWrapper>
-      <Tooltip style={{opacity: showValidationTooltip ? 1 : 0}} ref={popper}>
-        <TooltipName><CheckCircle />Copied to clipboard!</TooltipName>
+      <TextWrapper ref={reference} onClick={copyToClipboard}>
+        {text}
+      </TextWrapper>
+      <Tooltip style={{ opacity: showValidationTooltip ? 1 : 0 }} ref={popper}>
+        <TooltipName>
+          <CheckCircle />
+          Copied to clipboard!
+        </TooltipName>
         <Arrow data-popper-arrow />
       </Tooltip>
     </>
-  )
-}
+  );
+};
 
 const InstallBar = () => (
   <InstallBarStyled>
@@ -143,9 +152,15 @@ const InstallBar = () => (
       </div>
       <Bar>
         <LogoWrapper>
-          <Logo src={npmLogo} width="50" height="20" alt="npm logo" draggable="false" />
+          <Logo
+            src={npmLogo}
+            width="50"
+            height="20"
+            alt="npm logo"
+            draggable="false"
+          />
         </LogoWrapper>
-        <CopyTextToClipboardWrapper text='npm i @popperjs/core' />
+        <CopyTextToClipboardWrapper text="npm i @popperjs/dom" />
       </Bar>
       <Bar>
         <LogoWrapper>CDN</LogoWrapper>

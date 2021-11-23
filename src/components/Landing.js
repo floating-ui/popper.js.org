@@ -623,7 +623,7 @@ const FlipExample = () => {
   }, []);
 
   const code = `
-import { computePosition, flip } from '@popperjs/core';
+import { computePosition, flip } from '@popperjs/dom';
 
 const popcorn = document.querySelector('#popcorn');
 const tooltip = document.querySelector('#tooltip');
