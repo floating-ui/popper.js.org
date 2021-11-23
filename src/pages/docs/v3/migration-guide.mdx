@@ -71,10 +71,11 @@ function applyStyles({ x = 0, y = 0, strategy = 'absolute' }) {
   });
 }
 
-// Set initial styles to ensure `computePosition()` reads the correct dimensions.
+// Set initial styles to ensure `computePosition()` reads the correct
+// dimensions.
 applyStyles();
 
-// `position` is async, returning a Promise.
+// `computePosition` is async, returning a Promise.
 computePosition(reference, popper).then(applyStyles);
 ```
 
@@ -105,14 +106,14 @@ closely what it's actually doing to the popper.
 
 ### `tether`
 
-This was an option in Popper 2's `preventOverflow` modifier. This is a separate
-modifier, now called `limitShift`, which you can call after the `shift()`
-modifier in the array.
+This was an option in Popper 2's `preventOverflow` modifier. This is now a
+tree-shakeable function called `limitShift`, which you can pass as the `limiter`
+option to `shift()`.
 
 ## 5. Event listeners are up to you
 
 `computePosition()` is a single pure function call, it does not do any "magic"
-like `createPopper()` did which added listeners to update the popper.
+like `createPopper()` did like adding listeners to update the popper.
 
 Since you have full control, you can handle this whichever way you want. e.g.
 wrapping the call inside an `update()` function to add event listeners:
@@ -130,11 +131,11 @@ function update() {
   computePosition(reference, popper).then(applyStyles);
 }
 
-// Initial calls:
+// Initial calls
 applyStyles();
 update();
 
-// Add listeners on `scroll` and `resize`:
+// Add listeners on window `scroll` and `resize`
 addEventListener('scroll', update);
 addEventListener('resize', update);
 ```
@@ -162,9 +163,8 @@ scrollParents.forEach((scrollParent) => {
 
 ## 6. Ordering is up to you
 
-Aligning with the principles to make Popper less magical, you now fully control
-the ordering of the modifiers. There is no concept of `phase` or `requires` like
-in Popper 2. This allows more control over the behavior.
+You now fully control the ordering of the modifiers. There is no concept of
+`phase` or `requires` like in Popper 2.
 
 Understanding that modifiers return new coordinates, which later modifiers start
 from, can help in knowing the order to place modifiers in. If we apply `shift`
@@ -234,3 +234,30 @@ modifiers: [offset({ mainAxis: 10, crossAxis: 5 })];
 ```
 
 Which is more consistent with other modifier APIs.
+
+## 9. `altAxis` is now `crossAxis`
+
+Everywhere `altAxis` was used, rename to `crossAxis`.
+
+## 10. `auto` placements are their own modifier
+
+Popper 2:
+
+```js
+createPopper(reference, popper, {
+  // required the `flip` modifier
+  placement: 'auto',
+});
+```
+
+Popper 3:
+
+```js
+import { computePosition, autoPlacement } from '@popperjs/dom';
+
+computePosition(reference, popper, {
+  modifiers: [autoPlacement()],
+});
+```
+
+The behavior is also different, but should be more accurate/smarter.

@@ -166,7 +166,9 @@ const Heading = styled.h3`
   color: #f4e0f1;
 `;
 
+// eslint-disable-next-line no-template-curly-in-string
 const X_STRING = '`${x}px`';
+// eslint-disable-next-line no-template-curly-in-string
 const Y_STRING = '`${y}px`';
 
 const PopcornBox = forwardRef((props, ref) => (
@@ -709,32 +711,31 @@ const Layout = ({ children }) => {
       <Section>
         <Container>
           <Crop size={50} stroke="#ffe69d" />
-          <Heading>In a nutshell, Popper:</Heading>
+          <Heading>In a nutshell, Popper can:</Heading>
           <Ul>
             <Li>
               <Check />
               <strong>
-                Places your tooltip or popover relative to the reference
-              </strong>{' '}
-              taking into account their sizes, and positions its arrow centered
+                Place your floating element relative to the reference element
+              </strong>
+              , taking into account their sizes, and position an arrow centered
               to the reference.
             </Li>
             <Li>
               <Check />
               <strong>
-                Takes into account the many different contexts it can live in
+                Take into account the many different contexts the tooltip or
+                popover can live in
               </strong>{' '}
-              relative to the reference (different offsetParents, different or
-              nested scrolling containers).
+              (different offsetParents, different or nested scrolling
+              containers).
             </Li>
             <Li>
               <Check />
               <strong>
-                Keeps your tooltip or popover in view as best as possible
+                Keep your tooltip or popover in view as best as possible
               </strong>
-              . It prevents it from being clipped or cut off (overflow
-              prevention) and changes the placement if the original does not fit
-              (flipping).
+              , preventing it from being clipped or cut off.
             </Li>
           </Ul>
         </Container>
@@ -761,13 +762,10 @@ const Layout = ({ children }) => {
       <Section>
         <Container>
           <Layers size={50} stroke="#ffe69d" />
-          <Heading>Granular configuration with sensible defaults</Heading>
+          <Heading>Powerful, low-level API</Heading>
           <p>
-            Popper aims to "just work" without you needing to configure much. Of
-            course, there are cases where you need to configure Popper beyond
-            its defaults – in these cases, Popper shines by offering high
-            granularity of configuration to fine-tune the position or behavior
-            of your popper.
+            Popper aims to provide an extensible positioning engine for you to
+            add positioning primitives to build complex behavior.
           </p>
           <p>
             You can extend Popper with your own modifiers (or plugins) to make
@@ -783,27 +781,21 @@ const Layout = ({ children }) => {
           <Ul>
             <Li>
               <Check />
-              <strong>No detachment</strong>. Position updates take less than a
-              millisecond on average devices. Popper doesn't debounce the
-              positioning updates of the tooltip to the point where it will{' '}
-              <em>ever</em> detach from its reference, but this doesn't come at
-              the cost of poor performance.
+              <strong>Fast</strong>. The popper's position can be updated at 120
+              Hz even on slow hardware thanks to efficient checks and
+              architecture.
             </Li>
             <Li>
               <Check />
-              <strong>
-                You don't have to change the DOM context of your tooltip or
-                popover element
-              </strong>
-              ; it will work no matter where your popper and reference elements
-              live, even in the most complex scenarios like nested scrolling
-              containers or alternative offsetParent contexts.
+              <strong>Smart</strong>. Positioning works no matter where your
+              popper and reference elements live, even in the most complex
+              scenarios like nested scrolling containers or alternative
+              offsetParent contexts.
             </Li>
             <Li>
               <Check />
-              <strong>Still lightweight</strong>. Handling all of this
-              complexity is still done in an efficient manner. The base Popper
-              is only 2 kB minzipped.
+              <strong>Light</strong>. Tiny 600B core and tree-shakeable,
+              gradually adoptable positioning features.
             </Li>
           </Ul>
         </Container>

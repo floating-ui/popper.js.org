@@ -1,17 +1,17 @@
 ---
-navigationLabel: Position
+navigationLabel: computePosition
 order: 2
 ---
 
-# Position
+# computePosition
 
-The `position` function is the heart of Popper. It computes the necessary
+The `computePosition` function is the heart of Popper. It computes the necessary
 coordinates, and provides useful data, to position the popper element next to a
 given reference element.
 
 ```js
 // umd
-const { position } = PopperDOM;
+const { computePosition } = PopperDOM;
 
 // esm
 import { computePosition } from '@popperjs/dom';
@@ -25,14 +25,26 @@ computePosition(reference, popper, {
 });
 ```
 
-`position` is async, so it returns a `Promise`.
+It's async, so it returns a `Promise`.
 
-### Resolve value
+## Usage
 
-`position` resolves with the following data:
+```js
+// Pass the reference and popper elements
+computePosition(reference, popper, {
+  placement: 'right',
+}).then((data) => {
+  const { x, y, placement, strategy, modifiersData } = data;
+  // Do things with the data here...
+});
+```
+
+## Return value
+
+`computePosition` resolves with the following data:
 
 ```flow
-type PositionReturn = {|
+type ComputePositionReturn = {|
   ...Coords,
   placement: Placement, // default: "bottom"
   strategy: PositioningStrategy, // default: "absolute"
@@ -67,20 +79,6 @@ type Placement =
 type PositioningStrategy = 'absolute' | 'fixed';
 ```
 
-## Usage
-
-```js
-computePosition(reference, popper, {
-  placement: 'right',
-}).then((data) => {
-  const { x, y, placement, strategy, modifiersData } = data;
-  // Do things with the data here...
-});
-```
-
-`position` by itself does not do anything (i.e. mutate/position an element).
-It's pure, so it only returns the data to be consumed.
-
 ## Options
 
 Options are passed as a third argument to `computePosition()`.
@@ -101,7 +99,6 @@ type Options = {
 
 ## Updating
 
-The `position` function positions the element _once_, since it's a single call.
 If you need to update the position again later, or in an event listener, you'll
 probably want to wrap it in a function:
 

@@ -125,7 +125,7 @@ Object.assign(tooltip.style, {
   position: 'absolute',
 });
 
-const { position } = PopperDOM;
+const { computePosition } = PopperDOM;
 
 computePosition(button, tooltip).then(({ x, y }) => {
   Object.assign(tooltip.style, {
@@ -158,7 +158,7 @@ Object.assign(tooltip.style, {
   position: 'absolute',
 });
 
-const { position } = PopperDOM;
+const { computePosition } = PopperDOM;
 
 computePosition(button, tooltip, {
   placement: 'right',
@@ -209,7 +209,7 @@ and `y` coordinates in some way.
 placement automatically without us needing to explicitly specify it.
 
 ```js {1,5}
-const { position, flip } = PopperDOM;
+const { computePosition, flip } = PopperDOM;
 
 computePosition(button, tooltip, {
   placement: 'top',
@@ -237,7 +237,7 @@ Oh no, we now have the same problem as above, but on the opposite axis (`x`
 instead of `y`). For this, we have the `shift` modifier:
 
 ```js {1,5}
-const { position, flip, shift } = PopperDOM;
+const { computePosition, flip, shift } = PopperDOM;
 
 computePosition(button, tooltip, {
   placement: 'top',
@@ -260,7 +260,7 @@ boundary. To add some whitespace, or padding, the `shift` modifier accepts an
 options object:
 
 ```js {5}
-const { position, flip, shift } = PopperDOM;
+const { computePosition, flip, shift } = PopperDOM;
 
 computePosition(button, tooltip, {
   placement: 'top',
@@ -284,7 +284,7 @@ We probably also don't want the tooltip to lie flush with the button element.
 For this, we have the `offset` modifier:
 
 ```js {1,5}
-const { position, flip, shift, offset } = PopperDOM;
+const { computePosition, flip, shift, offset } = PopperDOM;
 
 computePosition(button, tooltip, {
   placement: 'top',
@@ -340,7 +340,7 @@ Object.assign(arrowElement.style, {
   position: 'absolute',
 });
 
-const { position, flip, shift, offset, arrow } = PopperDOM;
+const { computePosition, flip, shift, offset, arrow } = PopperDOM;
 
 computePosition(button, tooltip, {
   placement: 'top',
@@ -363,8 +363,8 @@ the `arrow` modifier doesn't modify the main `x` and `y` coordinates. Instead,
 it provides **data** for us to use. We can access this piece of information
 provided via `modifiersData`.
 
-This contains an `arrow` object, referring to the name of the `Popper.arrow()`
-modifier we used:
+This contains an `arrow` object, referring to the name of the `arrow()` modifier
+we used:
 
 ```js {9,14-24}
 computePosition(button, tooltip, {
@@ -381,7 +381,7 @@ computePosition(button, tooltip, {
     top: `${y}px`,
   });
 
-  Object.assign(arrow.style, {
+  Object.assign(arrowElement.style, {
     left: modifiersData.arrow.x ? `${modifiersData.arrow.x}px` : '',
     top: modifiersData.arrow.y ? `${modifiersData.arrow.y}px` : '',
     [{
@@ -436,7 +436,7 @@ function showTooltip() {
     position: 'absolute',
   });
 
-  const { position, flip, shift, offset, arrow } = PopperDOM;
+  const { computePosition, flip, shift, offset, arrow } = PopperDOM;
 
   computePosition(button, tooltip, {
     placement: 'top',
