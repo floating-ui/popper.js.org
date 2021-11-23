@@ -21,18 +21,20 @@ const shiftBy1Px = {
   // The main logic which returns new coordinates.
   fn({ x, y }) {
     return {
-      // Required: always return new `x` and `y` coordinates.
       x: x + 1,
       y: y + 1,
-
-      // Optional:
       data: {
         // Add custom data to be read by other modifiers or the consumer.
+        // The `name` property of the modifier identifies where this data goes
+        // in the main `modifiersData` object.
       },
     };
   },
 };
 ```
+
+All properties in the returned object of `fn` are optional, but an object must
+be returned (not `void`).
 
 ### Function
 
@@ -55,7 +57,7 @@ type Modifier = {
     modifierArguments: ModifierArguments
   ) =>
     | $Shape<{| ...Coords, data: Obj |}>
-    | Promise<$Shape<{ ...Coords, data: Obj }>>,
+    | Promise<$Shape<{| ...Coords, data: Obj |}>>,
 };
 
 type ModifierArguments = {|
