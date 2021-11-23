@@ -25,19 +25,28 @@ computePosition(reference, popper, {
 });
 ```
 
+The `popper` is the floating element that gets positioned relative to the
+`reference` element.
+
 It's async, so it returns a `Promise`.
 
 ## Usage
 
 ```js
-// Pass the reference and popper elements
 computePosition(reference, popper, {
+  // options
   placement: 'right',
 }).then((data) => {
   const { x, y, placement, strategy, modifiersData } = data;
   // Do things with the data here...
 });
 ```
+
+`x` and `y` are numbers which represent the positioning coordinates of the
+popper element relative to its `offsetParent`.
+
+**Note:** always ensure the popper element has a strategy applied (i.e. CSS
+`position: absolute`) _before_ calling `computePosition`.
 
 ## Return value
 
