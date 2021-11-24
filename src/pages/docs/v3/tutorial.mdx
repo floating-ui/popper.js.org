@@ -384,12 +384,14 @@ computePosition(button, tooltip, {
   Object.assign(arrowElement.style, {
     left: modifiersData.arrow.x ? `${modifiersData.arrow.x}px` : '',
     top: modifiersData.arrow.y ? `${modifiersData.arrow.y}px` : '',
+    right: '',
+    bottom: '',
     [{
       top: 'bottom',
       right: 'left',
       bottom: 'top',
       left: 'right',
-    }[placement.split('-')[0]]]: `${modifiersData.arrow.length / 2}px`,
+    }[placement.split('-')[0]]]: '-4px',
   });
 });
 ```
@@ -455,12 +457,14 @@ function showTooltip() {
     Object.assign(arrowElement.style, {
       left: modifiersData.arrow.x ? `${modifiersData.arrow.x}px` : '',
       top: modifiersData.arrow.y ? `${modifiersData.arrow.y}px` : '',
+      right: '',
+      bottom: '',
       [{
         top: 'bottom',
         right: 'left',
         bottom: 'top',
         left: 'right',
-      }[placement.split('-')[0]]]: `${modifiersData.arrow.length / 2}px`,
+      }[placement.split('-')[0]]]: '-4px',
     });
   });
 }
