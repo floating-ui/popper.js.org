@@ -94,7 +94,7 @@ const Search = () => (
       `}
     />
     <DocSearch
-      apiKey="102e76bbacbf3624fb5c4a420e28e81f"
+      apiKey="d5fa05c4e33e776fbf2b8021cbc15b37"
       indexName="popper"
       navigator={{
         navigate({ suggestionUrl }) {
@@ -102,8 +102,8 @@ const Search = () => (
         },
       }}
       hitComponent={Hit}
-      transformItems={(items) => {
-        return items.map((item) => {
+      transformItems={items => {
+        return items.map(item => {
           // We transform the absolute URL into a relative URL to
           // leverage Gatsby's preloading.
           const a = document.createElement('a');
