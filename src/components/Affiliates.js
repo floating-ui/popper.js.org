@@ -119,6 +119,11 @@ const MINI_SPONSORS = [
     label: 'Cell Tracking Apps - Parental Control Software Review Website',
     url: 'http://celltrackingapps.com/',
   },
+  {
+    logo: require('../images/logos/sponsors/techbuy.svg'),
+    label: 'wazirx referral code',
+    url: 'https://techbuy.in/wazirx-referral-code/',
+  },
 ];
 
 const random = products.slice(0, 3);
