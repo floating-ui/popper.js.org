@@ -31,7 +31,7 @@ const CarbonAds = ({
           They are small and unobtrusive.
           <br />
           Alternatively, support us on{' '}
-          <ExternalLinkStyled to="https://opencollective.com/popperjs">
+          <ExternalLinkStyled to="https://opencollective.com/floating-ui">
             Open Collective
           </ExternalLinkStyled>
           !

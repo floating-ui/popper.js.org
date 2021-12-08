@@ -729,7 +729,7 @@ const Layout = ({ children }) => {
             Popper is proudly sponsored by the following organizations,
             <br />
             join them on{' '}
-            <ExternalLinkStyled to="https://opencollective.com/popperjs">
+            <ExternalLinkStyled to="https://opencollective.com/floating-ui">
               Open Collective
             </ExternalLinkStyled>{' '}
             to support us.
@@ -800,7 +800,7 @@ const Layout = ({ children }) => {
             Bootstrap and Material UI.
           </p>
           <Button
-            href="https://opencollective.com/popperjs"
+            href="https://opencollective.com/floating-ui"
             target="_blank"
             rel="noopener noreferrer"
           >
