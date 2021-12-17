@@ -20,6 +20,13 @@ const products = [
     url: 'https://www.usetiful.com/',
     probability: 1,
   },
+  {
+    title: 'Modern Treasury',
+    description: 'The one place to keep a business’s money flowing',
+    image: '../images/affiliates/modern-treasury.jpg',
+    url: 'https://www.moderntreasury.com/',
+    probability: 1,
+  },
   // {
   //   title: 'Material Dashboard PRO',
   //   description: 'Premium Bootstrap 4 Material Admin - $49',
@@ -103,11 +110,6 @@ const MINI_SPONSORS = [
     logo: require('../images/logos/sponsors/mobilemall.svg'),
     label: 'Mobile Mall - Mobile Phone Prices in Pakistan',
     url: 'https://mobilemall.pk/',
-  },
-  {
-    logo: require('../images/logos/sponsors/modern-treasury.svg'),
-    label: 'Modern Treasury - The one place to keep a business’s money flowing',
-    url: 'https://www.moderntreasury.com/',
   },
   {
     logo: require('../images/logos/sponsors/coupontoaster.svg'),
