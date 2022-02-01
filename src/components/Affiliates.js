@@ -126,6 +126,11 @@ const MINI_SPONSORS = [
     label: 'wazirx referral code',
     url: 'https://techbuy.in/wazirx-referral-code/',
   },
+  {
+    logo: require('../images/logos/sponsors/dpcoupon.svg'),
+    label: 'dpcoupon - coupon codes and discounts',
+    url: 'https://www.dpcoupon.com/',
+  },
 ];
 
 const random = products.slice(0, 3);
