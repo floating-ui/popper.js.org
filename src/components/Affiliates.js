@@ -131,6 +131,11 @@ const MINI_SPONSORS = [
     label: 'dpcoupon - coupon codes and discounts',
     url: 'https://www.dpcoupon.com/',
   },
+  {
+    logo: require('../images/logos/sponsors/ggc.svg'),
+    label: 'ggc - espionner un téléphone Android iPhone Pour Control Parental',
+    url: 'https://www.global-gsm-control.com/',
+  },
 ];
 
 const random = products.slice(0, 3);
