@@ -141,6 +141,11 @@ const MINI_SPONSORS = [
     label: 'Living Feeds',
     url: 'https://livingfeeds.com/',
   },
+  {
+    logo: require('../images/logos/sponsors/bestforandroid.svg'),
+    label: 'Best Android Apps, Downloads & How to Guides',
+    url: 'https://bestforandroid.com/',
+  },
 ];
 
 const random = products.slice(0, 3);
