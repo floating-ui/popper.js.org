@@ -146,6 +146,11 @@ const MINI_SPONSORS = [
     label: 'Best Android Apps, Downloads & How to Guides',
     url: 'https://bestforandroid.com/',
   },
+  {
+    logo: require('../images/logos/sponsors/titanam.svg'),
+    label: 'Titan Asset Management',
+    url: 'https://titanam.co.uk/',
+  },
 ];
 
 const random = products.slice(0, 3);
