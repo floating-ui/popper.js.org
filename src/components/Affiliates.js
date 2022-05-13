@@ -151,6 +151,11 @@ const MINI_SPONSORS = [
     label: 'Titan Asset Management',
     url: 'https://titanam.co.uk/',
   },
+  {
+    logo: require('../images/logos/sponsors/dailycontributors.svg'),
+    label: 'Dailycontributors Blog',
+    url: 'https://dailycontributors.com',
+  },
 ];
 
 const random = products.slice(0, 3);
