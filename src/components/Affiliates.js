@@ -161,6 +161,16 @@ const MINI_SPONSORS = [
     label: 'Ariakit - Toolkit for building accessible UIs',
     url: 'https://ariakit.org/',
   },
+  {
+    logo: require('../images/logos/sponsors/ibomma.svg'),
+    label: 'Ibomma App',
+    url: 'https://theibomma.com/',
+  },
+  {
+    logo: require('../images/logos/sponsors/pacmanblog.svg'),
+    label: 'Pacman 30th Anniversary Doodle',
+    url: 'https://pacmanblog.com/',
+  },
 ];
 
 const random = products.slice(0, 3);
