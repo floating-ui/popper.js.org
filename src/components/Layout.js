@@ -193,7 +193,7 @@ const EditPage = ({ path }) => (
               margin-top: 15px;
               display: inline-block;
             `}
-            href={`https://github.com/popperjs/website/edit/master/src/${
+            href={`https://github.com/floating-ui/popper.js.org/edit/master/src/${
               route.fileAbsolutePath.split('/src/')[1]
             }`}
             rel="noopener noreferrer"
