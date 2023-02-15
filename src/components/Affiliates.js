@@ -171,6 +171,11 @@ const MINI_SPONSORS = [
     label: 'Pacman 30th Anniversary Doodle',
     url: 'https://pacmanblog.com/',
   },
+  {
+    logo: require('../images/logos/sponsors/sup.svg'),
+    label: 'Sup Standup Bot',
+    url: 'https://sup.today/',
+  },
 ];
 
 const random = products.slice(0, 3);
