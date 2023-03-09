@@ -176,6 +176,11 @@ const MINI_SPONSORS = [
     label: 'Sup Standup Bot',
     url: 'https://sup.today/',
   },
+  {
+    logo: require('../images/logos/sponsors/save-code.svg'),
+    label: "Save With the UK's Best Vouchers & Discount Codes",
+    url: 'https://www.savecode.co.uk/',
+  },
 ];
 
 const random = products.slice(0, 3);
