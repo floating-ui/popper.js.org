@@ -121,11 +121,11 @@ const MINI_SPONSORS = [
     label: 'Cell Tracking Apps - Parental Control Software Review Website',
     url: 'http://celltrackingapps.com/',
   },
-  {
-    logo: require('../images/logos/sponsors/techbuy.svg'),
-    label: 'wazirx referral code',
-    url: 'https://techbuy.in/wazirx-referral-code/',
-  },
+  // {
+  //   logo: require('../images/logos/sponsors/techbuy.svg'),
+  //   label: 'wazirx referral code',
+  //   url: 'https://techbuy.in/wazirx-referral-code/',
+  // },
   {
     logo: require('../images/logos/sponsors/dpcoupon.svg'),
     label: 'dpcoupon - coupon codes and discounts',
@@ -146,11 +146,11 @@ const MINI_SPONSORS = [
     label: 'Best Android Apps, Downloads & How to Guides',
     url: 'https://bestforandroid.com/',
   },
-  {
-    logo: require('../images/logos/sponsors/titanam.svg'),
-    label: 'Titan Asset Management',
-    url: 'https://titanam.co.uk/',
-  },
+  // {
+  //   logo: require('../images/logos/sponsors/titanam.svg'),
+  //   label: 'Titan Asset Management',
+  //   url: 'https://titanam.co.uk/',
+  // },
   {
     logo: require('../images/logos/sponsors/dailycontributors.svg'),
     label: 'Dailycontributors Blog',
