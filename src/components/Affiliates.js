@@ -106,11 +106,11 @@ const products = [
 ];
 
 const MINI_SPONSORS = [
-  {
-    logo: require('../images/logos/sponsors/mobilemall.svg'),
-    label: 'Mobile Mall - Mobile Phone Prices in Pakistan',
-    url: 'https://mobilemall.pk/',
-  },
+  // {
+  //   logo: require('../images/logos/sponsors/mobilemall.svg'),
+  //   label: 'Mobile Mall - Mobile Phone Prices in Pakistan',
+  //   url: 'https://mobilemall.pk/',
+  // },
   {
     logo: require('../images/logos/sponsors/coupontoaster.svg'),
     label: 'Coupontoaster - Discount and Coupon Codes',
@@ -126,11 +126,11 @@ const MINI_SPONSORS = [
   //   label: 'wazirx referral code',
   //   url: 'https://techbuy.in/wazirx-referral-code/',
   // },
-  {
-    logo: require('../images/logos/sponsors/dpcoupon.svg'),
-    label: 'dpcoupon - coupon codes and discounts',
-    url: 'https://www.dpcoupon.com/',
-  },
+  // {
+  //   logo: require('../images/logos/sponsors/dpcoupon.svg'),
+  //   label: 'dpcoupon - coupon codes and discounts',
+  //   url: 'https://www.dpcoupon.com/',
+  // },
   {
     logo: require('../images/logos/sponsors/ggc.svg'),
     label: 'ggc - espionner un téléphone Android iPhone Pour Control Parental',
@@ -141,45 +141,55 @@ const MINI_SPONSORS = [
     label: 'Living Feeds',
     url: 'https://livingfeeds.com/',
   },
-  {
-    logo: require('../images/logos/sponsors/bestforandroid.svg'),
-    label: 'Best Android Apps, Downloads & How to Guides',
-    url: 'https://bestforandroid.com/',
-  },
   // {
-  //   logo: require('../images/logos/sponsors/titanam.svg'),
-  //   label: 'Titan Asset Management',
-  //   url: 'https://titanam.co.uk/',
+  //   logo: require('../images/logos/sponsors/bestforandroid.svg'),
+  //   label: 'Best Android Apps, Downloads & How to Guides',
+  //   url: 'https://bestforandroid.com/',
   // },
+  {
+    logo: require('../images/logos/sponsors/titanam.svg'),
+    label: 'Titan Asset Management',
+    url: 'https://titanam.co.uk/',
+  },
   {
     logo: require('../images/logos/sponsors/dailycontributors.svg'),
     label: 'Dailycontributors Blog',
     url: 'https://dailycontributors.com',
   },
-  {
-    logo: require('../images/logos/sponsors/ariakit.svg'),
-    label: 'Ariakit - Toolkit for building accessible UIs',
-    url: 'https://ariakit.org/',
-  },
-  {
-    logo: require('../images/logos/sponsors/ibomma.svg'),
-    label: 'Ibomma App',
-    url: 'https://theibomma.com/',
-  },
-  {
-    logo: require('../images/logos/sponsors/pacmanblog.svg'),
-    label: 'Pacman 30th Anniversary Doodle',
-    url: 'https://pacmanblog.com/',
-  },
+  // {
+  //   logo: require('../images/logos/sponsors/ariakit.svg'),
+  //   label: 'Ariakit - Toolkit for building accessible UIs',
+  //   url: 'https://ariakit.org/',
+  // },
+  // {
+  //   logo: require('../images/logos/sponsors/ibomma.svg'),
+  //   label: 'Ibomma App',
+  //   url: 'https://theibomma.com/',
+  // },
+  // {
+  //   logo: require('../images/logos/sponsors/pacmanblog.svg'),
+  //   label: 'Pacman 30th Anniversary Doodle',
+  //   url: 'https://pacmanblog.com/',
+  // },
   {
     logo: require('../images/logos/sponsors/sup.svg'),
     label: 'Sup Standup Bot',
     url: 'https://sup.today/',
   },
+  // {
+  //   logo: require('../images/logos/sponsors/save-code.svg'),
+  //   label: "Save With the UK's Best Vouchers & Discount Codes",
+  //   url: 'https://www.savecode.co.uk/',
+  // },
   {
-    logo: require('../images/logos/sponsors/save-code.svg'),
-    label: "Save With the UK's Best Vouchers & Discount Codes",
-    url: 'https://www.savecode.co.uk/',
+    logo: require('../images/logos/sponsors/fitlivingtips.svg'),
+    label: 'FitLivingTips - Health and Fitness Blog',
+    url: 'https://www.fitlivingtips.com/',
+  },
+  {
+    logo: require('../images/logos/sponsors/mobipast.svg'),
+    label: 'Mobipast',
+    url: 'https://mobipast.net/',
   },
 ];
 
