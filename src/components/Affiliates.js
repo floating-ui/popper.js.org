@@ -156,11 +156,11 @@ const MINI_SPONSORS = [
     label: 'Dailycontributors Blog',
     url: 'https://dailycontributors.com',
   },
-  // {
-  //   logo: require('../images/logos/sponsors/ariakit.svg'),
-  //   label: 'Ariakit - Toolkit for building accessible UIs',
-  //   url: 'https://ariakit.org/',
-  // },
+  {
+    logo: require('../images/logos/sponsors/ariakit.svg'),
+    label: 'Ariakit - Toolkit for building accessible UIs',
+    url: 'https://ariakit.org/',
+  },
   // {
   //   logo: require('../images/logos/sponsors/ibomma.svg'),
   //   label: 'Ibomma App',
