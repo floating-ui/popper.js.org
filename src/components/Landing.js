@@ -41,6 +41,7 @@ import 'modern-normalize';
 import '@openfonts/luckiest-guy_latin';
 import './layout.css';
 import './prism-base2tone-pool-dark.css';
+import { FloatingUIBanner } from './Layout';
 
 import popcornBox from '../images/popcorn-box.svg';
 import { css } from '@emotion/react';
@@ -664,10 +665,17 @@ const Layout = ({ children }) => {
   return (
     <MDXProvider components={components}>
       <SEO title="Home" />
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <FloatingUIBanner />
+      <Header
+        siteTitle={data.site.siteMetadata.title}
+        css={css`
+          margin-top: 4rem;
+        `}
+      />
       <InstallBar />
       <CarbonAds
         css={css`
+          margin-top: 4rem;
           ${media.lg} {
             position: absolute;
             top: 0;

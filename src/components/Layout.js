@@ -145,7 +145,7 @@ const NavButtonDirection = styled.span`
 
 const components = {
   'x-ad': CarbonAds,
-  a: props => (
+  a: (props) => (
     // eslint-disable-next-line
     <a {...props} onClick={anchorScroll}>
       {props.children}
@@ -175,16 +175,75 @@ function anchorScroll(event) {
   } catch (e) {}
 }
 
-const flatten = routes =>
+const flatten = (routes) =>
   routes.reduce(
     (acc, cur) => acc.concat(cur).concat(flatten(cur.children)),
     []
   );
 
+export const FloatingUIBanner = () => (
+  <a
+    css={css`
+      all: unset;
+      box-sizing: border-box;
+      &:hover,
+      &:active,
+      &:focus {
+        border: none;
+      }
+      cursor: pointer;
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 4rem;
+      background: #1f2028;
+      color: rgb(221, 214, 254);
+      border: none;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      &:after {
+        content: '';
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        bottom: 10px;
+        right: 10px;
+        border-radius: 20px;
+        filter: blur(5px);
+        z-index: -1;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-image: radial-gradient(
+          circle,
+          rgba(51, 43, 61, 1) 4%,
+          rgba(54, 45, 74, 1) 13%,
+          rgba(65, 53, 120, 1) 40%,
+          rgba(110, 66, 122, 1) 55%,
+          rgba(119, 69, 122, 1) 71%,
+          rgba(32, 33, 40, 1) 100%
+        );
+      }
+    `}
+    href="https://floating-ui.com"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    The future of Popper is here! Floating UI is now available. Get it now!
+  </a>
+);
+
 const EditPage = ({ path }) => (
   <MdxRoutes>
-    {routes => {
-      const route = routes.find(route => route.slug === path);
+    {(routes) => {
+      const route = routes.find((route) => route.slug === path);
 
       return (
         route && (
@@ -213,7 +272,7 @@ const Layout = ({ children, location, pageResources, ...props }) => {
     const validRoutes = flatten(createTree(processRoutes(routes, path)));
 
     const currentPathIndex = validRoutes.findIndex(
-      route => route.slug === path
+      (route) => route.slug === path
     );
 
     return {
@@ -362,7 +421,12 @@ const Layout = ({ children, location, pageResources, ...props }) => {
           }
         `}
       />
-      <div>
+      <FloatingUIBanner />
+      <div
+        css={css`
+          margin-top: 4rem;
+        `}
+      >
         {pageResources && (
           <SEO
             title={
@@ -378,7 +442,7 @@ const Layout = ({ children, location, pageResources, ...props }) => {
             <EditPage path={path} />
           </Container>
           <MdxRoutes>
-            {routes => {
+            {(routes) => {
               const { prev, next } = getPrevNextRoutes(routes);
               return (
                 <NavButtonWrapper>

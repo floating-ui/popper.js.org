@@ -113,8 +113,8 @@ const iconCss = css`
   margin-right: 5px;
 `;
 
-const Header = () => (
-  <HeaderStyled>
+const Header = ({ className }) => (
+  <HeaderStyled className={className}>
     <picture>
       <source
         srcset={popperLogoOutlined}
@@ -124,7 +124,13 @@ const Header = () => (
         srcset={popperLogo}
         media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
       />
-      <Logo src={popperLogo} alt="Popper logo" draggable="false" width="200" height="200" />
+      <Logo
+        src={popperLogo}
+        alt="Popper logo"
+        draggable="false"
+        width="200"
+        height="200"
+      />
     </picture>
 
     <Slogan>

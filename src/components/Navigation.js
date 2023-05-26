@@ -15,7 +15,7 @@ export const NAVIGATION_WIDTH = 260;
 const Container = styled.div`
   background: #c83b50;
   position: fixed;
-  top: 0;
+  top: 4rem;
   height: 100%;
   width: ${NAVIGATION_WIDTH}px;
   transform: translateX(-${NAVIGATION_WIDTH}px);
