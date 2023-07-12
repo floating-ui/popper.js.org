@@ -191,6 +191,11 @@ const MINI_SPONSORS = [
     label: 'Mobipast',
     url: 'https://mobipast.net/',
   },
+  {
+    logo: require('../images/logos/sponsors/refermate.svg'),
+    label: 'Refermate - Best Coupon Codes',
+    url: 'https://refermate.com/',
+  },
 ];
 
 const random = products.slice(0, 3);
