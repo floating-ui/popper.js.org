@@ -106,11 +106,6 @@ const products = [
 ];
 
 const MINI_SPONSORS = [
-  // {
-  //   logo: require('../images/logos/sponsors/mobilemall.svg'),
-  //   label: 'Mobile Mall - Mobile Phone Prices in Pakistan',
-  //   url: 'https://mobilemall.pk/',
-  // },
   {
     logo: require('../images/logos/sponsors/coupontoaster.svg'),
     label: 'Coupontoaster - Discount and Coupon Codes',
@@ -201,6 +196,21 @@ const MINI_SPONSORS = [
     label:
       'Electric UI - Tools for building user interfaces for hardware devices.',
     url: 'https://electricui.com/',
+  },
+  {
+    logo: require('../images/logos/sponsors/mobilemall.svg'),
+    label: 'Mobilemall',
+    url: 'https://mobilemall.co/',
+  },
+  {
+    logo: require('../images/logos/sponsors/tubidy.svg'),
+    label: 'Tubidy',
+    url: 'https://thetubidy.net/',
+  },
+  {
+    logo: require('../images/logos/sponsors/rs24.svg'),
+    label: 'Rapelis24',
+    url: 'https://the-repelis24.com/',
   },
 ];
 
