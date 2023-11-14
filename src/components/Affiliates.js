@@ -27,6 +27,14 @@ const products = [
     url: 'https://www.moderntreasury.com/',
     probability: 1,
   },
+  {
+    title: 'Dopt',
+    description:
+      ' Dopt gives developers UI components and SDKs to build seamless onboarding and education experiences in minutes.',
+    image: '../images/affiliates/dopt.png',
+    url: 'https://dopt.com/?utm_source=floating_ui_website',
+    probability: 1,
+  },
   // {
   //   title: 'Material Dashboard PRO',
   //   description: 'Premium Bootstrap 4 Material Admin - $49',
