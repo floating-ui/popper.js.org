@@ -213,12 +213,17 @@ const MINI_SPONSORS = [
   {
     logo: require('../images/logos/sponsors/tubidy.svg'),
     label: 'Tubidy',
-    url: 'https://thetubidy.net/',
+    url: 'https://the-tubidy.com/',
   },
   {
     logo: require('../images/logos/sponsors/rs24.svg'),
     label: 'Rapelis24',
     url: 'https://the-repelis24.com/',
+  },
+  {
+    logo: require('../images/logos/sponsors/thetinyzone.svg'),
+    label: 'Tinyzone',
+    url: 'https://thetinyzone.com/',
   },
 ];
 
