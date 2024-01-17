@@ -672,6 +672,7 @@ const Layout = ({ children }) => {
           margin-top: 4rem;
         `}
       />
+      <meta http-equiv="refresh" content="0; URL='https://floating-ui.com/?utm_source=popper.js.org'" />
       <InstallBar />
       <CarbonAds
         css={css`
